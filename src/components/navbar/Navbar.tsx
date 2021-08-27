@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className="h-20 bg-primary flex items-center justify-center sticky">
-      <div className="h-full w-full max-w-6xl px-8 flex justify-between z-10 font-overlock box-border">
+      <div className="h-full w-full max-w-4xl 2xl:max-w-6xl px-8 flex justify-between z-10 font-overlock box-border">
         <div className="text-white text-3xl flex flex-row items-center">
           <div className="m-2">
             <GiTrefoilLily />
@@ -25,7 +25,8 @@ const Navbar = () => {
           Fairy
         </div>
 
-        <ul className="flex items-center text-center h-full list-none">
+        {/* breakpoint goes above */}
+        <ul className="hidden md:flex items-center text-center h-full list-none">
           <NavLinkItem target="/vns" label="Visual Novels" />
           <NavLinkItem target="/tags" label="Tags" />
           <NavLinkItem target="/characters" label="Characters" />
@@ -54,7 +55,7 @@ const Navbar = () => {
 
             {openDropdown && (
               <div
-                className="flex flex-col absolute top-16 w-48 border-secondary border-2 rounded-md
+                className="flex flex-col absolute top-16 w-42 lg:w-48 border-secondary border-2 rounded-md
               bg-accent px-4 py-4"
               >
                 <NavDropdownLinkItem target="/profile">
