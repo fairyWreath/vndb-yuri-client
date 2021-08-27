@@ -15,6 +15,7 @@ import NavDropdownLinkItem from "./NavDropdownLinkItem";
 const Navbar = () => {
   const [isLoggedIn, setLoggedIn] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   return (
     <div className="h-20 bg-primary flex items-center justify-center sticky">
@@ -56,8 +57,8 @@ const Navbar = () => {
 
             {openDropdown && (
               <div
-                className="flex flex-col absolute top-16 w-42 lg:w-48 border-primary border-2 rounded-md
-              bg-accent px-4 py-4"
+                className="flex flex-col absolute top-16 border-primary border-2 rounded-md
+              bg-accentSecondary px-4 py-4"
               >
                 <NavDropdownLinkItem target="/profile">
                   <IoPerson />
@@ -89,10 +90,13 @@ const Navbar = () => {
 
       {/* mobile icon */}
       <div
-        className="md:hidden fixed bottom-7 right-7 w-14 h-14 bg-primary rounded-lg
-      flex justify-center items-center cursor-pointer"
+        className="md:hidden fixed bottom-7 right-7 w-14 h-14 bg-accentPrimary rounded-lg
+      flex justify-center items-center cursor-pointer text-light"
+        onClick={() => {
+          setOpenMobileMenu(!openMobileMenu);
+        }}
       >
-        <FaBars className="text-light" size="40px" />
+        {openMobileMenu ? <FaTimes size="40px" /> : <FaBars size="40px" />}
       </div>
     </div>
   );
