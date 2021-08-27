@@ -7,6 +7,16 @@ module.exports = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
+      primary: "#fdc6bf",
+      accent: "#fcf7fb",
+      dark: "#748899",
+      light: "#f9f9ed",
+      white: "#ffffff",
+      black: "#000000",
+      secondary: "#f5cee8",
+    },
+    fontFamily: {
+      overlock: ["Overlock"],
     },
   },
   variants: {

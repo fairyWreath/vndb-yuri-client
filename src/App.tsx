@@ -1,7 +1,12 @@
 import React from "react";
-
+import Navbar from "./components/navbar/Navbar";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 function App() {
-  return <div className="App text-9xl">hello yuri!</div>;
+  return (
+    <BrowserRouter>
+      <Navbar></Navbar>
+    </BrowserRouter>
+  );
 }
 
 export default App;
