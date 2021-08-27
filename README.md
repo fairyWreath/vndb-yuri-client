@@ -1,3 +1,5 @@
+Frontend client to access Yuri/GL visual novel data from the VNDB database.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
