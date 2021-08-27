@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className="h-20 bg-primary flex items-center justify-center sticky">
-      <div className="h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
+      <div className=" select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
         <div className="text-white text-3xl flex flex-row items-center">
           <div className="m-2">
             <GiTrefoilLily />
@@ -46,7 +46,7 @@ const Navbar = () => {
             }}
           >
             <img
-              className="h-14 w-14 max-h-14 max-w-14 mr-2"
+              className="h-14 w-14 max-h-14 max-w-14 mr-2 select-none"
               src="https://s4.anilist.co/file/anilistcdn/user/avatar/large/b823204-p8pRSBsVGYBM.png"
             />
             <AiFillCaretDown
