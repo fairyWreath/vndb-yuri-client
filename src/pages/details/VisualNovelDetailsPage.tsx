@@ -13,6 +13,8 @@ const VisualNovelDetailsPage = (props: Props) => {
   return (
     <div className="flex flex-column justify-start items-center bg-light">
       <Carousel slides={screenShotImages}></Carousel>
+
+      <div></div>
     </div>
   );
 };
