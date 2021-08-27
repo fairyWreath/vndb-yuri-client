@@ -7,6 +7,7 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { MdSettings } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { AiFillCaretDown } from "react-icons/ai";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import NavLinkItem from "./NavLinkItem";
 import NavDropdownLinkItem from "./NavDropdownLinkItem";
@@ -17,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div className="h-20 bg-primary flex items-center justify-center sticky">
-      <div className="h-full w-full max-w-4xl 2xl:max-w-6xl px-8 flex justify-between z-10 font-overlock box-border">
+      <div className="h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
         <div className="text-white text-3xl flex flex-row items-center">
           <div className="m-2">
             <GiTrefoilLily />
@@ -55,7 +56,7 @@ const Navbar = () => {
 
             {openDropdown && (
               <div
-                className="flex flex-col absolute top-16 w-42 lg:w-48 border-secondary border-2 rounded-md
+                className="flex flex-col absolute top-16 w-42 lg:w-48 border-primary border-2 rounded-md
               bg-accent px-4 py-4"
               >
                 <NavDropdownLinkItem target="/profile">
@@ -84,6 +85,14 @@ const Navbar = () => {
         ) : (
           <div></div>
         )}
+      </div>
+
+      {/* mobile icon */}
+      <div
+        className="md:hidden fixed bottom-7 right-7 w-14 h-14 bg-primary rounded-lg
+      flex justify-center items-center cursor-pointer"
+      >
+        <FaBars className="text-light" size="40px" />
       </div>
     </div>
   );
