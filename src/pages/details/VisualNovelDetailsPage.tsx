@@ -38,6 +38,7 @@ const VisualNovelDetailsPage = (props: Props) => {
           src="https://s2.vndb.org/cv/09/27609.jpg"
         />
       </div>
+      <div></div>
     </div>
   );
 };
