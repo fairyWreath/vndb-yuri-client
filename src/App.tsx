@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 import VisualNovelDetailsPage from "./pages/details/VisualNovelDetailsPage";
-import Carousel from "./components/carousel/Carousel";
+
 function App() {
   return (
     <div className="app">
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/vns/:id" component={VisualNovelDetailsPage} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

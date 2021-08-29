@@ -20,13 +20,21 @@ module.exports = {
       fontFamily: {
         overlock: ["Overlock"],
       },
+      minWidth: {
+        titleImageMedium: "20vw",
+      },
       maxWidth: {
         screenImageLarge: "960px",
         screenImageMedium: "768px",
+        titleImageMedium: "20vw",
       },
       maxHeight: {
         screenImageLarge: "540px",
         screenImageMedium: "432px",
+      },
+      width: {
+        titleImageMedium: "28rem",
+        titleImageLarge: "32rem",
       },
     },
   },

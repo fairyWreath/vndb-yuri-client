@@ -18,7 +18,7 @@ const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   return (
-    <div className="h-20 bg-primary flex items-center justify-center sticky">
+    <div className="h-20 bg-primary flex items-center justify-center sticky top-0 z-50">
       <div className=" select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
         <div className="text-white text-3xl flex flex-row items-center">
           <div className="m-2">
@@ -58,7 +58,7 @@ const Navbar = () => {
             {openDropdown && (
               <div
                 className="flex flex-col absolute top-16 border-primary border-2 rounded-md
-              bg-accentSecondary px-4 py-4"
+              bg-accentSecondary px-4 py-4 z-50"
               >
                 <NavDropdownLinkItem target="/profile">
                   <IoPerson />

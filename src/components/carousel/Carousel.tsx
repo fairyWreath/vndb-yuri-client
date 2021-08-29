@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
   padding: 20px 0px;
-
+  z-index: 0;
   ul {
     /* center in index, 100 - VIEWPORT of MAX/MIN WIDTH */
     transform: translate3d(${(100 - 60) / 2}vw, 0, 0);
