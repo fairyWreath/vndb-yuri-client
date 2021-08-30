@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GiTrefoilLily } from "react-icons/gi";
 
-import Carousel from "../../components/carousel/Carousel";
-import DetailsSidebar from "./DetailsSidebar";
-import DetailsSidebarItem from "./DetailsSidebarItem";
-import DetailsSidebarWithScrollContainer from "./DetailsSidebarWithScrollContainer";
-import Overview from "./Overview";
+import Carousel from "../components/carousel/Carousel";
+import DetailsSidebar from "../components/details/DetailsSidebar";
+import DetailsSidebarItem from "../components/details/DetailsSidebarItem";
+import DetailsSidebarWithScrollContainer from "../components/details/DetailsSidebarWithScrollContainer";
+import Overview from "../components/details/Overview";
 
-import * as VNDB from "../../vndb/Vndb";
-import { Service } from "./Service";
-import { VisualNovel } from "../../vndb/VndbTypes";
+import * as VNDB from "../vndb/Vndb";
+import * as VNDBHelper from "../vndb/VndbHelpers";
+import { Service } from "../fetch/Service";
+import { VisualNovel } from "../vndb/VndbTypes";
 
 interface VisualNovelParams {
   id: string;
@@ -26,8 +27,6 @@ const VisualNovelDetailsPage = () => {
   const [result, setResult] = useState<Service<VisualNovel>>({
     status: "loading",
   });
-
-  const [expandDescription, setExpandDescription] = useState(false);
 
   useEffect(() => {
     VNDB.fetchVnDetails(id)
@@ -67,18 +66,7 @@ const VisualNovelDetailsPage = () => {
 
   const screenImages = vn.screens.map((screen) => screen.image);
   const languages = vn.languages.map((lang) => {
-    let name = "unknown";
-    if (lang === "en") {
-      name = "English";
-    } else if (lang === "ja") {
-      name = "Japanese";
-    } else if (lang === "zh") {
-      name = "Mandarin";
-    } else if (lang === "ru") {
-      name = "Russian";
-    } else if (lang === "es") {
-      name = "Spanish";
-    }
+    const name = VNDBHelper.getFullLanguageName(lang);
     return <div>{name}</div>;
   });
 

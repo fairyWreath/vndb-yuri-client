@@ -5,27 +5,15 @@ interface CarouselImageProps {
   url: string;
 }
 
-const StyledPicture = styled.picture`
-  width: 100%;
-  height: 100;
-
-  img {
-    width: 100%;
-    height: 100;
-    position: relative;
-    opacity: 1;
-    transition: opacity 125ms ease-in-out 450ms;
-    user-select: none;
-    display: block;
-    border-radius: 12px;
-  }
-`;
-
 const CarouselImage = (props: CarouselImageProps) => {
   return (
-    <StyledPicture>
-      <img src={props.url} alt=""></img>
-    </StyledPicture>
+    <picture className="w-full h-full">
+      <img
+        className="w-full h-full relative opacity-100 transition-opacity select-none
+        block rounded-xl"
+        src={props.url}
+      />
+    </picture>
   );
 };
 

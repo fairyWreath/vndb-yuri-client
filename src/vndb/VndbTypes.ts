@@ -77,7 +77,6 @@ export interface VnData {
   released: string;
 }
 
-/* vndb release type */
 export interface VnReleaseProducer {
   publisher: boolean;
   type: string;
@@ -122,16 +121,15 @@ export interface VnRelease {
   gtin?: any;
 }
 
-interface VnLanguageReleases {
+export interface VnLanguageReleases {
   releases: Map<string, VnRelease>;
 }
 
-interface VnTagName {
+export interface VnTagName {
   name: string;
   score: number;
 }
 
-// complete vn type
 export interface VisualNovel {
   links: VnLinks;
   votecount: number;

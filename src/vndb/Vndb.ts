@@ -16,7 +16,6 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
     errors?: Array<{ message: string }>;
   };
 
-  // need to change error implementation
   const { data, errors }: JSONResponse = await response.json();
 
   if (response.ok) {
