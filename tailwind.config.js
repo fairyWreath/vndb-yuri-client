@@ -26,11 +26,20 @@ module.exports = {
       maxWidth: {
         screenImageLarge: "960px",
         screenImageMedium: "768px",
-        titleImageMedium: "20vw",
+        titleImageMedium: "28rem",
+        titleImageLarge: "32rem",
       },
       maxHeight: {
         screenImageLarge: "540px",
         screenImageMedium: "432px",
+        titleImageMedium: "24rem",
+        titleDetailsContainer: "32rem",
+        titleDetailsDescription: "20rem",
+      },
+      minHeight: {
+        titleImageMedium: "24rem",
+        titleDetailsContainer: "32rem",
+        titleDetailsDescription: "20rem",
       },
       width: {
         titleImageMedium: "28rem",
