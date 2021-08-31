@@ -82,12 +82,12 @@ const VisualNovelDetailsPage = () => {
   });
 
   return (
-    <div className="flex flex-col justify-start items-center bg-light">
+    <div className="flex flex-col justify-start items-center bg-light font-overlock">
       {screenImages.length > 0 && <Carousel slides={screenImages}></Carousel>}
 
       <div
         className="flex flex-row justify-end items-start bg-accentPrimary max-w-full min-w-full
-      px-8 py-5 max-h-titleDetailsContainer min-h-titleDetailsContainer"
+      px-8 py-5 max-h-titleDetailsContainer min-h-titleDetailsContainer shadow-md"
       >
         <div className="flex flex-col justify-start pr-8 pl-4">
           <div className="italic text-2xl mb-8 text-right text-darkAccent">
@@ -101,7 +101,7 @@ const VisualNovelDetailsPage = () => {
           </div>
         </div>
         <img
-          className="rounded-lg max-h-titleImageMedium min-h-titleImageMedium w-auto"
+          className="rounded-lg max-h-titleImageMedium min-h-titleImageMedium w-auto shadow-md"
           src={vn.image}
         />
       </div>

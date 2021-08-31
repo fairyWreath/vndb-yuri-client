@@ -12,7 +12,7 @@ const NavDropdownLinkItem = (props: NavDropdownLinkItemProps) => {
       to={props.target}
       className="flex flex-row justify-between items-center rounded-md py-2
       w-full px-1 md:px-3 text-base text-dark transition-all duration-300 ease-in-out 
-  hover:bg-primary font-overlock"
+  hover:bg-accentPrimary font-overlock"
     >
       {props.children}
     </Link>

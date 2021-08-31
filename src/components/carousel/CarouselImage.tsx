@@ -10,7 +10,7 @@ const CarouselImage = (props: CarouselImageProps) => {
     <picture className="w-full h-full">
       <img
         className="w-full h-full relative opacity-100 transition-opacity select-none
-        block rounded-xl"
+        block rounded-xl shadow-md"
         src={props.url}
       />
     </picture>

@@ -2,13 +2,13 @@ export interface VnLinks {
   wikidata?: string;
   renai?: any;
   encubed?: any;
-  wikipedia?: string;
+  wikipedia?: string | null;
 }
 
 export interface VnStaff {
   name: string;
   role: string;
-  note: string;
+  note: string | null;
   aid: number;
   sid: number;
   original: string;

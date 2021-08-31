@@ -45,10 +45,20 @@ module.exports = {
         titleImageMedium: "28rem",
         titleImageLarge: "32rem",
       },
+      borderWidth: {
+        veryThin: "0.5px",
+      },
+      gridTemplateColumns: {
+        16: "repeat(16, minmax(0, 1fr))",
+        normalScreen: "repeat(5, 208px)", // 208 px/13 rem for w-52 card
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      width: ["hover"],
+      height: ["hover"],
+    },
   },
   plugins: [
     require("@tailwindcss/forms"), // import tailwind forms
