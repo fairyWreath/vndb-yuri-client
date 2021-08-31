@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DropdownFilter from "../components/filters/DropdownFIlter";
 import SearchFilter from "../components/filters/SearchFilter";
 import VisualNovelCard from "../components/cards/VisualNovelCard";
 import { VnData } from "../vndb/VndbTypes";
 import VisualNovelCardList from "../components/cards/VisualNovelCardList";
+import { fetchVnList } from "../vndb/Vndb";
+import { Service } from "../fetch/Service";
 
 const data: VnData = {
   id: 16610,
@@ -239,6 +241,35 @@ const data: VnData = {
   links: { wikipedia: null, encubed: null, wikidata: "Q22128158", renai: null },
 };
 const BrowseVisualNovelsPage = () => {
+  const [result, setResult] = useState<Service<VnData[]>>({
+    status: "loading",
+  });
+
+  useEffect(() => {
+    fetchVnList()
+      .then((items: VnData[]) =>
+        setResult({ status: "loaded", payload: items })
+      )
+      .catch((err) => {
+        console.log(err);
+        setResult({ status: "error", error: err });
+      });
+  }, []);
+
+  if (result.status === "init") return <div>init</div>;
+  if (result.status === "error")
+    return (
+      <div className="flex flex-col justify-start items-center bg-light min-h-screen py-16">
+        error
+      </div>
+    );
+  if (result.status === "loading")
+    return (
+      <div className="flex flex-col justify-start items-center bg-light min-h-screen">
+        loading
+      </div>
+    );
+
   return (
     <div
       className="bg-light w-full min-h-screen bottom-0 px-12
@@ -255,7 +286,7 @@ const BrowseVisualNovelsPage = () => {
         <DropdownFilter label="Released" items={[]} multiSelect={false} />
         <DropdownFilter label="Platforms" items={[]} multiSelect={true} />
       </div>
-      <VisualNovelCardList vns={[data, data, data, data, data, data, data]} />
+      <VisualNovelCardList vns={result.payload} />
     </div>
   );
 };

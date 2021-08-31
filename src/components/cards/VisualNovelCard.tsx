@@ -32,7 +32,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
             />
           </Link>
         </div>
-        <div className="title h-12 py-2 overflow-hidden text-lg font-medium ">
+        <div className="title min-h-12 py-2 overflow-hidden text-base font-medium ">
           <Link to={"/vns/" + props.vn.id}>{props.vn.title}</Link>
         </div>
       </motion.div>

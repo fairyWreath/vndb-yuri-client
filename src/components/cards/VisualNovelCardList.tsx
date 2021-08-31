@@ -11,7 +11,7 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
     return <VisualNovelCard vn={vn} key={id} />;
   });
   return (
-    <div className="grid grid-cols-normalScreen justify-between">
+    <div className="grid grid-cols-normalScreen gap-y-2 justify-between">
       {cardList}
     </div>
   );
