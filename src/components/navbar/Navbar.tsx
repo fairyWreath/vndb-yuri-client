@@ -32,7 +32,7 @@ const Navbar = () => {
           <NavLinkItem target="/vns" label="Visual Novels" />
           <NavLinkItem target="/tags" label="Tags" />
           <NavLinkItem target="/characters" label="Characters" />
-          <NavLinkItem target="/traits" label="Traits" />
+          <NavLinkItem target="/releases" label="Releases" />
         </ul>
         {isLoggedIn ? (
           <div

@@ -15,3 +15,10 @@ export const getFullLanguageName = (lang: string) => {
 
   return "Unknown";
 };
+
+export interface VndbSearchQuery {
+  page?: number;
+  sort?: string;
+  tags?: string[];
+  search?: string;
+}

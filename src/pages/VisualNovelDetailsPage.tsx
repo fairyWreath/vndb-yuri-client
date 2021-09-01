@@ -30,8 +30,8 @@ const VisualNovelDetailsPage = () => {
 
   useEffect(() => {
     VNDB.fetchVnDetails(id)
-      .then((data: VisualNovel) =>
-        setResult({ status: "loaded", payload: data })
+      .then((item: VisualNovel) =>
+        setResult({ status: "loaded", payload: item })
       )
       .catch((err) => {
         console.log(err);

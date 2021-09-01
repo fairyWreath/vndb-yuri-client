@@ -95,7 +95,6 @@ const DropdownFilter = (props: Props) => {
   useClickOutside(() => {
     setDropdownClicked(false);
     setInputFocus(false);
-    console.log("out");
   }, wrapperRef);
 
   const items = props.items.map((item) => {

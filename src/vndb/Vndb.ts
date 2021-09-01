@@ -1,4 +1,5 @@
 import { VisualNovel, VnData } from "./VndbTypes";
+import { VndbSearchQuery } from "./VndbHelpers";
 
 const BASE_URL = "http://localhost:3000/";
 const VN_API_URL = "api/vn";
@@ -12,14 +13,14 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
   });
 
   type JSONResponse = {
-    data?: VisualNovel;
+    item?: VisualNovel;
     errors?: Array<{ message: string }>;
   };
 
-  const { data, errors }: JSONResponse = await response.json();
+  const { item, errors }: JSONResponse = await response.json();
 
   if (response.ok) {
-    const vn = data;
+    const vn = item;
     if (vn) {
       return Object.assign(vn);
     } else {
@@ -33,8 +34,15 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
   }
 }
 
-export async function fetchVnList(): Promise<VnData[]> {
-  const response = await fetch(`${BASE_URL}${VN_API_URL}/list`, {
+export async function fetchVnList(query: VndbSearchQuery): Promise<VnData[]> {
+  var url = new URL(`${BASE_URL}${VN_API_URL}/list`);
+  const params = {
+    page: `${query.page}`,
+  };
+  url.search = new URLSearchParams(params).toString();
+  console.log(url.toString());
+
+  const response = await fetch(url.toString(), {
     method: "GET",
     headers: {
       "content-type": "application/json;charset=UTF-8",
