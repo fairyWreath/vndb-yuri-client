@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { VnData } from "../../vndb/VndbTypes";
 
+import { VnSearchItem } from "../../vndb/VnTypes";
+
 interface VisualNovelCardProps {
-  vn: VnData;
+  vn: VnSearchItem;
 }
 
 const VisualNovelCard = (props: VisualNovelCardProps) => {
@@ -26,7 +28,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
         <div className="w-full h-72 relative">
           <Link to={"/vns/" + props.vn.id}>
             <img
-              src={props.vn.image}
+              src={props.vn.image.src}
               alt="image"
               className="w-full h-full rounded-md shadow-md "
             />

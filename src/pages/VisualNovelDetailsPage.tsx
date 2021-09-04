@@ -66,8 +66,8 @@ const VisualNovelDetailsPage = () => {
 
   const screenImages = vn.screens.map((screen) => screen.image);
   const languages = vn.languages.map((lang) => {
-    const name = VNDBHelper.getFullLanguageName(lang);
-    return <div>{name}</div>;
+    // const name = VNDBHelper.getFullLanguageName(lang);
+    return <div>{lang}</div>;
   });
 
   const tags = vn.tag_names.map((tag, key) => {

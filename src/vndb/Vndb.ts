@@ -1,6 +1,10 @@
 import { VisualNovel, VnData } from "./VndbTypes";
 import { VndbSearchQuery } from "./VndbHelpers";
 
+import { VnSearchQuery, VnSearchItem } from "./VnTypes";
+
+import queryString from "query-string";
+
 const BASE_URL = "http://localhost:3000/";
 const VN_API_URL = "api/vn";
 
@@ -14,10 +18,10 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
 
   type JSONResponse = {
     item?: VisualNovel;
-    errors?: Array<{ message: string }>;
+    error: string;
   };
 
-  const { item, errors }: JSONResponse = await response.json();
+  const { item, error }: JSONResponse = await response.json();
 
   if (response.ok) {
     const vn = item;
@@ -27,10 +31,42 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
       return Promise.reject(new Error(`No visual id with id ${vnId}`));
     }
   } else {
-    const error = new Error(
-      errors?.map((e) => e.message).join("\n") ?? "unknown"
-    );
-    return Promise.reject(error);
+    const err = new Error(error ?? "unknown");
+    return Promise.reject(err);
+  }
+}
+
+export async function vnSearch(query: VnSearchQuery): Promise<VnSearchItem[]> {
+  var url = new URL(`${BASE_URL}${VN_API_URL}/search`);
+
+  console.log(query.tags);
+  url.search = queryString.stringify(query);
+  console.log(url.search);
+  console.log(url);
+
+  const response = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "content-type": "application/json;charset=UTF-8",
+    },
+  });
+
+  type JSONResponse = {
+    items?: VnSearchItem[];
+    error: string;
+  };
+
+  const { items, error }: JSONResponse = await response.json();
+  if (response.ok) {
+    const vns = items;
+    if (vns) {
+      return Object.assign(vns);
+    } else {
+      return Promise.reject(new Error(`Cannot retrieve search VN list`));
+    }
+  } else {
+    const err = new Error(error ?? "unknown");
+    return Promise.reject(err);
   }
 }
 
@@ -38,6 +74,7 @@ export async function fetchVnList(query: VndbSearchQuery): Promise<VnData[]> {
   var url = new URL(`${BASE_URL}${VN_API_URL}/list`);
   const params = {
     page: `${query.page}`,
+    test: "a",
   };
   url.search = new URLSearchParams(params).toString();
   console.log(url.toString());
@@ -51,10 +88,10 @@ export async function fetchVnList(query: VndbSearchQuery): Promise<VnData[]> {
 
   type JSONResponse = {
     items?: VnData[];
-    errors?: Array<{ message: string }>;
+    error: string;
   };
 
-  const { items, errors }: JSONResponse = await response.json();
+  const { items, error }: JSONResponse = await response.json();
   if (response.ok) {
     const vns = items;
     if (vns) {
@@ -63,9 +100,7 @@ export async function fetchVnList(query: VndbSearchQuery): Promise<VnData[]> {
       return Promise.reject(new Error(`Cannot retrive VN list`));
     }
   } else {
-    const error = new Error(
-      errors?.map((e) => e.message).join("\n") ?? "unknown"
-    );
-    return Promise.reject(error);
+    const err = new Error(error ?? "unknown");
+    return Promise.reject(err);
   }
 }

@@ -4,12 +4,16 @@ import { Service } from "../fetch/Service";
 import { VndbSearchQuery } from "../vndb/VndbHelpers";
 import { VnData } from "../vndb/VndbTypes";
 
-const useVisualNovelSearch = (query: VndbSearchQuery) => {
-  const [result, setResult] = useState<Service<VnData[]>>({
+import { vnSearch } from "../vndb/Vndb";
+import { VnSearchItem } from "../vndb/VnTypes";
+import { VnSearchQuery } from "../vndb/VnTypes";
+
+const useVisualNovelSearch = (query: VnSearchQuery) => {
+  const [result, setResult] = useState<Service<VnSearchItem[]>>({
     status: "loading",
   });
 
-  const [vns, setVns] = useState<VnData[]>([]);
+  const [vns, setVns] = useState<VnSearchItem[]>([]);
 
   useEffect(() => {
     setVns([]);
@@ -18,8 +22,8 @@ const useVisualNovelSearch = (query: VndbSearchQuery) => {
   useEffect(() => {
     setResult({ status: "loadingMore", payload: vns });
 
-    fetchVnList({ page: query.page })
-      .then((items: VnData[]) => {
+    vnSearch(query)
+      .then((items: VnSearchItem[]) => {
         setResult({
           status: "loaded",
           payload: [...vns, ...items],
@@ -32,7 +36,7 @@ const useVisualNovelSearch = (query: VndbSearchQuery) => {
       .catch((err) => {
         setResult({ status: "error", error: err });
       });
-  }, [query.page]);
+  }, [query.last_sort_value, query.search]); // cant put tags here
 
   return result;
 };

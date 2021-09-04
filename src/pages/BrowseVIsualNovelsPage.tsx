@@ -7,6 +7,7 @@ import VisualNovelCardList from "../components/cards/VisualNovelCardList";
 import { fetchVnList } from "../vndb/Vndb";
 import { Service } from "../fetch/Service";
 import useVisualNovelSearch from "../hooks/useVisualNovelSearch";
+import * as VNDBHelper from "../vndb/VndbHelpers";
 
 const BrowseVisualNovelsPage = () => {
   return (
@@ -18,13 +19,25 @@ const BrowseVisualNovelsPage = () => {
         <div className="flex flex-row justify-between items-center mb-6">
           <SearchFilter />
           <DropdownFilter
-            label="Tags"
-            items={["test1", "test2"]}
+            label="Theme"
+            items={VNDBHelper.FILTER_MAIN_THEME_TAGS_ITEMS()}
             multiSelect={true}
           />
-          <DropdownFilter label="Languages" items={[]} multiSelect={true} />
-          <DropdownFilter label="Released" items={[]} multiSelect={false} />
-          <DropdownFilter label="Platforms" items={[]} multiSelect={true} />
+          <DropdownFilter
+            label="Languages"
+            items={VNDBHelper.FILTER_LANGUAGE_ITEMS()}
+            multiSelect={true}
+          />
+          <DropdownFilter
+            label="Released"
+            items={VNDBHelper.FILTER_RELEASED_YEARS}
+            multiSelect={false}
+          />
+          <DropdownFilter
+            label="Platforms"
+            items={VNDBHelper.FILTER_PLATFORM_ITEMS()}
+            multiSelect={true}
+          />
         </div>
         <VisualNovelCardList />
       </div>
