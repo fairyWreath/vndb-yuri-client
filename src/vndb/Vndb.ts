@@ -1,38 +1,8 @@
-import { VisualNovel, VnData } from "./VndbTypes";
-import { VnSearchQuery, VnSearchItem } from "./VnTypes";
-
+import { VnSearchQuery, VnSearchItem, VnDetails } from "./VnTypes";
 import queryString from "query-string";
 
 const BASE_URL = "http://localhost:3000/";
 const VN_API_URL = "api/vn";
-
-export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
-  const response = await fetch(`${BASE_URL}${VN_API_URL}/complete/${vnId}`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  });
-
-  type JSONResponse = {
-    item?: VisualNovel;
-    error: string;
-  };
-
-  const { item, error }: JSONResponse = await response.json();
-
-  if (response.ok) {
-    const vn = item;
-    if (vn) {
-      return Object.assign(vn);
-    } else {
-      return Promise.reject(new Error(`No visual id with id ${vnId}`));
-    }
-  } else {
-    const err = new Error(error ?? "unknown");
-    return Promise.reject(err);
-  }
-}
 
 export async function vnSearch(
   query: VnSearchQuery,
@@ -63,6 +33,34 @@ export async function vnSearch(
       return Object.assign(vns);
     } else {
       return Promise.reject(new Error(`Cannot retrieve search VN list`));
+    }
+  } else {
+    const err = new Error(error ?? "unknown");
+    return Promise.reject(err);
+  }
+}
+
+export async function vnDetails(vid: string): Promise<VnDetails> {
+  const response = await fetch(`${BASE_URL}${VN_API_URL}/details/${vid}`, {
+    method: "GET",
+    headers: {
+      "content-type": "application/json;charset=UTF-8",
+    },
+  });
+
+  type JSONResponse = {
+    item?: VnDetails;
+    error: string;
+  };
+
+  const { item, error }: JSONResponse = await response.json();
+
+  if (response.ok) {
+    const vn = item;
+    if (vn) {
+      return Object.assign(vn);
+    } else {
+      return Promise.reject(new Error(`No visual id with id ${vid}`));
     }
   } else {
     const err = new Error(error ?? "unknown");

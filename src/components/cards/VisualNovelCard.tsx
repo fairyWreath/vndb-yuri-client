@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { VnData } from "../../vndb/VndbTypes";
-
 import { VnSearchItem } from "../../vndb/VnTypes";
 
 interface VisualNovelCardProps {

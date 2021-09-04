@@ -1,5 +1,5 @@
 import React from "react";
-import { VnRelease } from "../../vndb/VndbTypes";
+import { VnRelease } from "../../vndb/VnTypes";
 
 interface OverviewProps {
   releases: VnRelease[];

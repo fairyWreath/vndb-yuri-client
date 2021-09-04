@@ -11,7 +11,8 @@ import Overview from "../components/details/Overview";
 import * as VNDB from "../vndb/Vndb";
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { Service } from "../fetch/Service";
-import { VisualNovel } from "../vndb/VndbTypes";
+
+import { VnDetails } from "../vndb/VnTypes";
 
 interface VisualNovelParams {
   id: string;
@@ -24,15 +25,13 @@ interface TagScore {
 
 const VisualNovelDetailsPage = () => {
   const { id } = useParams<VisualNovelParams>();
-  const [result, setResult] = useState<Service<VisualNovel>>({
+  const [result, setResult] = useState<Service<VnDetails>>({
     status: "loading",
   });
 
   useEffect(() => {
-    VNDB.fetchVnDetails(id)
-      .then((item: VisualNovel) =>
-        setResult({ status: "loaded", payload: item })
-      )
+    VNDB.vnDetails(id)
+      .then((item: VnDetails) => setResult({ status: "loaded", payload: item }))
       .catch((err) => {
         console.log(err);
         setResult({ status: "error", error: err });
@@ -53,9 +52,9 @@ const VisualNovelDetailsPage = () => {
       </div>
     );
 
-  const vn: VisualNovel = result.payload;
+  const vn: VnDetails = result.payload;
 
-  const description = vn.description.split("\n").map((line, key) => {
+  const description = vn.desc.split("\n").map((line, key) => {
     return (
       <>
         {line}
@@ -64,13 +63,13 @@ const VisualNovelDetailsPage = () => {
     );
   });
 
-  const screenImages = vn.screens.map((screen) => screen.image);
-  const languages = vn.languages.map((lang) => {
-    // const name = VNDBHelper.getFullLanguageName(lang);
-    return <div>{lang}</div>;
-  });
+  const screenImages = vn.screenshots.map((screen) => screen.src);
+  // const languages = vn.languages.map((lang) => {
+  //   // const name = VNDBHelper.getFullLanguageName(lang);
+  //   return <div>{lang}</div>;
+  // });
 
-  const tags = vn.tag_names.map((tag, key) => {
+  const tags = vn.tags.map((tag, key) => {
     return (
       <DetailsSidebarItem>
         <div className="text-darkAccent" key={key}>
@@ -102,13 +101,13 @@ const VisualNovelDetailsPage = () => {
         </div>
         <img
           className="rounded-lg max-h-titleImageMedium min-h-titleImageMedium w-auto shadow-md"
-          src={vn.image}
+          src={vn.image.src}
         />
       </div>
 
       <div className="flex flex-row justify-end px-7 py-7 w-full bg-light items-start">
         <div className="w-full lg:w-3/4">
-          <Overview releases={vn.releases} />
+          {/* <Overview releases={vn.releases} /> */}
         </div>
         <div className="flex flex-col justify-center items-start px-8">
           <DetailsSidebar>
@@ -116,52 +115,52 @@ const VisualNovelDetailsPage = () => {
               <div className="text-darkAccent">Original Name</div>
               {vn.original}
             </DetailsSidebarItem>
-            {vn.aliases !== null && (
+            {/* {vn.aliases !== null && (
               <DetailsSidebarItem>
                 <div className="text-darkAccent">Aliases</div>
                 {vn.aliases.split("\n").map((alias, key) => {
                   return <div key={key}>{alias}</div>;
                 })}
               </DetailsSidebarItem>
-            )}
-            <DetailsSidebarItem>
+            )} */}
+            {/* <DetailsSidebarItem>
               <div className="text-darkAccent">Released</div>
               {vn.released}
-            </DetailsSidebarItem>
+            </DetailsSidebarItem> */}
             <DetailsSidebarItem>
               <div className="text-darkAccent">Play Time</div>
               {vn.length}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Rating</div>
-              {vn.rating}
+              {vn.c_rating}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Popularity</div>
-              {vn.popularity}
+              {vn.c_popularity}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Developer</div>
-              {vn.developer}
+              {vn.developers}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Publishers</div>
               {vn.publishers.map((publisher) => {
-                return <div>{publisher}</div>;
+                return <div>{publisher.name}</div>;
               })}
             </DetailsSidebarItem>
-            <DetailsSidebarItem>
+            {/* <DetailsSidebarItem>
               <div className="text-darkAccent">Languages</div>
               {languages}
-            </DetailsSidebarItem>
+            </DetailsSidebarItem> */}
             <DetailsSidebarItem>
               <div className="text-darkAccent">Original Language</div>
-              {vn.orig_lang}
+              {vn.olang}
             </DetailsSidebarItem>
-            <DetailsSidebarItem>
+            {/* <DetailsSidebarItem>
               <div className="text-darkAccent">Platforms</div>
               {vn.platforms}
-            </DetailsSidebarItem>
+            </DetailsSidebarItem> */}
           </DetailsSidebar>
 
           <div className="mt-5 mb-3 text-darkAccent text-xl"> Tags </div>

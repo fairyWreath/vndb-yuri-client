@@ -52,8 +52,8 @@ const BrowseVisualNovelsPage = () => {
 
             if (listParams.sort_by === "popularity") {
               value = lastItem.popularity;
-              // } else if (listParams.sort_by === "rating") {
-              //   value = lastItem.rating;
+            } else if (listParams.sort_by === "rating") {
+              value = lastItem.rating;
             } else if (listParams.sort_by === "max_released") {
               value = lastItem.max_released;
             } else if (listParams.sort_by === "min_released") {
