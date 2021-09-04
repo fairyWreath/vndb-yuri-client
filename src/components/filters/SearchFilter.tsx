@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchFilter = () => {
-  const [query, setQuery] = useState("");
+interface SearchFilterProps {
+  setSearch: (str: string) => void;
+}
 
+const SearchFilter = (props: SearchFilterProps) => {
   return (
     <div className="px-0 py-3">
       <div className="text-lg text-dark mb-1">Search</div>
@@ -16,7 +18,7 @@ const SearchFilter = () => {
           <FaSearch className="mr-2" size="18px" />
           <input
             className="bg-transparent w-full h-full text-base ml-1 focus:outline-none"
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => props.setSearch(e.target.value)}
           />
         </div>
       </div>

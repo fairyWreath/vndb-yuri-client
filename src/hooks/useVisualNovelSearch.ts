@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { fetchVnList } from "../vndb/Vndb";
+import { useEffect, useState } from "react";
 import { Service } from "../fetch/Service";
-import { VndbSearchQuery } from "../vndb/VndbHelpers";
-import { VnData } from "../vndb/VndbTypes";
-
 import { vnSearch } from "../vndb/Vndb";
-import { VnSearchItem } from "../vndb/VnTypes";
-import { VnSearchQuery } from "../vndb/VnTypes";
+import { VnSearchItem, VnSearchQuery } from "../vndb/VnTypes";
 
 const useVisualNovelSearch = (query: VnSearchQuery) => {
   const [result, setResult] = useState<Service<VnSearchItem[]>>({
@@ -17,10 +12,36 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
 
   useEffect(() => {
     setVns([]);
+    setResult({ status: "loadingMore", payload: [] });
+
+    let controller = new AbortController();
+    const signal = controller.signal;
+
+    const typingTimeout = setTimeout(() => {
+      vnSearch(query, signal)
+        .then((items: VnSearchItem[]) => {
+          setResult({
+            status: "loaded",
+            payload: [...vns, ...items],
+            hasMore: items.length > 0,
+          });
+          setVns(items);
+        })
+        .catch((err) => {
+          if (err.name !== "AbortError") {
+            setResult({ status: "error", error: err });
+          }
+        });
+    }, 500);
+
+    return () => {
+      clearTimeout(typingTimeout);
+      controller.abort();
+    };
   }, [query.search]);
 
   useEffect(() => {
-    setResult({ status: "loadingMore", payload: vns });
+    setResult({ status: "loadingMore", payload: [] });
 
     vnSearch(query)
       .then((items: VnSearchItem[]) => {
@@ -36,7 +57,7 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
       .catch((err) => {
         setResult({ status: "error", error: err });
       });
-  }, [query.last_sort_value, query.search]); // cant put tags here
+  }, [query.last_sort_value, query.last_sort_vid]);
 
   return result;
 };

@@ -1,6 +1,4 @@
 import { VisualNovel, VnData } from "./VndbTypes";
-import { VndbSearchQuery } from "./VndbHelpers";
-
 import { VnSearchQuery, VnSearchItem } from "./VnTypes";
 
 import queryString from "query-string";
@@ -36,20 +34,23 @@ export async function fetchVnDetails(vnId: string): Promise<VisualNovel> {
   }
 }
 
-export async function vnSearch(query: VnSearchQuery): Promise<VnSearchItem[]> {
-  var url = new URL(`${BASE_URL}${VN_API_URL}/search`);
-
-  console.log(query.tags);
+export async function vnSearch(
+  query: VnSearchQuery,
+  signal: AbortSignal | undefined = undefined
+): Promise<VnSearchItem[]> {
+  let url = new URL(`${BASE_URL}${VN_API_URL}/search`);
   url.search = queryString.stringify(query);
-  console.log(url.search);
-  console.log(url);
 
   const response = await fetch(url.toString(), {
     method: "GET",
     headers: {
       "content-type": "application/json;charset=UTF-8",
     },
+    signal: signal,
   });
+
+  console.log(url.toString());
+  console.log("fetch sent");
 
   type JSONResponse = {
     items?: VnSearchItem[];
@@ -60,44 +61,10 @@ export async function vnSearch(query: VnSearchQuery): Promise<VnSearchItem[]> {
   if (response.ok) {
     const vns = items;
     if (vns) {
+      console.log(`VNS SIZE: ${vns.length}`);
       return Object.assign(vns);
     } else {
       return Promise.reject(new Error(`Cannot retrieve search VN list`));
-    }
-  } else {
-    const err = new Error(error ?? "unknown");
-    return Promise.reject(err);
-  }
-}
-
-export async function fetchVnList(query: VndbSearchQuery): Promise<VnData[]> {
-  var url = new URL(`${BASE_URL}${VN_API_URL}/list`);
-  const params = {
-    page: `${query.page}`,
-    test: "a",
-  };
-  url.search = new URLSearchParams(params).toString();
-  console.log(url.toString());
-
-  const response = await fetch(url.toString(), {
-    method: "GET",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  });
-
-  type JSONResponse = {
-    items?: VnData[];
-    error: string;
-  };
-
-  const { items, error }: JSONResponse = await response.json();
-  if (response.ok) {
-    const vns = items;
-    if (vns) {
-      return Object.assign(vns);
-    } else {
-      return Promise.reject(new Error(`Cannot retrive VN list`));
     }
   } else {
     const err = new Error(error ?? "unknown");

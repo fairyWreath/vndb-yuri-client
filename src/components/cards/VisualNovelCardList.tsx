@@ -28,7 +28,7 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
     );
 
   const cardList = props.data.payload.map((vn) => {
-    return <VisualNovelCard vn={vn} key={vn.id} />;
+    return <VisualNovelCard vn={vn} />;
   });
 
   return (
