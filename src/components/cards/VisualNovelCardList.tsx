@@ -3,7 +3,7 @@ import VisualNovelCard from "./VisualNovelCard";
 import VisualNovelCardSkeleton from "./VisualNovelCardSkeleton";
 import useVisualNovelSearch from "../../hooks/useVisualNovelSearch";
 
-import { VnSearchQuery } from "../../vndb/VnTypes";
+import { VnSearchQuery, VnSearchItem } from "../../vndb/VnTypes";
 import { VndbSearchQuery } from "../../vndb/VndbHelpers";
 
 const VisualNovelCardList = () => {
