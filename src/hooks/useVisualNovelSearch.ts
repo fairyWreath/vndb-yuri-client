@@ -17,12 +17,16 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
     let controller = new AbortController();
     const signal = controller.signal;
 
+    // reset all pagination stuff
+    query.last_sort_value = undefined;
+    query.last_sort_vid = undefined;
+
     const typingTimeout = setTimeout(() => {
       vnSearch(query, signal)
         .then((items: VnSearchItem[]) => {
           setResult({
             status: "loaded",
-            payload: [...vns, ...items],
+            payload: items,
             hasMore: items.length > 0,
           });
           setVns(items);
@@ -30,6 +34,8 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
         .catch((err) => {
           if (err.name !== "AbortError") {
             setResult({ status: "error", error: err });
+          } else {
+            console.log("FETCH abort request");
           }
         });
     }, 500);
@@ -38,26 +44,26 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
       clearTimeout(typingTimeout);
       controller.abort();
     };
-  }, [query.search]);
+  }, [query.search, query.sort_by, query.sort_order, query.nsfw]);
 
   useEffect(() => {
-    setResult({ status: "loadingMore", payload: [] });
+    // set current vns
+    setResult({ status: "loadingMore", payload: vns });
 
     vnSearch(query)
       .then((items: VnSearchItem[]) => {
+        const newVns = [...vns, ...items];
         setResult({
           status: "loaded",
-          payload: [...vns, ...items],
+          payload: newVns,
           hasMore: items.length > 0,
         });
-        setVns((prev) => {
-          return [...prev, ...items];
-        });
+        setVns(newVns);
       })
       .catch((err) => {
         setResult({ status: "error", error: err });
       });
-  }, [query.last_sort_value, query.last_sort_vid]);
+  }, [query.last_sort_value]);
 
   return result;
 };

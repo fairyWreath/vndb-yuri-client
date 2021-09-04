@@ -1,28 +1,55 @@
 import { useState, useCallback, useRef } from "react";
+
 import DropdownFilter from "../components/filters/DropdownFIlter";
 import SearchFilter from "../components/filters/SearchFilter";
 import VisualNovelCardList from "../components/cards/VisualNovelCardList";
 import useVisualNovelSearch from "../hooks/useVisualNovelSearch";
+import SortFilter from "../components/filters/SortFilter";
+import SecondaryFilters from "../components/filters/SecondaryFilters";
+
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { VnSearchQuery } from "../vndb/VnTypes";
 
+// some helper functions
+const getSortByQuery = (sort: string) => {
+  if (sort === "Popularity") {
+    return "popularity";
+  } else if (sort === "Rating") {
+    return "rating";
+  } else if (sort === "Date Published") {
+    // need to impleemnt
+    return "";
+  } else if (sort === "Recent Release") {
+    return "max_released";
+  } else {
+    return "popularity";
+  }
+};
+
+const getSortOrderQuery = (desc: boolean) => {
+  if (desc) return "descending";
+  return "ascending";
+};
+
 const BrowseVisualNovelsPage = () => {
   const [search, setSearch] = useState<string | undefined>(undefined);
-
   const [lastSortvalue, setLastSortValue] = useState<Number | undefined>(
     undefined
   );
-
   const [lastSortVid, setLastSortVid] = useState<string | undefined>(undefined);
+  const [NSFW, setNSFW] = useState(false);
+  const [sortBy, setSortBy] = useState("popularity");
+  const [sortOrderDesc, setSortOrderDesc] = useState(true);
 
-  const listParams = {
+  const listParams: VnSearchQuery = {
     tags: [],
-    sort_by: "popularity",
+    sort_by: getSortByQuery(sortBy),
+    sort_order: getSortOrderQuery(sortOrderDesc),
     search: search,
     results: 20,
     last_sort_value: lastSortvalue,
     last_sort_vid: lastSortVid,
-    nsfw: false,
+    nsfw: NSFW,
   };
 
   const result = useVisualNovelSearch(listParams);
@@ -34,7 +61,7 @@ const BrowseVisualNovelsPage = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          if (result.status === "loaded" && result.payload.length > 0) {
+          if (result.payload.length > 0) {
             const lastItem = result.payload[result.payload.length - 1];
             let value;
 
@@ -49,7 +76,7 @@ const BrowseVisualNovelsPage = () => {
             } else {
               value = lastItem.max_released;
             }
-
+            setLastSortVid(lastItem.id);
             setLastSortValue(value);
           }
         }
@@ -92,6 +119,14 @@ const BrowseVisualNovelsPage = () => {
             label="Platforms"
             items={VNDBHelper.FILTER_PLATFORM_ITEMS()}
             multiSelect={true}
+          />
+        </div>
+        <div className="flex flex-row justify-end items-center mb-4">
+          {/* <SecondaryFilters /> */}
+          <SortFilter
+            setSortBy={setSortBy}
+            setSortOrder={setSortOrderDesc}
+            setNSFW={setNSFW}
           />
         </div>
         <VisualNovelCardList data={result} />

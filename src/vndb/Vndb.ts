@@ -41,6 +41,8 @@ export async function vnSearch(
   let url = new URL(`${BASE_URL}${VN_API_URL}/search`);
   url.search = queryString.stringify(query);
 
+  console.log(url.toString());
+
   const response = await fetch(url.toString(), {
     method: "GET",
     headers: {
@@ -48,9 +50,6 @@ export async function vnSearch(
     },
     signal: signal,
   });
-
-  console.log(url.toString());
-  console.log("fetch sent");
 
   type JSONResponse = {
     items?: VnSearchItem[];
@@ -61,7 +60,6 @@ export async function vnSearch(
   if (response.ok) {
     const vns = items;
     if (vns) {
-      console.log(`VNS SIZE: ${vns.length}`);
       return Object.assign(vns);
     } else {
       return Promise.reject(new Error(`Cannot retrieve search VN list`));

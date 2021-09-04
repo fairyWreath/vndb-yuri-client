@@ -28,7 +28,7 @@ const DropdownContainerWithScrollbar = styled.div`
   max-height: 24rem;
 
   overflow-y: hidden;
-  z-index: 20;
+  z-index: 30;
 
   &:hover {
     overflow-y: overlay;
