@@ -8,6 +8,7 @@ interface Props {
   label: string;
   items: string[];
   multiSelect: boolean;
+  setItems?: (args: any) => any;
 }
 
 const DropdownContainerWithScrollbar = styled.div`
@@ -102,7 +103,11 @@ const DropdownFilter = (props: Props) => {
       <div
         className="p-2 rounded-md flex flex-row items-center hover:bg-accentPrimary
         justify-between w-full"
+        // some ugly callback code beause states are not reliable for this
         onClick={() => {
+          // for real time synchoronous
+          const prevItems = selectedItems;
+
           if (!selectedItems.includes(item)) {
             setSearch("");
             if (props.multiSelect) {
@@ -110,12 +115,26 @@ const DropdownFilter = (props: Props) => {
             } else {
               setSelectedItems([item]);
             }
+
+            if (props.setItems !== undefined) {
+              // for real time
+              props.setItems([...prevItems, item]);
+            }
           } else {
             setSelectedItems(
               selectedItems.filter((sItem) => {
                 return sItem != item;
               })
             );
+
+            if (props.setItems !== undefined) {
+              // for real time
+              props.setItems(
+                prevItems.filter((sItem) => {
+                  return sItem != item;
+                })
+              );
+            }
           }
         }}
       >

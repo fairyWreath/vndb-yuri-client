@@ -1,3 +1,24 @@
+// for browse page
+export const getSortByQuery = (sort: string) => {
+  if (sort === "Popularity") {
+    return "popularity";
+  } else if (sort === "Rating") {
+    return "rating";
+  } else if (sort === "Date Published") {
+    // need to impleemnt
+    return "";
+  } else if (sort === "Recent Release") {
+    return "max_released";
+  } else {
+    return "popularity";
+  }
+};
+
+export const getSortOrderQuery = (desc: boolean) => {
+  if (desc) return "descending";
+  return "ascending";
+};
+
 const LANGUAGE_SHORTCUT_MAP = new Map<string, string>([
   ["ja", "Japanese"],
   ["zh", "Chinese"],
@@ -55,20 +76,29 @@ export interface VndbSearchQuery {
   search?: string;
 }
 
-export const FILTER_MAIN_THEME_TAGS_MAP = new Map<string, number>([
-  ["Action", 12],
-  ["Romance", 96],
-  ["Drama", 147],
-  ["Fantasy", 2],
-  ["Science Fiction", 105],
-  ["Sexual Content", 23],
-  ["Comedy", 104],
-  ["Horror", 7],
+export const FILTER_MAIN_THEME_TAGS_MAP = new Map<string, string>([
+  ["Action", "g12"],
+  ["Romance", "g96"],
+  ["Drama", "g147"],
+  ["Fantasy", "g2"],
+  ["Science Fiction", "g105"],
+  ["Sexual Content", "g23"],
+  ["Comedy", "g104"],
+  ["Horror", "g7"],
+  ["Yuri", "g1986"],
 ]);
+
+export const getTagIdsFromNames = (names: string[]) => {
+  return names.map((name) => {
+    const id = FILTER_MAIN_THEME_TAGS_MAP.get(name);
+    if (id !== undefined) return id;
+    return ""; // just incase, typsecript type checking
+  });
+};
 
 export const FILTER_MAIN_THEME_TAGS_ITEMS = () => {
   let items: string[] = [];
-  FILTER_MAIN_THEME_TAGS_MAP.forEach((id: number, name: string) => {
+  FILTER_MAIN_THEME_TAGS_MAP.forEach((id: string, name: string) => {
     items.push(name);
   });
 

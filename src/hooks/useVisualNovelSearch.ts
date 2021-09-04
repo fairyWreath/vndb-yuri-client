@@ -11,18 +11,22 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
   const [vns, setVns] = useState<VnSearchItem[]>([]);
 
   useEffect(() => {
-    setVns([]);
     setResult({ status: "loadingMore", payload: [] });
 
     let controller = new AbortController();
     const signal = controller.signal;
 
-    // reset all pagination stuff
-    query.last_sort_value = undefined;
-    query.last_sort_vid = undefined;
+    // for now, some ugly code to prevent cycle, use another object
+    const searchQuery = query;
+    searchQuery.last_sort_value = undefined;
+    searchQuery.last_sort_vid = undefined;
+
+    // reset all pagination stuff, will cause timing problems with the other useeffect
+    // query.last_sort_value = undefined;
+    // query.last_sort_vid = undefined;
 
     const typingTimeout = setTimeout(() => {
-      vnSearch(query, signal)
+      vnSearch(searchQuery, signal)
         .then((items: VnSearchItem[]) => {
           setResult({
             status: "loaded",
@@ -44,7 +48,7 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
       clearTimeout(typingTimeout);
       controller.abort();
     };
-  }, [query.search, query.sort_by, query.sort_order, query.nsfw]);
+  }, [query.search, query.sort_by, query.sort_order, query.nsfw, query.tags]);
 
   useEffect(() => {
     // set current vns

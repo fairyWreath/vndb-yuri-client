@@ -9,27 +9,11 @@ import SecondaryFilters from "../components/filters/SecondaryFilters";
 
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { VnSearchQuery } from "../vndb/VnTypes";
-
-// some helper functions
-const getSortByQuery = (sort: string) => {
-  if (sort === "Popularity") {
-    return "popularity";
-  } else if (sort === "Rating") {
-    return "rating";
-  } else if (sort === "Date Published") {
-    // need to impleemnt
-    return "";
-  } else if (sort === "Recent Release") {
-    return "max_released";
-  } else {
-    return "popularity";
-  }
-};
-
-const getSortOrderQuery = (desc: boolean) => {
-  if (desc) return "descending";
-  return "ascending";
-};
+import {
+  getSortByQuery,
+  getSortOrderQuery,
+  getTagIdsFromNames,
+} from "../vndb/VndbHelpers";
 
 const BrowseVisualNovelsPage = () => {
   const [search, setSearch] = useState<string | undefined>(undefined);
@@ -40,9 +24,10 @@ const BrowseVisualNovelsPage = () => {
   const [NSFW, setNSFW] = useState(false);
   const [sortBy, setSortBy] = useState("popularity");
   const [sortOrderDesc, setSortOrderDesc] = useState(true);
+  const [tags, setTags] = useState<string[]>([]);
 
   const listParams: VnSearchQuery = {
-    tags: [],
+    tags: tags,
     sort_by: getSortByQuery(sortBy),
     sort_order: getSortOrderQuery(sortOrderDesc),
     search: search,
@@ -86,6 +71,8 @@ const BrowseVisualNovelsPage = () => {
     [result]
   );
 
+  console.log(tags);
+
   return (
     <div
       className="bg-light w-full min-h-screen bottom-0 px-12
@@ -96,13 +83,18 @@ const BrowseVisualNovelsPage = () => {
           <SearchFilter
             setSearch={(str: string) => {
               setSearch(str);
-              setLastSortValue(undefined);
-              setLastSortVid(undefined);
+
+              // cant put it here to prevent race conditions with the pagination useeffect
+              // setLastSortValue(undefined);
+              // setLastSortVid(undefined);
             }}
           />
           <DropdownFilter
             label="Theme"
             items={VNDBHelper.FILTER_MAIN_THEME_TAGS_ITEMS()}
+            setItems={(names) => {
+              setTags(getTagIdsFromNames(names));
+            }}
             multiSelect={true}
           />
           <DropdownFilter

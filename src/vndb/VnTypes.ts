@@ -17,7 +17,7 @@ export interface VnSearchItem {
 }
 
 export interface VnSearchQuery {
-  tags?: string[];
+  tags: string[];
   sort_by?: string;
   sort_order?: string;
   released?: string;
