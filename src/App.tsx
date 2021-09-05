@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/vns" component={BrowseVisualNovelsPage} />
-          <Route exact path="/vns/:id" component={VisualNovelDetailsPage} />
+          <Route path="/vns/:id" component={VisualNovelDetailsPage} />
         </Switch>
         <Footer />
       </BrowserRouter>

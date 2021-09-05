@@ -55,7 +55,13 @@ module.exports = {
         normalScreen: "repeat(5, 208px)", // 208 px/13 rem for w-52 card
       },
       margin: {
-        titleImageMedium: "-7rem",
+        titleImageMedium: "-8rem",
+      },
+      width: {
+        240: "60rem",
+      },
+      borderWidth: {
+        3: "3px",
       },
     },
   },

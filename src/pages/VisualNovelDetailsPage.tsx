@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useRouteMatch, Link } from "react-router-dom";
 import { GiTrefoilLily } from "react-icons/gi";
 
 import Carousel from "../components/carousel/Carousel";
@@ -31,15 +31,26 @@ const VisualNovelDetailsPage = () => {
   const [result, setResult] = useState<Service<VnDetails>>({
     status: "loading",
   });
+  const [bannerImage, setBannerImage] = useState("");
+
+  let { path, url } = useRouteMatch();
 
   useEffect(() => {
     VNDB.vnDetails(id)
       .then((item: VnDetails) => setResult({ status: "loaded", payload: item }))
       .catch((err) => {
-        console.log(err);
         setResult({ status: "error", error: err });
       });
   }, []);
+
+  useEffect(() => {
+    if (result.status !== "loaded") return;
+    setBannerImage(
+      result.payload.screenshots[
+        Math.floor(Math.random() * result.payload.screenshots.length)
+      ].src
+    );
+  }, [result.status]);
 
   if (result.status === "init") return <div>init</div>;
   if (result.status === "error")
@@ -84,31 +95,49 @@ const VisualNovelDetailsPage = () => {
     );
   });
 
+  console.log("rerendered");
+
   return (
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
-      {screenImages.length > 0 && (
-        <BannerImage
-          src={
-            result.payload.screenshots[
-              Math.floor(Math.random() * result.payload.screenshots.length)
-            ].src
-          }
-        />
-      )}
+      {screenImages.length > 0 && <BannerImage src={bannerImage} />}
       <div
         className="flex flex-row justify-end items-start bg-accentPrimary w-full 
-      px-8 py-5 min-h-96 max-h-96 shadow-md"
+      px-8 pt-10 shadow-md "
       >
-        <div className="flex flex-col justify-start pr-8 pl-4">
-          <div className="italic text-3xl mb-3 text-right text-darkAccent">
+        <div className="pr-8 pl-4">
+          <div className="italic text-3xl mb-5 text-right text-darkAccent">
             {vn.title}
           </div>
           <DetailsTextScrollbar
             className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
-        overflow-y-hidden max-h-52 pl-5 dir"
+        overflow-y-hidden max-h-56 pl-5 dir"
           >
             <div style={{ direction: "ltr" }}>{description}</div>
           </DetailsTextScrollbar>
+          <ul className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock pl-48 pb-3">
+            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+              Overview
+            </li>
+            <Link
+              to={`${url}/tags`}
+              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+            >
+              Tags
+            </Link>
+            <Link
+              to={`${url}/characters`}
+              // need to turn off auto page scroll for this link
+              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+            >
+              Characters
+            </Link>
+            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+              Releases
+            </li>
+            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+              Staff
+            </li>
+          </ul>
         </div>
         <img
           className="rounded-lg h-96 w-64 shadow-md 
@@ -117,45 +146,51 @@ const VisualNovelDetailsPage = () => {
         />
       </div>
 
-      {screenImages.length > 0 && <Carousel slides={screenImages}></Carousel>}
-
-      <div className="flex flex-row justify-end px-7 py-7 w-full bg-light items-start">
+      <div className="flex flex-row justify-end px-8 py-7 w-full bg-light items-start">
         <div className="w-full lg:w-3/4">
           {/* <Overview releases={vn.releases} /> */}
         </div>
-        <div className="flex flex-col justify-center items-start px-8">
+        <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Original Name</div>
               {vn.original}
             </DetailsSidebarItem>
-            {/* {vn.aliases !== null && (
+            {vn.alias !== null && (
               <DetailsSidebarItem>
                 <div className="text-darkAccent">Aliases</div>
-                {vn.aliases.split("\n").map((alias, key) => {
-                  return <div key={key}>{alias}</div>;
+                {vn.alias.split("\n").map((alias, key) => {
+                  return (
+                    <div className="py-0.5" key={key}>
+                      {alias}
+                    </div>
+                  );
                 })}
               </DetailsSidebarItem>
-            )} */}
-            {/* <DetailsSidebarItem>
+            )}
+            <DetailsSidebarItem>
+              <div className="text-darkAccent">Original Language</div>
+              {VNDBHelper.getFullLanguageName(vn.olang)}
+            </DetailsSidebarItem>
+            <DetailsSidebarItem>
               <div className="text-darkAccent">Released</div>
-              {vn.released}
-            </DetailsSidebarItem> */}
+              {VNDBHelper.parseDate(vn.min_released)}
+            </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Play Time</div>
-              {vn.length}
+              {VNDBHelper.getPlaytimeFromLength(vn.length)}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Rating</div>
-              {vn.c_rating}
+              {vn.c_rating / 100}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Popularity</div>
-              {vn.c_popularity}
+              {vn.c_popularity / 100}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Developer</div>
-              {vn.developers}
+              {vn.developers[0]}
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Publishers</div>
@@ -167,23 +202,20 @@ const VisualNovelDetailsPage = () => {
               <div className="text-darkAccent">Languages</div>
               {languages}
             </DetailsSidebarItem> */}
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Original Language</div>
-              {vn.olang}
-            </DetailsSidebarItem>
             {/* <DetailsSidebarItem>
               <div className="text-darkAccent">Platforms</div>
               {vn.platforms}
             </DetailsSidebarItem> */}
           </DetailsSidebar>
 
-          <div className="mt-5 mb-3 text-darkAccent text-xl"> Tags </div>
-
+          {/* <div className="mt-5 mb-3 text-darkAccent text-xl"> Tags </div>
           <DetailsSidebarWithScrollContainer>
             <DetailsSidebar>{tags}</DetailsSidebar>
-          </DetailsSidebarWithScrollContainer>
+          </DetailsSidebarWithScrollContainer> */}
         </div>
       </div>
+
+      {screenImages.length > 0 && <Carousel slides={screenImages}></Carousel>}
     </div>
   );
 };

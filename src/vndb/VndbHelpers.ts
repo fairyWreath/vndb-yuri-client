@@ -1,4 +1,45 @@
-// for browse page
+export const parseDate = (dateNum: number) => {
+  const dateStr = dateNum.toString();
+  if (dateStr.toString().length !== 8) {
+    return "Unrecognized date format";
+  }
+
+  const year = dateStr.substr(0, 4);
+
+  let month = dateStr.substr(4, 2);
+  console.log(month);
+  if (month === "01") {
+    month = "Jan";
+  } else if (month === "02") {
+    month = "Feb";
+  } else if (month === "03") {
+    month = "Mar";
+  } else if (month === "04") {
+    month = "Apr";
+  } else if (month === "05") {
+    month = "May";
+  } else if (month === "06") {
+    month = "Jun";
+  } else if (month === "07") {
+    month = "Jul";
+  } else if (month === "08") {
+    month = "Aug";
+  } else if (month === "09") {
+    month = "Sep";
+  } else if (month === "10") {
+    month = "Oct";
+  } else if (month === "11") {
+    month = "Nov";
+  } else {
+    month = "Dec";
+  }
+
+  let date = dateStr.substr(6, 2);
+  if (date[0] == "0") date = date[1];
+
+  return `${month} ${date}, ${year}`;
+};
+
 export const getSortByQuery = (sort: string) => {
   if (sort === "Popularity") {
     return "popularity";
@@ -16,6 +57,15 @@ export const getSortByQuery = (sort: string) => {
 export const getSortOrderQuery = (desc: boolean) => {
   if (desc) return "descending";
   return "ascending";
+};
+
+export const getPlaytimeFromLength = (length: number) => {
+  if (length === 0) return "Unknown";
+  else if (length === 1) return "< 2 hours";
+  else if (length === 2) return "2 - 10 hours";
+  else if (length === 3) return "10 - 30 hours";
+  else if (length === 4) return "30 - 50 hours";
+  else return "> 50 hours";
 };
 
 const LANGUAGE_SHORTCUT_MAP = new Map<string, string>([

@@ -137,6 +137,7 @@ export interface VnDetails {
   l_renai: string;
   desc: string;
   c_average: number;
+  min_released: number;
   tags: VnTag[];
   play_time: VnPlayTime;
   staff: VnStaff[];
