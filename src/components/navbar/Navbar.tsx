@@ -18,9 +18,9 @@ const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   return (
-    <div className="h-20 bg-primary flex items-center justify-center sticky top-0 z-50 shadow-md">
+    <div className="h-16 bg-primary flex items-center justify-center sticky top-0 z-50 shadow-md">
       <div className=" select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
-        <div className="text-light text-3xl flex flex-row items-center">
+        <div className="text-light text-3xl flex flex-row items-center cursor-pointer">
           <div className="m-2">
             <GiTrefoilLily />
           </div>
@@ -37,7 +37,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div
             className="flex flex-row justify-center items-center h-full list-none px-4 mx-2h-full border-b-4 border-transparent
-          hover:border-dark"
+          hover:border-light"
             onMouseEnter={() => {
               setOpenDropdown(true);
             }}

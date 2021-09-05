@@ -4,7 +4,6 @@ import DropdownFilter from "../components/filters/DropdownFIlter";
 import SearchFilter from "../components/filters/SearchFilter";
 import VisualNovelCardList from "../components/cards/VisualNovelCardList";
 import useVisualNovelSearch from "../hooks/useVisualNovelSearch";
-import SortFilter from "../components/filters/SortFilter";
 import SecondaryFilters from "../components/filters/SecondaryFilters";
 
 import * as VNDBHelper from "../vndb/VndbHelpers";
@@ -25,6 +24,7 @@ const BrowseVisualNovelsPage = () => {
   const [sortBy, setSortBy] = useState("popularity");
   const [sortOrderDesc, setSortOrderDesc] = useState(true);
   const [tags, setTags] = useState<string[]>([]);
+  const [released, setReleased] = useState<number | undefined>(undefined);
 
   const listParams: VnSearchQuery = {
     tags: tags,
@@ -35,6 +35,7 @@ const BrowseVisualNovelsPage = () => {
     last_sort_value: lastSortvalue,
     last_sort_vid: lastSortVid,
     nsfw: NSFW,
+    released: released,
   };
 
   const result = useVisualNovelSearch(listParams);
@@ -46,7 +47,7 @@ const BrowseVisualNovelsPage = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          if (result.payload.length > 0) {
+          if (result.payload.length > 0 && result.hasMore === true) {
             const lastItem = result.payload[result.payload.length - 1];
             let value;
 
@@ -59,8 +60,9 @@ const BrowseVisualNovelsPage = () => {
             } else if (listParams.sort_by === "min_released") {
               value = lastItem.min_released;
             } else {
-              value = lastItem.max_released;
+              value = lastItem.popularity;
             }
+
             setLastSortVid(lastItem.id);
             setLastSortValue(value);
           }
@@ -70,8 +72,6 @@ const BrowseVisualNovelsPage = () => {
     },
     [result]
   );
-
-  console.log(tags);
 
   return (
     <div
@@ -105,6 +105,8 @@ const BrowseVisualNovelsPage = () => {
           <DropdownFilter
             label="Released"
             items={VNDBHelper.FILTER_RELEASED_YEARS}
+            // setItems={(items) => setReleased(items[items.length - 1])}
+            setItems={setReleased}
             multiSelect={false}
           />
           <DropdownFilter
@@ -115,7 +117,7 @@ const BrowseVisualNovelsPage = () => {
         </div>
         <div className="flex flex-row justify-end items-center mb-4">
           {/* <SecondaryFilters /> */}
-          <SortFilter
+          <SecondaryFilters
             setSortBy={setSortBy}
             setSortOrder={setSortOrderDesc}
             setNSFW={setNSFW}

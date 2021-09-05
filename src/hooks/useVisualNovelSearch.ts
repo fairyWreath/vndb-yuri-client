@@ -16,7 +16,8 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
     let controller = new AbortController();
     const signal = controller.signal;
 
-    // for now, some ugly code to prevent cycle, use another object
+    // for now, some ugly code to prevent cycle, use another object, if reset like below will cause
+    // the pagination useeffect to trigger
     const searchQuery = query;
     searchQuery.last_sort_value = undefined;
     searchQuery.last_sort_vid = undefined;
@@ -31,7 +32,7 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
           setResult({
             status: "loaded",
             payload: items,
-            hasMore: items.length > 0,
+            hasMore: items.length > 0 && items.length >= 20, // 20 is the max result per page, use it as magic number for now
           });
           setVns(items);
         })
@@ -48,7 +49,14 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
       clearTimeout(typingTimeout);
       controller.abort();
     };
-  }, [query.search, query.sort_by, query.sort_order, query.nsfw, query.tags]);
+  }, [
+    query.search,
+    query.sort_by,
+    query.sort_order,
+    query.nsfw,
+    query.tags,
+    query.released,
+  ]);
 
   useEffect(() => {
     // set current vns
@@ -60,7 +68,7 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
         setResult({
           status: "loaded",
           payload: newVns,
-          hasMore: items.length > 0,
+          hasMore: items.length > 0 && items.length >= 20, // 20 is the max result per page, use it as magic number for now
         });
         setVns(newVns);
       })

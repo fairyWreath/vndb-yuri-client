@@ -5,8 +5,7 @@ export const getSortByQuery = (sort: string) => {
   } else if (sort === "Rating") {
     return "rating";
   } else if (sort === "Date Published") {
-    // need to impleemnt
-    return "";
+    return "min_released";
   } else if (sort === "Recent Release") {
     return "max_released";
   } else {

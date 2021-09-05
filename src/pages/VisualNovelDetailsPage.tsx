@@ -89,11 +89,11 @@ const VisualNovelDetailsPage = () => {
       px-8 py-5 max-h-titleDetailsContainer min-h-titleDetailsContainer shadow-md"
       >
         <div className="flex flex-col justify-start pr-8 pl-4">
-          <div className="italic text-2xl mb-8 text-right text-darkAccent">
+          <div className="italic text-3xl mb-8 text-right text-darkAccent">
             {vn.title}
           </div>
           <div
-            className="text-right text-base text-dark hover:text-darkAccent block max-w-4xl
+            className="text-right text-xl text-dark hover:text-darkAccent block max-w-4xl
           max-h-titleDetailsDescription"
           >
             {description}

@@ -27,7 +27,7 @@ module.exports = {
       maxWidth: {
         screenImageLarge: "960px",
         screenImageMedium: "768px",
-        titleImageMedium: "28rem",
+        titleImageMedium: "24rem",
         titleImageLarge: "32rem",
       },
       maxHeight: {

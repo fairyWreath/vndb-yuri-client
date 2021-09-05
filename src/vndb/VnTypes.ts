@@ -23,7 +23,7 @@ export interface VnSearchQuery {
   tags: string[];
   sort_by?: string;
   sort_order?: string;
-  released?: string;
+  released?: number;
   search?: string;
   nsfw?: boolean;
   results?: number;

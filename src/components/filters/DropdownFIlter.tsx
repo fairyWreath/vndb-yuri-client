@@ -75,8 +75,13 @@ const DropdownFilter = (props: Props) => {
         />
       ) : (
         <span className="w-full cursor-pointer">
+          {}
           {selectedItems.length > 0 ? (
-            <> {selectedItems.length} items </>
+            props.multiSelect ? (
+              <> {selectedItems.length} items </>
+            ) : (
+              <>{selectedItems[0]}</>
+            )
           ) : (
             <> Any </>
           )}
@@ -104,6 +109,7 @@ const DropdownFilter = (props: Props) => {
         className="p-2 rounded-md flex flex-row items-center hover:bg-accentPrimary
         justify-between w-full"
         // some ugly callback code beause states are not reliable for this
+        // should probably use useEFfect for this, will implement later
         onClick={() => {
           // for real time synchoronous
           const prevItems = selectedItems;
@@ -118,7 +124,13 @@ const DropdownFilter = (props: Props) => {
 
             if (props.setItems !== undefined) {
               // for real time
-              props.setItems([...prevItems, item]);
+              if (props.multiSelect) {
+                props.setItems([...prevItems, item]);
+              } else {
+                props.setItems(item);
+                setDropdownClicked(false);
+                setInputFocus(false);
+              }
             }
           } else {
             setSelectedItems(
@@ -129,11 +141,15 @@ const DropdownFilter = (props: Props) => {
 
             if (props.setItems !== undefined) {
               // for real time
-              props.setItems(
-                prevItems.filter((sItem) => {
-                  return sItem != item;
-                })
-              );
+              if (props.multiSelect) {
+                props.setItems(
+                  prevItems.filter((sItem) => {
+                    return sItem != item;
+                  })
+                );
+              } else {
+                props.setItems(undefined);
+              }
             }
           }
         }}
