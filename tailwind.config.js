@@ -38,12 +38,13 @@ module.exports = {
         titleDetailsDescription: "20rem",
       },
       minHeight: {
-        titleImageMedium: "24rem",
+        titleImageMedium: "16rem",
         titleDetailsContainer: "32rem",
         titleDetailsDescription: "20rem",
+        96: "24rem",
       },
       width: {
-        titleImageMedium: "28rem",
+        titleImageMedium: "20rem",
         titleImageLarge: "32rem",
       },
       borderWidth: {
@@ -52,6 +53,9 @@ module.exports = {
       gridTemplateColumns: {
         16: "repeat(16, minmax(0, 1fr))",
         normalScreen: "repeat(5, 208px)", // 208 px/13 rem for w-52 card
+      },
+      margin: {
+        titleImageMedium: "-7rem",
       },
     },
   },
