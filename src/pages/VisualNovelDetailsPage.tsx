@@ -148,7 +148,11 @@ const VisualNovelDetailsPage = () => {
 
       <div className="flex flex-row justify-end px-8 py-12 w-full bg-light items-start">
         <div className="w-full px-14">
-          <Overview releases={vn.releases} relations={vn.relations} />
+          <Overview
+            releases={vn.releases}
+            relations={vn.relations}
+            characters={vn.characters}
+          />
           {/* <VnRelationCard vn={vn.relations[0]} /> */}
         </div>
         <div className="flex flex-col justify-center items-start">

@@ -1,10 +1,12 @@
 import React from "react";
-import { VnRelation, VnRelease } from "../../vndb/VnTypes";
+import { VnRelation, VnRelease, VnCharacter } from "../../vndb/VnTypes";
 import VnRelationCard from "../cards/VnRelationCard";
+import VnCharacterCard from "../cards/VnCharacterCard";
 
 interface OverviewProps {
   relations: VnRelation[];
   releases: VnRelease[];
+  characters: VnCharacter[];
 }
 
 const Overview = (props: OverviewProps) => {
@@ -59,20 +61,30 @@ const Overview = (props: OverviewProps) => {
       return <VnRelationCard vn={vn} />;
     });
 
+  const characterCards = props.characters.map((char) => {
+    return <VnCharacterCard character={char} />;
+  });
+
   return (
-    <div className=" w-full">
+    <div className="w-full">
       <div className="text-darkAccent pb-3 text-xl text-right">Relations</div>
 
       <div
-        className="grid grid-cols-2 gap-x-3 gap-y-5"
+        className="grid grid-cols-2 gap-x-3 gap-y-6"
         style={{ direction: "rtl" }}
       >
         {relationCards}
       </div>
 
-      <div className="characters py-7">
+      <div className="w-full py-7">
         <div className="text-darkAccent pb-3 text-xl text-right">
           Characters
+        </div>
+        <div
+          className="grid grid-cols-4 gap-x-3 gap-y-6"
+          style={{ direction: "rtl" }}
+        >
+          {characterCards}
         </div>
       </div>
       {/* <div className="releases text-right">
