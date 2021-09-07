@@ -1,7 +1,9 @@
 import React from "react";
-import { VnRelease } from "../../vndb/VnTypes";
+import { VnRelation, VnRelease } from "../../vndb/VnTypes";
+import VnRelationCard from "../cards/VnRelationCard";
 
 interface OverviewProps {
+  relations: VnRelation[];
   releases: VnRelease[];
 }
 
@@ -49,25 +51,41 @@ const Overview = (props: OverviewProps) => {
     return elements;
   };
 
+  const relationCards = props.relations
+    .filter((vn) => {
+      return vn.official;
+    })
+    .map((vn) => {
+      return <VnRelationCard vn={vn} />;
+    });
+
   return (
-    <div className="w-full">
-      <div className="releases text-right">
+    <div className=" w-full">
+      <div className="text-darkAccent pb-3 text-xl text-right">Relations</div>
+
+      <div
+        className="grid grid-cols-2 gap-x-3 gap-y-5"
+        style={{ direction: "rtl" }}
+      >
+        {relationCards}
+      </div>
+
+      <div className="characters py-7">
+        <div className="text-darkAccent pb-3 text-xl text-right">
+          Characters
+        </div>
+      </div>
+      {/* <div className="releases text-right">
         <div className="text-darkAccent pb-3 text-xl align-text-top">
           Releases
         </div>
-        <div className="bg-accentPrimary rounded-md w-full py-3 pr-8">
-          {releases()}
-        </div>
+        <div className="bg-accentPrimary rounded-md w-full py-3 pr-8">{}</div>
       </div>
-      <div className="relations py-5">
-        <div className="text-darkAccent pb-3 text-xl">Relations</div>
-      </div>
-      <div className="characters py-5">
-        <div className="text-darkAccent pb-3 text-xl">Characters</div>
-      </div>
+
+
       <div className="staff py-5">
         <div className="text-darkAccent pb-3 text-xl">Staff</div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,4 +1,6 @@
 const colors = require("tailwindcss/colors");
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
@@ -46,6 +48,7 @@ module.exports = {
       width: {
         titleImageMedium: "20rem",
         titleImageLarge: "32rem",
+        32: "8rem",
       },
       borderWidth: {
         veryThin: "0.5px",
@@ -58,7 +61,11 @@ module.exports = {
         titleImageMedium: "-8rem",
       },
       width: {
+        112: "28rem",
+        128: "32rem",
+        144: "36rem",
         240: "60rem",
+        320: "90rem",
       },
       borderWidth: {
         3: "3px",

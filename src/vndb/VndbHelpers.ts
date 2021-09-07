@@ -1,3 +1,17 @@
+const BASE_IMAGE_URL = `https://s2.vndb.org`;
+const IMAGE_FORMAT = `.jpg`;
+
+export const getImageUrlFromId = (imgId: string) => {
+  // need to handle null images from db
+  if (imgId === undefined || imgId === null) return "";
+
+  const group = imgId.substring(0, 2);
+  const fullNum = imgId.substring(2, imgId.length);
+  const num = imgId.substring(imgId.length - 2, imgId.length);
+
+  return `${BASE_IMAGE_URL}/${group}/${num}/${fullNum}${IMAGE_FORMAT}`;
+};
+
 export const parseDate = (dateNum: number) => {
   const dateStr = dateNum.toString();
   if (dateStr.toString().length !== 8) {
@@ -66,6 +80,21 @@ export const getPlaytimeFromLength = (length: number) => {
   else if (length === 3) return "10 - 30 hours";
   else if (length === 4) return "30 - 50 hours";
   else return "> 50 hours";
+};
+
+const RELATION_SHORTCUT_MAP = new Map<string, string>([
+  ["ser", "Series"],
+  ["seq", "Sequel"],
+  ["preq", "Prequel"],
+  ["set", "Setting"],
+]);
+
+export const getRelationName = (rel: string) => {
+  if (RELATION_SHORTCUT_MAP.has(rel)) {
+    return RELATION_SHORTCUT_MAP.get(rel);
+  }
+
+  return rel;
 };
 
 const LANGUAGE_SHORTCUT_MAP = new Map<string, string>([

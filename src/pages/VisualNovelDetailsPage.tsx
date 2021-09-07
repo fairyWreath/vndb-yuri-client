@@ -17,6 +17,8 @@ import { VnDetails } from "../vndb/VnTypes";
 import BannerImage from "../components/details/BannerImage";
 import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 
+import VnRelationCard from "../components/cards/VnRelationCard";
+
 interface VisualNovelParams {
   id: string;
 }
@@ -95,8 +97,6 @@ const VisualNovelDetailsPage = () => {
     );
   });
 
-  console.log("rerendered");
-
   return (
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
       {screenImages.length > 0 && <BannerImage src={bannerImage} />}
@@ -146,9 +146,10 @@ const VisualNovelDetailsPage = () => {
         />
       </div>
 
-      <div className="flex flex-row justify-end px-8 py-7 w-full bg-light items-start">
-        <div className="w-full lg:w-3/4">
-          {/* <Overview releases={vn.releases} /> */}
+      <div className="flex flex-row justify-end px-8 py-12 w-full bg-light items-start">
+        <div className="w-full px-14">
+          <Overview releases={vn.releases} relations={vn.relations} />
+          {/* <VnRelationCard vn={vn.relations[0]} /> */}
         </div>
         <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
