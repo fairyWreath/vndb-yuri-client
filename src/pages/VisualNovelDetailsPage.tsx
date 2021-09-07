@@ -222,7 +222,7 @@ const VisualNovelDetailsPage = () => {
         </div>
       </div>
 
-      {screenImages.length > 0 && <Carousel slides={screenImages}></Carousel>}
+      {screenImages.length > 0 && <Carousel slides={screenImages} />}
     </div>
   );
 };
