@@ -11,14 +11,14 @@ const VnCharacterCard = (props: Props) => {
   const genderIcon = () => {
     if (props.character.gender === "f") {
       return (
-        <div className="text-primary">
-          <CgGenderFemale size="26px" />
+        <div className="text-red-700">
+          <CgGenderFemale size="28px" />
         </div>
       );
     } else if (props.character.gender === "m") {
       return (
         <div className="text-blue-800">
-          <CgGenderMale size="26px" />
+          <CgGenderMale size="28px" />
         </div>
       );
     } else return <></>;
@@ -42,7 +42,9 @@ const VnCharacterCard = (props: Props) => {
       >
         <div className="text-darkAccent">{props.character.name}</div>
         <div>{props.character.role}</div>
-        <div className="my-3 text-sm">CV. {props.character.seiyuu_name}</div>
+        {props.character.seiyuu_name && (
+          <div className="my-3 text-sm">CV. {props.character.seiyuu_name}</div>
+        )}
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const DetailsSidebarWithScrollContainer = styled.div`
-  max-height: 350px;
   overflow-y: hidden;
   border-radius: 6px;
+  max-height: 400px;
 
   &:hover {
     overflow-y: overlay;
@@ -24,7 +24,7 @@ const DetailsSidebarWithScrollContainer = styled.div`
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #fab5ac;
+    background: #f5d9d8;
   }
 `;
 

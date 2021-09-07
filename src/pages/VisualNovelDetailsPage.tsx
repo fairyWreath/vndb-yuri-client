@@ -213,10 +213,12 @@ const VisualNovelDetailsPage = () => {
             </DetailsSidebarItem> */}
           </DetailsSidebar>
 
-          {/* <div className="mt-5 mb-3 text-darkAccent text-xl"> Tags </div>
-          <DetailsSidebarWithScrollContainer>
-            <DetailsSidebar>{tags}</DetailsSidebar>
-          </DetailsSidebarWithScrollContainer> */}
+          <div className="mb-3 mt-8 text-darkAccent text-xl"> Tags </div>
+          <div className="shadow-md">
+            <DetailsSidebarWithScrollContainer>
+              <DetailsSidebar>{tags}</DetailsSidebar>
+            </DetailsSidebarWithScrollContainer>
+          </div>
         </div>
       </div>
 

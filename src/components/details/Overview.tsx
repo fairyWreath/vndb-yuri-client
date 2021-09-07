@@ -67,26 +67,33 @@ const Overview = (props: OverviewProps) => {
 
   return (
     <div className="w-full">
-      <div className="text-darkAccent pb-3 text-xl text-right">Relations</div>
-
-      <div
-        className="grid grid-cols-2 gap-x-3 gap-y-6"
-        style={{ direction: "rtl" }}
-      >
-        {relationCards}
-      </div>
-
-      <div className="w-full py-7">
-        <div className="text-darkAccent pb-3 text-xl text-right">
-          Characters
+      {props.relations.length > 0 && (
+        <div className="pb-7">
+          <div className="text-darkAccent pb-3 text-xl text-right">
+            Relations
+          </div>
+          <div
+            className="grid grid-cols-2 gap-x-3 gap-y-6"
+            style={{ direction: "rtl" }}
+          >
+            {relationCards}
+          </div>
         </div>
-        <div
-          className="grid grid-cols-4 gap-x-3 gap-y-6"
-          style={{ direction: "rtl" }}
-        >
-          {characterCards}
+      )}
+
+      {props.characters.length > 0 && (
+        <div className="w-full pb-7">
+          <div className="text-darkAccent pb-3 text-xl text-right">
+            Characters
+          </div>
+          <div
+            className="grid grid-cols-4 gap-x-3 gap-y-6"
+            style={{ direction: "rtl" }}
+          >
+            {characterCards}
+          </div>
         </div>
-      </div>
+      )}
       {/* <div className="releases text-right">
         <div className="text-darkAccent pb-3 text-xl align-text-top">
           Releases
