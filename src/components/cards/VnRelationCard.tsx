@@ -9,7 +9,7 @@ interface Props {
 const VnRelationCard = (props: Props) => {
   return (
     <div
-      className="flex flex-row justify-end items-center h-36 w-112 bg-accentPrimary 
+      className="flex flex-row justify-end items-center h-36 w-100 bg-accentPrimary 
     rounded-md shadow-md"
       style={{ direction: "ltr" }}
     >

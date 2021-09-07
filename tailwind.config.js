@@ -50,6 +50,9 @@ module.exports = {
         titleImageLarge: "32rem",
         32: "8rem",
       },
+      height: {
+        88: "22rem",
+      },
       borderWidth: {
         veryThin: "0.5px",
       },
@@ -61,11 +64,19 @@ module.exports = {
         titleImageMedium: "-8rem",
       },
       width: {
+        100: "25rem",
+        104: "26rem",
         112: "28rem",
         128: "32rem",
         144: "36rem",
+        200: "50rem",
+        208: "52rem",
+        216: "54rem",
         240: "60rem",
-        320: "90rem",
+        280: "70rem",
+        320: "80rem",
+        328: "82rem",
+        336: "84rem",
       },
       borderWidth: {
         3: "3px",

@@ -87,6 +87,10 @@ const RELATION_SHORTCUT_MAP = new Map<string, string>([
   ["seq", "Sequel"],
   ["preq", "Prequel"],
   ["set", "Setting"],
+  ["char", "Shares Character"],
+  ["side", "Side Story"],
+  ["fan", "Fandisc"],
+  ["alt", "Alternate Version"],
 ]);
 
 export const getRelationName = (rel: string) => {

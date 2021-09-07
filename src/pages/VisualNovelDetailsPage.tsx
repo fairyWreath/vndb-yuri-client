@@ -101,7 +101,7 @@ const VisualNovelDetailsPage = () => {
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
       {screenImages.length > 0 && <BannerImage src={bannerImage} />}
       <div
-        className="flex flex-row justify-end items-start bg-accentPrimary w-full 
+        className="flex flex-row justify-center items-start bg-accentPrimary w-full 
       px-8 pt-10 shadow-md "
       >
         <div className="pr-8 pl-4">
@@ -146,20 +146,24 @@ const VisualNovelDetailsPage = () => {
         />
       </div>
 
-      <div className="flex flex-row justify-end px-8 py-12 w-full bg-light items-start">
-        <div className="w-full px-14">
+      <div className="flex flex-row justify-center px-12 py-12 w-full bg-light items-start">
+        <div className="w-208   mr-10">
           <Overview
             releases={vn.releases}
             relations={vn.relations}
             characters={vn.characters}
+            staff={vn.staff}
           />
-          {/* <VnRelationCard vn={vn.relations[0]} /> */}
         </div>
         <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
             <DetailsSidebarItem>
-              <div className="text-darkAccent">Original Name</div>
-              {vn.original}
+              {vn.original && (
+                <>
+                  <div className="text-darkAccent">Original Name</div>
+                  {vn.original}
+                </>
+              )}
             </DetailsSidebarItem>
             {vn.alias !== null && (
               <DetailsSidebarItem>
