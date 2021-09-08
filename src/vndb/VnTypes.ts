@@ -43,7 +43,7 @@ export interface VnImage {
 export interface VnTag {
   tag: string;
   score: number;
-  spoiler: string;
+  spoiler: number;
   name: string;
   parent: string;
 }

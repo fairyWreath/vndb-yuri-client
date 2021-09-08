@@ -11,8 +11,8 @@ import { GiTrefoilLily } from "react-icons/gi";
 import Carousel from "../components/carousel/Carousel";
 import DetailsSidebar from "../components/details/DetailsSidebar";
 import DetailsSidebarItem from "../components/details/DetailsSidebarItem";
-import DetailsSidebarWithScrollContainer from "../components/details/DetailsSidebarWithScrollContainer";
 import Overview from "../components/details/Overview";
+import Tags from "../components/details/Tags";
 
 import * as VNDB from "../vndb/Vndb";
 import * as VNDBHelper from "../vndb/VndbHelpers";
@@ -22,8 +22,6 @@ import { VnDetails } from "../vndb/VnTypes";
 
 import BannerImage from "../components/details/BannerImage";
 import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
-
-import VnRelationCard from "../components/cards/VnRelationCard";
 
 interface VisualNovelParams {
   id: string;
@@ -49,7 +47,7 @@ const VisualNovelDetailsPage = () => {
       .catch((err) => {
         setResult({ status: "error", error: err });
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (result.status !== "loaded") return;
@@ -96,17 +94,6 @@ const VisualNovelDetailsPage = () => {
     return <div>{name}</div>;
   });
 
-  const tags = vn.tags.map((tag, key) => {
-    return (
-      <DetailsSidebarItem>
-        <div className="text-darkAccent" key={key}>
-          {tag.name}
-        </div>
-        {tag.score}
-      </DetailsSidebarItem>
-    );
-  });
-
   return (
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
       {screenImages.length > 0 && <BannerImage src={bannerImage} />}
@@ -126,7 +113,7 @@ const VisualNovelDetailsPage = () => {
           </DetailsTextScrollbar>
           <ul className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock pl-48 pb-3">
             <Link
-              to={`${url}/`}
+              to={`${url}`}
               className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
             >
               Overview
@@ -168,13 +155,16 @@ const VisualNovelDetailsPage = () => {
       <div className="flex flex-row justify-center px-12 py-12 w-full bg-light items-start">
         <div className="w-208  mr-10">
           <Switch>
-            <Route exact path={url}>
+            <Route exact path={`${url}`}>
               <Overview
                 releases={vn.releases}
                 relations={vn.relations}
                 characters={vn.characters}
                 staff={vn.staff}
               />
+            </Route>
+            <Route exact path={`${url}/tags`}>
+              <Tags tags={vn.tags} />
             </Route>
           </Switch>
         </div>
