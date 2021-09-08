@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useRouteMatch, Link } from "react-router-dom";
+import {
+  useParams,
+  useRouteMatch,
+  Link,
+  Switch,
+  Route,
+} from "react-router-dom";
 import { GiTrefoilLily } from "react-icons/gi";
 
 import Carousel from "../components/carousel/Carousel";
@@ -78,13 +84,17 @@ const VisualNovelDetailsPage = () => {
     );
   });
 
-  console.log(vn.desc);
-
   const screenImages = vn.screenshots.map((screen) => screen.src);
-  // const languages = vn.languages.map((lang) => {
-  //   // const name = VNDBHelper.getFullLanguageName(lang);
-  //   return <div>{lang}</div>;
-  // });
+
+  const languages = vn.languages.map((lang) => {
+    const name = VNDBHelper.getFullLanguageName(lang);
+    return <div>{name}</div>;
+  });
+
+  const platforms = vn.platforms.map((plat) => {
+    const name = VNDBHelper.getFullPlatformName(plat);
+    return <div>{name}</div>;
+  });
 
   const tags = vn.tags.map((tag, key) => {
     return (
@@ -115,9 +125,12 @@ const VisualNovelDetailsPage = () => {
             <div style={{ direction: "ltr" }}>{description}</div>
           </DetailsTextScrollbar>
           <ul className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock pl-48 pb-3">
-            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+            <Link
+              to={`${url}/`}
+              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+            >
               Overview
-            </li>
+            </Link>
             <Link
               to={`${url}/tags`}
               className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
@@ -131,12 +144,18 @@ const VisualNovelDetailsPage = () => {
             >
               Characters
             </Link>
-            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+            <Link
+              to={`${url}/releases`}
+              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+            >
               Releases
-            </li>
-            <li className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent">
+            </Link>
+            <Link
+              to={`${url}/staff`}
+              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+            >
               Staff
-            </li>
+            </Link>
           </ul>
         </div>
         <img
@@ -147,13 +166,17 @@ const VisualNovelDetailsPage = () => {
       </div>
 
       <div className="flex flex-row justify-center px-12 py-12 w-full bg-light items-start">
-        <div className="w-208   mr-10">
-          <Overview
-            releases={vn.releases}
-            relations={vn.relations}
-            characters={vn.characters}
-            staff={vn.staff}
-          />
+        <div className="w-208  mr-10">
+          <Switch>
+            <Route exact path={url}>
+              <Overview
+                releases={vn.releases}
+                relations={vn.relations}
+                characters={vn.characters}
+                staff={vn.staff}
+              />
+            </Route>
+          </Switch>
         </div>
         <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
@@ -165,7 +188,7 @@ const VisualNovelDetailsPage = () => {
                 </>
               )}
             </DetailsSidebarItem>
-            {vn.alias !== null && (
+            {vn.alias && (
               <DetailsSidebarItem>
                 <div className="text-darkAccent">Aliases</div>
                 {vn.alias.split("\n").map((alias, key) => {
@@ -207,22 +230,20 @@ const VisualNovelDetailsPage = () => {
                 return <div>{publisher.name}</div>;
               })}
             </DetailsSidebarItem>
-            {/* <DetailsSidebarItem>
-              <div className="text-darkAccent">Languages</div>
-              {languages}
-            </DetailsSidebarItem> */}
-            {/* <DetailsSidebarItem>
-              <div className="text-darkAccent">Platforms</div>
-              {vn.platforms}
-            </DetailsSidebarItem> */}
           </DetailsSidebar>
 
-          <div className="mb-3 mt-8 text-darkAccent text-xl"> Tags </div>
-          <div className="shadow-md">
-            <DetailsSidebarWithScrollContainer>
-              <DetailsSidebar>{tags}</DetailsSidebar>
-            </DetailsSidebarWithScrollContainer>
-          </div>
+          <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
+
+          <DetailsSidebar>
+            <DetailsSidebarItem>
+              <div className="text-darkAccent">Languages</div>
+              {languages}
+            </DetailsSidebarItem>
+            <DetailsSidebarItem>
+              <div className="text-darkAccent">Platforms</div>
+              {platforms}
+            </DetailsSidebarItem>
+          </DetailsSidebar>
         </div>
       </div>
 

@@ -148,7 +148,7 @@ export const getFullLanguageName = (lang: string) => {
     return name;
   }
 
-  return "Unknown";
+  return lang;
 };
 
 export interface VndbSearchQuery {
@@ -258,6 +258,7 @@ export const FILTER_PLATFORMS_MAP = new Map<string, string>([
   ["Nintendo 3DS", "n3d"],
   ["Gameboy Advance", "gba"],
   ["Gameboy Color", "gbc"],
+  ["VNDS", "vnd"],
 ]);
 
 export const FILTER_PLATFORM_ITEMS = () => {
@@ -268,4 +269,22 @@ export const FILTER_PLATFORM_ITEMS = () => {
 
   items = items.sort();
   return items;
+};
+
+const PLATFORMS_SHORTCUT_MAP = () => {
+  const res = new Map<string, string>();
+
+  FILTER_PLATFORMS_MAP.forEach((full: string, sc: string) => {
+    res.set(full, sc);
+  });
+
+  return res;
+};
+
+export const getFullPlatformName = (plat: string) => {
+  const name = PLATFORMS_SHORTCUT_MAP().get(plat);
+
+  if (name) return name;
+
+  return plat;
 };

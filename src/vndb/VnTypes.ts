@@ -105,8 +105,8 @@ export interface VnRelease {
   website: string;
   type: string;
   released: number;
-  languages: string;
-  platforms: string;
+  languages: string[];
+  platforms: string[];
   producers: VnProducer[];
 }
 
@@ -139,6 +139,8 @@ export interface VnDetails {
   c_average: number;
   min_released: number;
   tags: VnTag[];
+  languages: string[];
+  platforms: string[];
   play_time: VnPlayTime;
   staff: VnStaff[];
   characters: VnCharacter[];
