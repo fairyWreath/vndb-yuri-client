@@ -62,7 +62,7 @@ const VisualNovelDetailsPage = () => {
         Math.floor(Math.random() * result.payload.screenshots.length)
       ].src
     );
-  }, [result.status]);
+  }, [result]);
 
   if (result.status === "init" || result.status === "loading")
     return <LoadingIcon />;

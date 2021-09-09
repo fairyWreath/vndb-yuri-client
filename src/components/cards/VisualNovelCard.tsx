@@ -16,7 +16,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
         transition={{ duration: 0.2 }}
       >
         <div className="w-full h-72 relative">
-          <Link to={"/vns/" + props.vn.id}>
+          <Link to={"/vn/" + props.vn.id}>
             <img
               src={props.vn.image.src}
               alt="vn_card_image"
@@ -25,7 +25,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           </Link>
         </div>
         <div className="title min-h-12 py-2 overflow-hidden text-base font-medium ">
-          <Link to={"/vns/" + props.vn.id}>{props.vn.title}</Link>
+          <Link to={"/vn/" + props.vn.id}>{props.vn.title}</Link>
         </div>
       </motion.div>
     </div>
