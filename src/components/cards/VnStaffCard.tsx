@@ -14,8 +14,8 @@ const VnStaffCard = (props: Props) => {
       style={{ direction: "ltr" }}
     >
       <div className="text-darkAccent">{props.staff.name}</div>
-      <div>{props.staff.role}</div>
-      <div>{props.staff.note}</div>
+      <div className="text-center">{props.staff.role}</div>
+      <div className="text-center">{props.staff.note}</div>
     </div>
   );
 };

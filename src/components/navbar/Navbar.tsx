@@ -1,109 +1,39 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { GiTrefoilLily } from "react-icons/gi";
-import { IoPerson } from "react-icons/io5";
-import { IoIosNotifications } from "react-icons/io";
-import { AiOutlineUnorderedList } from "react-icons/ai";
-import { MdSettings } from "react-icons/md";
-import { RiLogoutBoxFill } from "react-icons/ri";
-import { AiFillCaretDown } from "react-icons/ai";
 import { FaBars, FaTimes } from "react-icons/fa";
-
 import NavLinkItem from "./NavLinkItem";
-import NavDropdownLinkItem from "./NavDropdownLinkItem";
 
 const Navbar = () => {
-  const [isLoggedIn, setLoggedIn] = useState(true);
-  const [openDropdown, setOpenDropdown] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   return (
-    <div className="h-16 bg-primary flex items-center justify-center sticky top-0 z-50 shadow-md">
-      <div className=" select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
-        <div className="text-light text-3xl flex flex-row items-center cursor-pointer">
+    <div className="h-14 bg-primary flex items-center justify-center sticky top-0 z-50 shadow-md">
+      <div className="select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
+        <Link
+          to="/"
+          className="text-light text-2xl flex flex-row items-center cursor-pointer"
+        >
           <div className="m-2">
             <GiTrefoilLily />
           </div>
-          Fairy
-        </div>
+          VNList
+        </Link>
 
-        {/* breakpoint goes above */}
         <ul className="hidden md:flex items-center text-center h-full list-none">
           <NavLinkItem target="/vns" label="Visual Novels" />
-          <NavLinkItem target="/tags" label="Tags" />
           <NavLinkItem target="/characters" label="Characters" />
-          <NavLinkItem target="/releases" label="Releases" />
         </ul>
-        {isLoggedIn ? (
-          <div
-            className="flex flex-row justify-center items-center h-full list-none px-4 mx-2h-full border-b-4 border-transparent
-          hover:border-light"
-            onMouseEnter={() => {
-              setOpenDropdown(true);
-            }}
-            onMouseLeave={() => {
-              setOpenDropdown(false);
-            }}
-          >
-            <img
-              className="h-14 w-14 max-h-14 max-w-14 mr-2 select-none"
-              src="https://s4.anilist.co/file/anilistcdn/user/avatar/large/b823204-p8pRSBsVGYBM.png"
-              alt="nav_logo"
-            />
-            <AiFillCaretDown
-              className="text-light"
-              size="18px"
-              style={openDropdown ? { transform: "rotate(-180deg)" } : {}}
-            />
-
-            {openDropdown && (
-              <div
-                className="flex flex-col absolute top-16 shadow-md
-                rounded-md bg-accentSecondary px-4 py-4 z-50 w-44"
-              >
-                <NavDropdownLinkItem target="/profile">
-                  <IoPerson />
-                  Profile
-                </NavDropdownLinkItem>
-                <NavDropdownLinkItem target="/mylists">
-                  <AiOutlineUnorderedList />
-                  My Lists
-                </NavDropdownLinkItem>
-                <NavDropdownLinkItem target="/notifications">
-                  <IoIosNotifications />
-                  Notifications
-                </NavDropdownLinkItem>
-                <NavDropdownLinkItem target="/settings">
-                  <MdSettings />
-                  Settings
-                </NavDropdownLinkItem>
-                <NavDropdownLinkItem target="/logout">
-                  <div
-                    onClick={() => {
-                      setLoggedIn(false);
-                    }}
-                  >
-                    <RiLogoutBoxFill />
-                    Logout
-                  </div>
-                </NavDropdownLinkItem>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div></div>
-        )}
       </div>
 
-      {/* mobile icon */}
       <div
-        className="md:hidden fixed bottom-7 right-7 w-14 h-14 bg-accentPrimary rounded-lg
+        className="md:hidden fixed bottom-7 right-7 w-10 h-10 bg-accentPrimary rounded-lg
       flex justify-center items-center cursor-pointer text-light"
         onClick={() => {
           setOpenMobileMenu(!openMobileMenu);
         }}
       >
-        {openMobileMenu ? <FaTimes size="40px" /> : <FaBars size="40px" />}
+        {openMobileMenu ? <FaTimes size="25px" /> : <FaBars size="25px" />}
       </div>
     </div>
   );

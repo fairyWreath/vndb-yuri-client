@@ -14,18 +14,12 @@ interface ScorebarProps {
 }
 
 export const Scorebar = styled.div<ScorebarProps>`
-  /* border-radius: 6px; */
   background-color: #fdc6bf;
   height: 100%;
   width: ${(props) => props.scorePercentage};
   margin: 3px 0px 3px 0px;
   font-size: 0.75rem;
   text-align: center;
-
-  &:hover {
-    background-color: #fab5ac;
-    color: #748999;
-  }
 `;
 
 const Tags = (props: Props) => {

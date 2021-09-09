@@ -1,4 +1,5 @@
-import { useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { Helmet } from "react-helmet";
 
 import DropdownFilter from "../components/filters/DropdownFilter";
 import SearchFilter from "../components/filters/SearchFilter";
@@ -25,6 +26,10 @@ const BrowseVisualNovelsPage = () => {
   const [sortOrderDesc, setSortOrderDesc] = useState(true);
   const [tags, setTags] = useState<string[]>([]);
   const [released, setReleased] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const listParams: VnSearchQuery = {
     tags: tags,
@@ -78,6 +83,9 @@ const BrowseVisualNovelsPage = () => {
       className="bg-light w-full min-h-screen bottom-0 px-12
     py-4 font-overlock"
     >
+      <Helmet>
+        <title>Search Visual Novels · VNList</title>
+      </Helmet>
       <div className="max-w-7xl m-auto">
         <div className="flex flex-row justify-between items-center">
           <SearchFilter

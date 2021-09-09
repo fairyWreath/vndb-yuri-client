@@ -26,7 +26,7 @@ const VnCharacterCard = (props: Props) => {
 
   return (
     <div
-      className="flex flex-col h-98 bg-accentPrimary w-48
+      className="flex flex-col h-88 bg-accentPrimary w-48
       shadow-md rounded-md relative"
       style={{ direction: "ltr" }}
     >

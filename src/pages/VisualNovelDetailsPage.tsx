@@ -6,22 +6,23 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { GiTrefoilLily } from "react-icons/gi";
+import { Helmet } from "react-helmet";
 
 import Carousel from "../components/carousel/Carousel";
 import DetailsSidebar from "../components/details/DetailsSidebar";
 import DetailsSidebarItem from "../components/details/DetailsSidebarItem";
 import Overview from "../components/details/Overview";
 import Tags from "../components/details/Tags";
+import BannerImage from "../components/details/BannerImage";
+import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
+import LoadingIcon from "../components/status/LoadingIcon";
+import ErrorIcon from "../components/status/ErrorIcon";
 
 import * as VNDB from "../vndb/Vndb";
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { Service } from "../fetch/Service";
 
 import { VnDetails } from "../vndb/VnTypes";
-
-import BannerImage from "../components/details/BannerImage";
-import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 
 interface VisualNovelParams {
   id: string;
@@ -42,11 +43,16 @@ const VisualNovelDetailsPage = () => {
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     VNDB.vnDetails(id)
       .then((item: VnDetails) => setResult({ status: "loaded", payload: item }))
       .catch((err) => {
         setResult({ status: "error", error: err });
       });
+    window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
@@ -58,19 +64,9 @@ const VisualNovelDetailsPage = () => {
     );
   }, [result.status]);
 
-  if (result.status === "init") return <div>init</div>;
-  if (result.status === "error")
-    return (
-      <div className="flex flex-col justify-start items-center bg-light min-h-screen py-16">
-        <GiTrefoilLily className="text-primary" size="px" />
-      </div>
-    );
-  if (result.status === "loading")
-    return (
-      <div className="flex flex-col justify-start items-center bg-light min-h-screen">
-        loading
-      </div>
-    );
+  if (result.status === "init" || result.status === "loading")
+    return <LoadingIcon />;
+  if (result.status === "error") return <ErrorIcon />;
 
   const vn: VnDetails = result.payload;
 
@@ -96,6 +92,9 @@ const VisualNovelDetailsPage = () => {
 
   return (
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
+      <Helmet>
+        <title>{result.payload.title}</title>
+      </Helmet>
       {screenImages.length > 0 && <BannerImage src={bannerImage} />}
       <div
         className="flex flex-row justify-center items-start bg-accentPrimary w-full 
@@ -107,7 +106,7 @@ const VisualNovelDetailsPage = () => {
           </div>
           <DetailsTextScrollbar
             className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
-        overflow-y-hidden max-h-56 pl-5 dir"
+        overflow-y-hidden min-h-44 max-h-56 pl-5 dir"
           >
             <div style={{ direction: "ltr" }}>{description}</div>
           </DetailsTextScrollbar>
@@ -152,7 +151,7 @@ const VisualNovelDetailsPage = () => {
         />
       </div>
 
-      <div className="flex flex-row justify-center px-12 py-12 w-full bg-light items-start">
+      <div className="flex flex-row justify-center px-12 py-8 w-full bg-light items-start">
         <div className="w-208  mr-10">
           <Switch>
             <Route exact path={`${url}`}>

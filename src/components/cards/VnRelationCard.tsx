@@ -11,11 +11,11 @@ const VnRelationCard = (props: Props) => {
   return (
     <Link
       to={`/vns/${props.vn.vid}`}
-      className="flex flex-row justify-end items-center h-36 w-100 bg-accentPrimary 
+      className="flex flex-row justify-end items-center w-100 bg-accentPrimary 
     rounded-md shadow-md"
       style={{ direction: "ltr" }}
     >
-      <div className="text-right mr-3 flex flex-col justify-between h-24 py-2">
+      <div className="text-right mr-3 flex flex-col justify-between py-2">
         <div className="text-lg text-darkAccent">{props.vn.title}</div>
         <div className="text-base text-dark">
           {VNDBHelper.getRelationName(props.vn.relation)}
@@ -23,7 +23,7 @@ const VnRelationCard = (props: Props) => {
       </div>
       <img
         src={VNDBHelper.getImageUrlFromId(props.vn.image)}
-        className="h-full w-28"
+        className="h-full w-20"
         alt="vn_rel_card_img"
       />
     </Link>
