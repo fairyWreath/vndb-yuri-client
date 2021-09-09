@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 interface CarouselImageProps {
   url: string;
@@ -12,6 +11,7 @@ const CarouselImage = (props: CarouselImageProps) => {
         className="w-full h-full relative opacity-100 transition-opacity select-none
         block rounded-xl shadow-md"
         src={props.url}
+        alt="car_img"
       />
     </picture>
   );

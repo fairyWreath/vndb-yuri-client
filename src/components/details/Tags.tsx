@@ -42,12 +42,12 @@ const Tags = (props: Props) => {
       <div
         className={
           tag.spoiler === 2
-            ? "mb-4 flex flex-row items-center text-red-900 font-semibold"
-            : "mb-4 flex flex-row items-center text-dark"
+            ? "mb-4 flex flex-row items-center text-red-900 font-semibold w-full"
+            : "mb-4 flex flex-row items-center text-dark w-full"
         }
       >
         {tag.score.toFixed(2)}
-        <div className="w-12 mx-3 bg-black h-6 flex items-center">
+        <div className="min-w-96 max-w-96 mx-3 bg-black h-6 flex items-center">
           <Scorebar scorePercentage={`${perc}%`} />
         </div>
         <div className="mx-4">{tag.name}</div>
@@ -77,7 +77,7 @@ const Tags = (props: Props) => {
         <div className="mx-2">Spoilers</div>
         {showSpoilers ? <IoIosEye size="20px" /> : <IoIosEyeOff size="20px" />}
       </div>
-      <div className="w-144">{bars}</div>
+      <div className="">{bars}</div>
     </div>
   );
 };

@@ -34,6 +34,7 @@ const VnCharacterCard = (props: Props) => {
         className="w-full h-64"
         style={{ borderRadius: "6px 6px 0px 0px" }}
         src={VNDBHelper.getImageUrlFromId(props.character.image)}
+        alt="vn_ov_char_img"
       />
       <div className="absolute right-2 py-2">{genderIcon()}</div>
       <div

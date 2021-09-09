@@ -48,6 +48,7 @@ const Navbar = () => {
             <img
               className="h-14 w-14 max-h-14 max-w-14 mr-2 select-none"
               src="https://s4.anilist.co/file/anilistcdn/user/avatar/large/b823204-p8pRSBsVGYBM.png"
+              alt="nav_logo"
             />
             <AiFillCaretDown
               className="text-light"
@@ -77,8 +78,14 @@ const Navbar = () => {
                   Settings
                 </NavDropdownLinkItem>
                 <NavDropdownLinkItem target="/logout">
-                  <RiLogoutBoxFill />
-                  Logout
+                  <div
+                    onClick={() => {
+                      setLoggedIn(false);
+                    }}
+                  >
+                    <RiLogoutBoxFill />
+                    Logout
+                  </div>
                 </NavDropdownLinkItem>
               </div>
             )}

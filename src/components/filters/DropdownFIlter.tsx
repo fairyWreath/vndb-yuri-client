@@ -58,7 +58,7 @@ const DropdownFilter = (props: Props) => {
   const [isDropdownClicked, setDropdownClicked] = useState(false);
   const [isInputFocus, setInputFocus] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   const prefix = (
     <div
@@ -115,7 +115,7 @@ const DropdownFilter = (props: Props) => {
           const prevItems = selectedItems;
 
           if (!selectedItems.includes(item)) {
-            setSearch("");
+            // setSearch("");
             if (props.multiSelect) {
               setSelectedItems([...selectedItems, item]);
             } else {
@@ -135,7 +135,7 @@ const DropdownFilter = (props: Props) => {
           } else {
             setSelectedItems(
               selectedItems.filter((sItem) => {
-                return sItem != item;
+                return sItem !== item;
               })
             );
 
@@ -144,7 +144,7 @@ const DropdownFilter = (props: Props) => {
               if (props.multiSelect) {
                 props.setItems(
                   prevItems.filter((sItem) => {
-                    return sItem != item;
+                    return sItem !== item;
                   })
                 );
               } else {
@@ -170,7 +170,6 @@ const DropdownFilter = (props: Props) => {
         mb-2 px-3 py-2 shadow-md text-base"
           onClick={() => {
             setDropdownClicked(true);
-            console.log("set drop down");
           }}
         >
           <div

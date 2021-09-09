@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
 import VisualNovelCard from "./VisualNovelCard";
 import VisualNovelCardSkeleton from "./VisualNovelCardSkeleton";
-import useVisualNovelSearch from "../../hooks/useVisualNovelSearch";
 
-import { VnSearchQuery, VnSearchItem } from "../../vndb/VnTypes";
-import { VndbSearchQuery } from "../../vndb/VndbHelpers";
+import { VnSearchItem } from "../../vndb/VnTypes";
 
 import { Service } from "../../fetch/Service";
 

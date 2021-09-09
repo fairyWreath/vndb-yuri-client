@@ -25,12 +25,14 @@ module.exports = {
       minWidth: {
         titleImageMedium: "20vw",
         sortDropdown: "8rem",
+        96: "24rem",
       },
       maxWidth: {
         screenImageLarge: "960px",
         screenImageMedium: "768px",
         titleImageMedium: "24rem",
         titleImageLarge: "32rem",
+        96: "24rem",
       },
       maxHeight: {
         screenImageLarge: "540px",

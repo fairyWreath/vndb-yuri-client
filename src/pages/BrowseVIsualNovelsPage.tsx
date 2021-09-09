@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 
-import DropdownFilter from "../components/filters/DropdownFIlter";
+import DropdownFilter from "../components/filters/DropdownFilter";
 import SearchFilter from "../components/filters/SearchFilter";
 import VisualNovelCardList from "../components/cards/VisualNovelCardList";
 import useVisualNovelSearch from "../hooks/useVisualNovelSearch";
@@ -70,7 +70,7 @@ const BrowseVisualNovelsPage = () => {
       });
       if (node) observer.current.observe(node);
     },
-    [result]
+    [result, listParams.sort_by]
   );
 
   return (

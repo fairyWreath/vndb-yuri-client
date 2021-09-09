@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { VnSearchItem } from "../../vndb/VnTypes";
@@ -8,15 +7,8 @@ interface VisualNovelCardProps {
 }
 
 const VisualNovelCard = (props: VisualNovelCardProps) => {
-  const [expand, setExpand] = useState(false);
-  const [more, setMore] = useState(false);
-
   return (
-    <div
-      className="relative w-44 h-60 lg:w-52 lg:h-96"
-      onMouseOver={() => setExpand(true)}
-      onMouseLeave={() => setExpand(false)}
-    >
+    <div className="relative w-44 h-60 lg:w-52 lg:h-96">
       <motion.div
         className="item w-full h-full rounded text-dark hover:text-primary"
         initial={{ opacity: 0.5 }}
@@ -27,8 +19,8 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           <Link to={"/vns/" + props.vn.id}>
             <img
               src={props.vn.image.src}
-              alt="image"
-              className="w-full h-full rounded-md shadow-md "
+              alt="vn_card_image"
+              className="w-full h-full rounded-md shadow-md"
             />
           </Link>
         </div>

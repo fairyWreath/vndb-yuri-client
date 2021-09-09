@@ -49,7 +49,7 @@ export const parseDate = (dateNum: number) => {
   }
 
   let date = dateStr.substr(6, 2);
-  if (date[0] == "0") date = date[1];
+  if (date[0] === "0") date = date[1];
 
   return `${month} ${date}, ${year}`;
 };

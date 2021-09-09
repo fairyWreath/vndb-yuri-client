@@ -24,6 +24,7 @@ const VnRelationCard = (props: Props) => {
       <img
         src={VNDBHelper.getImageUrlFromId(props.vn.image)}
         className="h-full w-28"
+        alt="vn_rel_card_img"
       />
     </Link>
   );
