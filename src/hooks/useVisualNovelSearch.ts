@@ -32,7 +32,7 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
           setResult({
             status: "loaded",
             payload: items,
-            hasMore: items.length > 0 && items.length >= 20, // 20 is the max result per page, use it as magic number for now
+            hasMore: items.length >= 20, // 20 is the max result per page, use it as magic number for now
           });
           setVns(items);
         })
