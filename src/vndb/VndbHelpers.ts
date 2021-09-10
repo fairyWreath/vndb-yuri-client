@@ -21,7 +21,7 @@ export const parseDate = (dateNum: number) => {
   const year = dateStr.substr(0, 4);
 
   let month = dateStr.substr(4, 2);
-  console.log(month);
+
   if (month === "01") {
     month = "Jan";
   } else if (month === "02") {

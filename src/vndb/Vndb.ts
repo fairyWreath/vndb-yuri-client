@@ -8,7 +8,6 @@ export async function vnSearch(
   query: VnSearchQuery,
   signal: AbortSignal | undefined = undefined
 ): Promise<VnSearchItem[]> {
-  console.log(Config.API_BASE_URL);
   let url = new URL(`${Config.API_BASE_URL}${VN_API_URL}/search`);
   url.search = queryString.stringify(query);
 

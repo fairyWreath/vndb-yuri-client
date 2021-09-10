@@ -55,7 +55,6 @@ const Tags = (props: Props) => {
         className="flex flex-row justify-end items-center px-3 w-full text-right 
    text-base text-dark hover:text-darkAccent cursor-pointer"
         onClick={() => {
-          console.log("clicked");
           if (showSpoilers) {
             setTagsToShow(
               props.tags.filter((tag) => {

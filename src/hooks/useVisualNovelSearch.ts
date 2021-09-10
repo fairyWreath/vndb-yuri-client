@@ -39,8 +39,6 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
         .catch((err) => {
           if (err.name !== "AbortError") {
             setResult({ status: "error", error: err });
-          } else {
-            console.log("FETCH abort request");
           }
         });
     }, 500);
