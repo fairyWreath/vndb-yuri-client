@@ -1,17 +1,16 @@
 import { VnSearchQuery, VnSearchItem, VnDetails } from "./VnTypes";
 import queryString from "query-string";
+import Config from "../config";
 
-const BASE_URL = "http://localhost:3000/";
 const VN_API_URL = "api/vn";
 
 export async function vnSearch(
   query: VnSearchQuery,
   signal: AbortSignal | undefined = undefined
 ): Promise<VnSearchItem[]> {
-  let url = new URL(`${BASE_URL}${VN_API_URL}/search`);
+  console.log(Config.API_BASE_URL);
+  let url = new URL(`${Config.API_BASE_URL}${VN_API_URL}/search`);
   url.search = queryString.stringify(query);
-
-  console.log(url.toString());
 
   const response = await fetch(url.toString(), {
     method: "GET",
@@ -41,12 +40,15 @@ export async function vnSearch(
 }
 
 export async function vnDetails(vid: string): Promise<VnDetails> {
-  const response = await fetch(`${BASE_URL}${VN_API_URL}/details/${vid}`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  });
+  const response = await fetch(
+    `${Config.API_BASE_URL}${VN_API_URL}/details/${vid}`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+      },
+    }
+  );
 
   type JSONResponse = {
     item?: VnDetails;

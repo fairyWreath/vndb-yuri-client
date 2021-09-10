@@ -22,7 +22,7 @@ const Navbar = () => {
 
         <ul className="hidden md:flex items-center text-center h-full list-none">
           <NavLinkItem target="/vns" label="Visual Novels" />
-          <NavLinkItem target="/characters" label="Characters" />
+          <NavLinkItem target="/chars" label="Characters" />
         </ul>
       </div>
 

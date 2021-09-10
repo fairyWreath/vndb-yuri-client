@@ -41,7 +41,7 @@ const Tags = (props: Props) => {
         }
       >
         {tag.score.toFixed(2)}
-        <div className="min-w-96 max-w-96 mx-3 bg-black h-6 flex items-center">
+        <div className="min-w-96 max-w-96 mx-3  h-6 flex items-center">
           <Scorebar scorePercentage={`${perc}%`} />
         </div>
         <div className="mx-4">{tag.name}</div>
