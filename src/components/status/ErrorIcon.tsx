@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 const ErrorIcon = () => {
   return (
-    <div className="text-primary flex flex-col items-center py-10 bg-light">
+    <div className="text-primary flex flex-col items-center py-10 bg-light min-h-vh25">
       <Helmet>
         <title>Page Error · VNList</title>
       </Helmet>

@@ -36,7 +36,7 @@ const VnCharacterCard = (props: Props) => {
         src={VNDBHelper.getImageUrlFromId(props.character.image)}
         alt="vn_ov_char_img"
       />
-      <div className="absolute right-2 py-2">{genderIcon()}</div>
+      {/* <div className="absolute right-2 py-2">{genderIcon()}</div> */}
       <div
         className="flex flex-col py-2 px-4 justify-between font-overlock items-center
       text-dark"

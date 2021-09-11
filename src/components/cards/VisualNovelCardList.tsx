@@ -17,7 +17,7 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
     return <LoadingIcon />;
   if (props.data.status === "error") return <ErrorIcon />;
 
-  const cardList = props.data.payload.map((vn) => {
+  const cardList = props.data.payload.map((vn, idx) => {
     return <VisualNovelCard vn={vn} key={vn.id} />;
   });
 

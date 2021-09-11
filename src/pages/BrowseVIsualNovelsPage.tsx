@@ -64,9 +64,10 @@ const BrowseVisualNovelsPage = () => {
               value = lastItem.max_released;
             } else if (listParams.sort_by === "min_released") {
               value = lastItem.min_released;
-            } else {
-              value = lastItem.popularity;
             }
+            // } else {
+            //   value = lastItem.popularity;
+            // }
 
             setLastSortVid(lastItem.id);
             setLastSortValue(value);
@@ -132,8 +133,8 @@ const BrowseVisualNovelsPage = () => {
           />
         </div>
         <VisualNovelCardList data={result} />
-        <div className="w-full h-1" ref={lastItemRef}></div>
       </div>
+      <div className="w-full h-1" ref={lastItemRef}></div>
     </div>
   );
 };

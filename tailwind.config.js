@@ -48,6 +48,9 @@ module.exports = {
         44: "11rem",
         56: "14rem",
         96: "24rem",
+        vh25: "25vh",
+        vh50: "50vh",
+        vh75: "75vh",
       },
       width: {
         titleImageMedium: "20rem",

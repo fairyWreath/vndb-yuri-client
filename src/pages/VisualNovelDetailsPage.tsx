@@ -13,6 +13,8 @@ import DetailsSidebar from "../components/details/DetailsSidebar";
 import DetailsSidebarItem from "../components/details/DetailsSidebarItem";
 import Overview from "../components/details/Overview";
 import Tags from "../components/details/Tags";
+import Staff from "../components/details/Staff";
+import Characters from "../components/details/Characters";
 import BannerImage from "../components/details/BannerImage";
 import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 import LoadingIcon from "../components/status/LoadingIcon";
@@ -26,11 +28,6 @@ import { VnDetails } from "../vndb/VnTypes";
 
 interface VisualNovelParams {
   id: string;
-}
-
-interface TagScore {
-  name: string;
-  score: number;
 }
 
 const VisualNovelDetailsPage = () => {
@@ -47,6 +44,7 @@ const VisualNovelDetailsPage = () => {
   }, []);
 
   useEffect(() => {
+    setResult({ status: "loading" });
     VNDB.vnDetails(id)
       .then((item: VnDetails) => setResult({ status: "loaded", payload: item }))
       .catch((err) => {
@@ -62,6 +60,7 @@ const VisualNovelDetailsPage = () => {
         Math.floor(Math.random() * result.payload.screenshots.length)
       ].src
     );
+    window.scrollTo(0, 0);
   }, [result]);
 
   if (result.status === "init" || result.status === "loading")
@@ -165,6 +164,12 @@ const VisualNovelDetailsPage = () => {
             <Route exact path={`${url}/tags`}>
               <Tags tags={vn.tags} />
             </Route>
+            <Route exact path={`${url}/staff`}>
+              <Staff staff={vn.staff} />
+            </Route>
+            <Route exact path={`${url}/characters`}>
+              <Characters characters={vn.characters} />
+            </Route>
           </Switch>
         </div>
         <div className="flex flex-col justify-center items-start">
@@ -221,8 +226,7 @@ const VisualNovelDetailsPage = () => {
             </DetailsSidebarItem>
           </DetailsSidebar>
 
-          <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
-
+          {/* <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
           <DetailsSidebar>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Languages</div>
@@ -232,7 +236,7 @@ const VisualNovelDetailsPage = () => {
               <div className="text-darkAccent">Platforms</div>
               {platforms}
             </DetailsSidebarItem>
-          </DetailsSidebar>
+          </DetailsSidebar> */}
         </div>
       </div>
 
