@@ -5,7 +5,11 @@ interface FooterSectionTextProps {
 }
 
 const FooterSectionText = (props: FooterSectionTextProps) => {
-  return <div className="mb-6 text-xl">{props.children}</div>;
+  return (
+    <div className="mb-6 text-xl hover:text-accentPrimary select-none">
+      {props.children}
+    </div>
+  );
 };
 
 export default FooterSectionText;

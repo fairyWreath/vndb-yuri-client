@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 const NotFoundPage = () => {
   const textIcon = "｡ﾟ･（>﹏<）･ﾟ｡";
   return (
-    <div className="text-primary flex flex-col items-center py-10 bg-light min-h-screen">
+    <div className="text-primary flex flex-col items-center py-10 bg-light min-h-screen text-center">
       <Helmet>
         <title>404 Page Not Found · VNList</title>
       </Helmet>

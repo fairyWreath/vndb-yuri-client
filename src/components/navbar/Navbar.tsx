@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { GiTrefoilLily } from "react-icons/gi";
 import { FaBars, FaTimes } from "react-icons/fa";
 import NavLinkItem from "./NavLinkItem";
 
@@ -12,11 +11,8 @@ const Navbar = () => {
       <div className="select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
         <Link
           to="/"
-          className="text-light text-2xl flex flex-row items-center cursor-pointer"
+          className="text-light text-3xl flex flex-row items-center cursor-pointer italic"
         >
-          <div className="m-2">
-            <GiTrefoilLily />
-          </div>
           VNList
         </Link>
 
