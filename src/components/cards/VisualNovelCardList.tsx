@@ -1,10 +1,7 @@
 import VisualNovelCard from "./VisualNovelCard";
 import VisualNovelCardSkeleton from "./VisualNovelCardSkeleton";
-
 import { VnSearchItem } from "../../vndb/VnTypes";
-
 import { Service } from "../../fetch/Service";
-
 import LoadingIcon from "../status/LoadingIcon";
 import ErrorIcon from "../status/ErrorIcon";
 
@@ -18,9 +15,9 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
   if (props.data.status === "error") return <ErrorIcon />;
 
   const cardList = props.data.payload.map((vn, idx) => {
-    let loc = "left-56";
-    if (idx % 5 > 2) loc = "right-56";
-    return <VisualNovelCard vn={vn} popupLoc={loc} key={vn.id} />;
+    let right = true;
+    if (idx % 5 > 2) right = false;
+    return <VisualNovelCard vn={vn} PopRight={right} key={vn.id} />;
   });
 
   return (

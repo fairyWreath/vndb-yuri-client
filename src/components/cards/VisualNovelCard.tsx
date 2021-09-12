@@ -1,13 +1,48 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { VnSearchItem } from "../../vndb/VnTypes";
 import * as VNDBHelper from "../../vndb/VndbHelpers";
 
 interface VisualNovelCardProps {
   vn: VnSearchItem;
-  popupLoc: string;
+  PopRight: boolean;
 }
+
+interface BubbleProps {
+  PopRight: boolean;
+}
+
+const PopupBubble = styled.div<BubbleProps>`
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px #b2b2b2;
+
+  :after {
+    background-color: #fcf7fb;
+
+    /* box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, 0.4); */
+    box-shadow: ${(props) => (props.PopRight ? "-2px 2px" : "2px -2px")} 2px 0px
+      rgba(178, 178, 178, 0.4);
+
+    content: "";
+    display: block;
+    height: 20px;
+
+    /* left: -10px; */
+    left: ${(props) => (props.PopRight ? "-6px" : "auto")};
+    right: ${(props) => (props.PopRight ? "auto" : "-276px")};
+
+    position: relative;
+    top: -4rem;
+    transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 20px;
+  }
+`;
 
 const VisualNovelCard = (props: VisualNovelCardProps) => {
   const [expand, setExpand] = useState(false);
@@ -37,48 +72,58 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           <Link to={"/vn/" + props.vn.id}>{props.vn.title}</Link>
         </div>
       </motion.div>
+
       {expand && (
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
-          className={`hidden lg:block w-72 p-5 bg-accentSecondary absolute z-30 top-5 text-sm
-          rounded-md shadow-md ${props.popupLoc}`}
+          className={`hidden lg:block  absolute z-30 rounded-md
+           top-5 text-sm ${props.PopRight ? `left` : `right`}-56 `}
         >
-          <div className="flex justify-between">
-            <div className="title text-darkAccent mb-2 text-base italic">
-              <span className="text-base not-italic text-dark">
-                Developer: {""}
-              </span>
-              {props.vn.producers[props.vn.producers.length - 1]}
-            </div>
-            <div className="score text-green-500 text-base">
-              {props.vn.rating / 100}
-            </div>
-          </div>
-          <div className="text-primary mb-1">
-            {VNDBHelper.parseDate(props.vn.released)}
-          </div>
-          <div className="info text-dark mb-2">{props.vn.length}</div>
-          <div className="flex mb-2">
-            {props.vn.languages.slice(0, 3).map((lang, index) => (
-              <div
-                className="bg-primary text-light text-sm px-2 rounded-lg mr-1"
-                key={index}
-              >
-                {VNDBHelper.getFullLanguageName(lang.trim())}
+          <PopupBubble
+            PopRight={props.PopRight}
+            className="bg-accentSecondary w-72 h-auto"
+          >
+            <div className="px-5 py-3 h-full w-full">
+              <div className="flex justify-between">
+                <div className="title text-darkAccent mb-2 text-base italic">
+                  <span className="text-base not-italic text-dark">
+                    Developer: {""}
+                  </span>
+                  {props.vn.producers[props.vn.producers.length - 1]}
+                </div>
+                <div className="score text-green-500 text-base">
+                  {(props.vn.rating / 100).toFixed(2)}
+                </div>
               </div>
-            ))}
-          </div>
-          <div className="flex">
-            {props.vn.platforms.slice(0, 3).map((plat, index) => (
-              <div
-                className="bg-dark text-light text-sm px-2 rounded-lg mr-1"
-                key={index}
-              >
-                {VNDBHelper.getFullPlatformName(plat.trim())}
+              <div className="text-primary mb-1">
+                {VNDBHelper.parseDate(props.vn.released)}
               </div>
-            ))}
-          </div>
+              <div className="info text-dark mb-2">{props.vn.length}</div>
+              <div className="flex mb-3">
+                {props.vn.languages.slice(0, 3).map((lang, index) => (
+                  <div
+                    className="bg-primary text-light text-sm px-2 rounded-lg mr-1 flex text-center items-center
+                    py-2"
+                    key={index}
+                  >
+                    {VNDBHelper.getFullLanguageName(lang.trim())}
+                  </div>
+                ))}
+              </div>
+              <div className="flex">
+                {props.vn.platforms.slice(0, 3).map((plat, index) => (
+                  <div
+                    className="bg-dark text-light text-sm px-2 rounded-lg mr-1 text-center flex items-center
+                    py-2"
+                    key={index}
+                  >
+                    {VNDBHelper.getFullPlatformName(plat.trim())}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </PopupBubble>
         </motion.div>
       )}
     </div>
