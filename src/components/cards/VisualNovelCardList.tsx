@@ -18,9 +18,9 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
   if (props.data.status === "error") return <ErrorIcon />;
 
   const cardList = props.data.payload.map((vn, idx) => {
-    let right = true;
-    if (idx % 5 > 2) right = false;
-    return <VisualNovelCard vn={vn} popupRight={right} key={vn.id} />;
+    let loc = "left-56";
+    if (idx % 5 > 2) loc = "right-56";
+    return <VisualNovelCard vn={vn} popupLoc={loc} key={vn.id} />;
   });
 
   return (

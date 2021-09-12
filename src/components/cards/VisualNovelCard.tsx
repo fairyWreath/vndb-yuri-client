@@ -6,7 +6,7 @@ import * as VNDBHelper from "../../vndb/VndbHelpers";
 
 interface VisualNovelCardProps {
   vn: VnSearchItem;
-  popupRight: boolean;
+  popupLoc: string;
 }
 
 const VisualNovelCard = (props: VisualNovelCardProps) => {
@@ -42,7 +42,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           className={`hidden lg:block w-72 p-5 bg-accentSecondary absolute z-30 top-5 text-sm
-          rounded-md shadow-md ${props.popupRight ? "left" : "right"}-56`}
+          rounded-md shadow-md ${props.popupLoc}`}
         >
           <div className="flex justify-between">
             <div className="title text-darkAccent mb-2 text-base italic">
