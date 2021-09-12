@@ -62,12 +62,6 @@ const DropdownFilter = (props: Props) => {
   const [itemsList, setItemsList] = useState(props.items);
 
   useEffect(() => {
-    console.log(search);
-    console.log(
-      itemsList.filter((item) => {
-        return item.toLowerCase().startsWith(search.toLowerCase());
-      })
-    );
     setItemsList(() => {
       return props.items.filter((item) => {
         return item.toLowerCase().startsWith(search.toLowerCase());
