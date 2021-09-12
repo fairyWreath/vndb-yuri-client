@@ -46,7 +46,7 @@ const Overview = (props: OverviewProps) => {
             Relations
           </div>
           <div
-            className="grid grid-cols-1 lg:grid-cols-2  gap-x-8 gap-y-6 "
+            className="grid grid-cols-1 lg:grid-cols-3 gap-x-2 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {relationCards}
@@ -64,7 +64,7 @@ const Overview = (props: OverviewProps) => {
       )}
 
       {props.staff.length > 0 && (
-        <div className="w-full pb-7">
+        <div className="w-full">
           <div className="text-darkAccent pb-3 text-xl text-right">Staff</div>
           <Staff staff={props.staff.slice(0, 6)} />
         </div>

@@ -11,7 +11,7 @@ const VnRelationCard = (props: Props) => {
   return (
     <Link
       to={`/vn/${props.vn.vid}`}
-      className="flex flex-row justify-end items-center w-100 bg-accentPrimary 
+      className="flex flex-row justify-end items-center w-72 bg-accentPrimary 
     rounded-md shadow-md"
       style={{ direction: "ltr" }}
     >

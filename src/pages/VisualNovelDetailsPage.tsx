@@ -17,6 +17,7 @@ import Staff from "../components/details/Staff";
 import Characters from "../components/details/Characters";
 import Releases from "../components/details/Releases";
 import BannerImage from "../components/details/BannerImage";
+import Screenshots from "../components/details/Screenshots";
 import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 import LoadingIcon from "../components/status/LoadingIcon";
 import ErrorIcon from "../components/status/ErrorIcon";
@@ -55,11 +56,16 @@ const VisualNovelDetailsPage = () => {
 
   useEffect(() => {
     if (result.status !== "loaded") return;
-    setBannerImage(
-      result.payload.screenshots[
-        Math.floor(Math.random() * result.payload.screenshots.length)
-      ].src
-    );
+    const filteredImages = result.payload.screenshots.filter((img) => {
+      return img.nsfw === "0";
+    });
+    if (filteredImages.length === 0) {
+      setBannerImage("");
+    } else {
+      setBannerImage(
+        filteredImages[Math.floor(Math.random() * filteredImages.length)].src
+      );
+    }
     window.scrollTo(0, 0);
   }, [result]);
 
@@ -98,7 +104,9 @@ const VisualNovelDetailsPage = () => {
       <Helmet>
         <title>{result.payload.title}</title>
       </Helmet>
-      {screenImages.length > 0 && <BannerImage src={bannerImage} />}
+      {screenImages.length > 0 && bannerImage !== "" && (
+        <BannerImage src={bannerImage} />
+      )}
       <div
         className="flex flex-row justify-center items-start bg-accentPrimary w-full 
       px-8 pt-10 shadow-md "
@@ -238,7 +246,7 @@ const VisualNovelDetailsPage = () => {
             </DetailsSidebarItem>
           </DetailsSidebar>
 
-          {/* <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
+          <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
           <DetailsSidebar>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Languages</div>
@@ -248,11 +256,12 @@ const VisualNovelDetailsPage = () => {
               <div className="text-darkAccent">Platforms</div>
               {platforms}
             </DetailsSidebarItem>
-          </DetailsSidebar> */}
+          </DetailsSidebar>
         </div>
       </div>
 
-      {screenImages.length > 0 && <Carousel slides={screenImages} />}
+      <Screenshots screenshots={vn.screenshots} />
+      {/* {screenImages.length > 0 && <Carousel slides={screenImages} />} */}
     </div>
   );
 };

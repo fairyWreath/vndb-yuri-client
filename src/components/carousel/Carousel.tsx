@@ -14,8 +14,7 @@ const Wrapper = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 40px 0px;
-  background-color: #f5d9d8;
+  background: transparent;
 
   ul {
     /* center in index, 100 - VIEWPORT of MAX/MIN WIDTH */
@@ -25,6 +24,7 @@ const Wrapper = styled.div`
     margin: 0px;
     padding: 0px;
     list-style: none;
+
     li {
       min-width: 60vw;
       max-width: 60vw;
@@ -70,7 +70,7 @@ const Carousel = (props: CarouselProps) => {
       </div>
       {onImagesHover && (
         <div
-          className="w-full h-full absolute top-0 flex justify-between items-center z-10
+          className="w-screen h-full absolute top-0 flex justify-between items-center z-10
       opacity-100 pointer-events-none"
         >
           <div className="relative p-5 text-dark hover:text-darkAccent cursor-pointer pointer-events-auto">

@@ -24,7 +24,7 @@ const BrowseVisualNovelsPage = () => {
   );
   const [lastSortVid, setLastSortVid] = useState<string | undefined>(undefined);
   const [NSFW, setNSFW] = useState(false);
-  const [sortBy, setSortBy] = useState("popularity");
+  const [sortBy, setSortBy] = useState("Popularity");
   const [sortOrderDesc, setSortOrderDesc] = useState(true);
   const [tags, setTags] = useState<string[]>([]);
   const [languages, setLanguages] = useState<string[]>([]);
