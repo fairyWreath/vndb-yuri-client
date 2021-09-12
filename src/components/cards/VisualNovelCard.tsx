@@ -78,7 +78,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
         </div>
       </motion.div>
 
-      {expand && (
+      {true && (
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
