@@ -30,8 +30,8 @@ const PopupBubble = styled.div<BubbleProps>`
     height: 20px;
 
     /* left: -10px; */
-    left: ${(props) => (props.PopRight ? "-6px" : "auto")};
-    right: ${(props) => (props.PopRight ? "auto" : "-276px")};
+    left: ${(props) => (props.PopRight ? "-10px" : "auto")};
+    right: ${(props) => (props.PopRight ? "auto" : "-278px")};
 
     position: relative;
     top: -4rem;
@@ -46,6 +46,11 @@ const PopupBubble = styled.div<BubbleProps>`
 
 const VisualNovelCard = (props: VisualNovelCardProps) => {
   const [expand, setExpand] = useState(false);
+
+  const PopupDir = () => {
+    if (props.PopRight) return "left";
+    return "right";
+  };
 
   return (
     <div
@@ -78,7 +83,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           className={`hidden lg:block  absolute z-30 rounded-md
-           top-5 text-sm ${props.PopRight ? `left` : `right`}-56 `}
+           top-5 text-sm ${PopupDir()}-56 `}
         >
           <PopupBubble
             PopRight={props.PopRight}
@@ -86,10 +91,8 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           >
             <div className="px-5 py-3 h-full w-full">
               <div className="flex justify-between">
-                <div className="title text-darkAccent mb-2 text-base italic">
-                  <span className="text-base not-italic text-dark">
-                    Developer: {""}
-                  </span>
+                <div className="title text-darkAccent mb-2 italic text-base">
+                  <span className="not-italic text-dark">Developer: {""}</span>
                   {props.vn.producers[props.vn.producers.length - 1]}
                 </div>
                 <div className="score text-green-500 text-base">
