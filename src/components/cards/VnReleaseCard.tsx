@@ -58,7 +58,7 @@ const VnReleaseCard = (props: Props) => {
   return (
     <div
       className="flex flex-row items-center
-  shadow-md rounded-md w-112 px-4 py-2 text-dark font-overlock text-sm bg-accentPrimary
+  shadow-md rounded-md w-112 px-2 py-2 text-dark font-overlock text-sm bg-accentPrimary
   text-center"
       style={{ direction: "ltr" }}
     >
@@ -71,7 +71,9 @@ const VnReleaseCard = (props: Props) => {
       </div>
 
       <div className="text-base w-6 ">
-        {props.release.minage !== 0 ? `${props.release.minage}+` : "All"}
+        {props.release.minage !== 0 && props.release.minage
+          ? `${props.release.minage}+`
+          : "All"}
       </div>
 
       <div>{VNDBHelper.parseDate(props.release.released)}</div>
@@ -83,9 +85,9 @@ const VnReleaseCard = (props: Props) => {
         </div>
       )}
 
-      {freeware()}
-      {animated()}
-      {voiced()}
+      <div className="px-1">{freeware()}</div>
+      <div className="px-1">{animated()}</div>
+      <div className="px-1">{voiced()}</div>
 
       {props.release.platforms.length > 0 && (
         <img

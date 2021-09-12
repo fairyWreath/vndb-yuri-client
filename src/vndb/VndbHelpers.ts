@@ -76,7 +76,8 @@ export const parseDate = (dateNum: number) => {
     return "Unrecognized date format";
   }
 
-  const year = dateStr.substr(0, 4);
+  let year = dateStr.substr(0, 4);
+  if (year === "9999") year = "";
 
   let month = dateStr.substr(4, 2);
 
@@ -102,12 +103,18 @@ export const parseDate = (dateNum: number) => {
     month = "Oct";
   } else if (month === "11") {
     month = "Nov";
-  } else {
+  } else if (month === "12") {
     month = "Dec";
+  } else {
+    month = "";
   }
 
   let date = dateStr.substr(6, 2);
   if (date[0] === "0") date = date[1];
+  else if (date === "99") date = "";
+
+  if (month === "" && date === "" && year === "")
+    return "Release Date Unavailable";
 
   return `${month} ${date}, ${year}`;
 };
@@ -186,6 +193,15 @@ export const LANGUAGE_REV_SHORTCUT_MAP = () => {
   });
 
   return res;
+};
+
+export const getLangsFromNames = (names: string[]) => {
+  const langMap = LANGUAGE_REV_SHORTCUT_MAP();
+  return names.map((name) => {
+    const id = langMap.get(name);
+    if (id !== undefined) return id;
+    return ""; // just incase, typsecript type checking
+  });
 };
 
 export const FILTER_LANGUAGE_ITEMS = () => {
@@ -327,6 +343,14 @@ export const FILTER_PLATFORM_ITEMS = () => {
 
   items = items.sort();
   return items;
+};
+
+export const getPlatformsFromNames = (names: string[]) => {
+  return names.map((name) => {
+    const plat = FILTER_PLATFORMS_MAP.get(name);
+    if (plat !== undefined) return plat;
+    return ""; // just incase, typsecript type checking
+  });
 };
 
 const PLATFORMS_SHORTCUT_MAP = () => {

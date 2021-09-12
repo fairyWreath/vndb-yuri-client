@@ -13,6 +13,8 @@ import {
   getSortByQuery,
   getSortOrderQuery,
   getTagIdsFromNames,
+  getLangsFromNames,
+  getPlatformsFromNames,
 } from "../vndb/VndbHelpers";
 
 const BrowseVisualNovelsPage = () => {
@@ -25,6 +27,8 @@ const BrowseVisualNovelsPage = () => {
   const [sortBy, setSortBy] = useState("popularity");
   const [sortOrderDesc, setSortOrderDesc] = useState(true);
   const [tags, setTags] = useState<string[]>([]);
+  const [languages, setLanguages] = useState<string[]>([]);
+  const [platforms, setPlatforms] = useState<string[]>([]);
   const [released, setReleased] = useState<number | undefined>(undefined);
 
   useEffect(() => {
@@ -41,6 +45,8 @@ const BrowseVisualNovelsPage = () => {
     last_sort_vid: lastSortVid,
     nsfw: NSFW,
     released: released,
+    languages: languages,
+    platforms: platforms,
   };
 
   const result = useVisualNovelSearch(listParams);
@@ -109,6 +115,9 @@ const BrowseVisualNovelsPage = () => {
           <DropdownFilter
             label="Languages"
             items={VNDBHelper.FILTER_LANGUAGE_ITEMS()}
+            setItems={(names) => {
+              setLanguages(getLangsFromNames(names));
+            }}
             multiSelect={true}
           />
           <DropdownFilter
@@ -121,6 +130,9 @@ const BrowseVisualNovelsPage = () => {
           <DropdownFilter
             label="Platforms"
             items={VNDBHelper.FILTER_PLATFORM_ITEMS()}
+            setItems={(names) => {
+              setPlatforms(getPlatformsFromNames(names));
+            }}
             multiSelect={true}
           />
         </div>

@@ -77,7 +77,11 @@ const VisualNovelDetailsPage = () => {
     );
   });
 
-  const screenImages = vn.screenshots.map((screen) => screen.src);
+  const screenImages = vn.screenshots
+    .filter((screen) => {
+      return screen.nsfw === "0" && screen.violence === "0";
+    })
+    .map((screen) => screen.src);
 
   const languages = vn.languages.map((lang) => {
     const name = VNDBHelper.getFullLanguageName(lang);

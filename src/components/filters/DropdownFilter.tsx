@@ -75,10 +75,13 @@ const DropdownFilter = (props: Props) => {
         />
       ) : (
         <span className="w-full cursor-pointer">
-          {}
           {selectedItems.length > 0 ? (
             props.multiSelect ? (
-              <> {selectedItems.length} items </>
+              <>
+                {" "}
+                {selectedItems.length} item
+                {selectedItems.length !== 1 ? "s" : ""}{" "}
+              </>
             ) : (
               <>{selectedItems[0]}</>
             )
@@ -107,10 +110,11 @@ const DropdownFilter = (props: Props) => {
     return (
       <div
         className="p-2 rounded-md flex flex-row items-center hover:bg-accentPrimary
-        justify-between w-full"
+        justify-between w-full cursor-pointer"
         // some ugly callback code beause states are not reliable for this
         // should probably use useEFfect for this, will implement later
         onClick={() => {
+          setInputFocus(false);
           // for real time synchoronous
           const prevItems = selectedItems;
 

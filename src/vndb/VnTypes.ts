@@ -31,6 +31,8 @@ export interface VnSearchQuery {
   results?: number;
   last_sort_value?: any;
   last_sort_vid?: string;
+  languages?: string[];
+  platforms?: string[];
 }
 
 /*

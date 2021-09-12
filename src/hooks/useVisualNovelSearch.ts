@@ -54,6 +54,8 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
     query.nsfw,
     query.tags,
     query.released,
+    query.languages,
+    query.platforms,
   ]);
 
   useEffect(() => {
