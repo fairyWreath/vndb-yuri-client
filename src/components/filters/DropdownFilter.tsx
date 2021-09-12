@@ -113,6 +113,7 @@ const DropdownFilter = (props: Props) => {
   useClickOutside(() => {
     setDropdownClicked(false);
     setInputFocus(false);
+    setSearch("");
   }, wrapperRef);
 
   const items = itemsList.map((item) => {
