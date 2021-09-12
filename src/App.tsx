@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={UnderConstruction} />
+          <Route exact path="/" component={BrowseVisualNovelsPage} />
           <Route exact path="/vns" component={BrowseVisualNovelsPage} />
           <Route path="/vn/:id" component={VisualNovelDetailsPage} />
           <Route path="/chars" component={UnderConstruction} />
