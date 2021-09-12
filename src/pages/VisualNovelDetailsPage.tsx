@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Carousel from "../components/carousel/Carousel";
 import DetailsSidebar from "../components/details/DetailsSidebar";
 import DetailsSidebarItem from "../components/details/DetailsSidebarItem";
 import Overview from "../components/details/Overview";
@@ -165,7 +164,7 @@ const VisualNovelDetailsPage = () => {
       <div className="flex flex-row justify-center px-12 py-8 w-full bg-light items-start">
         <div className="w-240 mr-10 ">
           <Switch>
-            <Route exact path={`${url}`}>
+            <Route exact path={url}>
               <Overview
                 releases={vn.releases}
                 relations={vn.relations}
@@ -246,22 +245,25 @@ const VisualNovelDetailsPage = () => {
             </DetailsSidebarItem>
           </DetailsSidebar>
 
-          <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
-          <DetailsSidebar>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Languages</div>
-              {languages}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Platforms</div>
-              {platforms}
-            </DetailsSidebarItem>
-          </DetailsSidebar>
+          <Switch>
+            <Route exact path={url}>
+              <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
+              <DetailsSidebar>
+                <DetailsSidebarItem>
+                  <div className="text-darkAccent">Languages</div>
+                  {languages}
+                </DetailsSidebarItem>
+                <DetailsSidebarItem>
+                  <div className="text-darkAccent">Platforms</div>
+                  {platforms}
+                </DetailsSidebarItem>
+              </DetailsSidebar>
+            </Route>
+          </Switch>
         </div>
       </div>
 
       <Screenshots screenshots={vn.screenshots} />
-      {/* {screenImages.length > 0 && <Carousel slides={screenImages} />} */}
     </div>
   );
 };
