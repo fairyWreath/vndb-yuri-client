@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { FaCaretDown } from "react-icons/fa";
 import { GiTwirlyFlower } from "react-icons/gi";
@@ -24,7 +24,7 @@ const DropdownContainerWithScrollbar = styled.div`
   transition: all 0.3s ease-in-out;
 
   width: 12rem;
-  padding: 16px;
+  padding: 8px 16px;
   font-size: 1rem;
   max-height: 24rem;
 
@@ -58,7 +58,22 @@ const DropdownFilter = (props: Props) => {
   const [isDropdownClicked, setDropdownClicked] = useState(false);
   const [isInputFocus, setInputFocus] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  const [itemsList, setItemsList] = useState(props.items);
+
+  useEffect(() => {
+    console.log(search);
+    console.log(
+      itemsList.filter((item) => {
+        return item.toLowerCase().startsWith(search.toLowerCase());
+      })
+    );
+    setItemsList(() => {
+      return props.items.filter((item) => {
+        return item.toLowerCase().startsWith(search.toLowerCase());
+      });
+    });
+  }, [search]);
 
   const prefix = (
     <div
@@ -72,13 +87,13 @@ const DropdownFilter = (props: Props) => {
           className="bg-transparent w-full h-full text-sm ml-1
     focus:outline-none"
           autoFocus
+          onChange={(e) => setSearch(e.target.value)}
         />
       ) : (
         <span className="w-full cursor-pointer">
           {selectedItems.length > 0 ? (
             props.multiSelect ? (
               <>
-                {" "}
                 {selectedItems.length} item
                 {selectedItems.length !== 1 ? "s" : ""}{" "}
               </>
@@ -106,11 +121,12 @@ const DropdownFilter = (props: Props) => {
     setInputFocus(false);
   }, wrapperRef);
 
-  const items = props.items.map((item) => {
+  const items = itemsList.map((item) => {
     return (
       <div
         className="p-2 rounded-md flex flex-row items-center hover:bg-accentPrimary
         justify-between w-full cursor-pointer"
+        key={item}
         // some ugly callback code beause states are not reliable for this
         // should probably use useEFfect for this, will implement later
         onClick={() => {

@@ -80,7 +80,7 @@ const VnReleaseCard = (props: Props) => {
       {props.release.languages.length > 0 && (
         <div className="flex flex-col items-center justify-center pr-2">
           {props.release.languages.map((lang) => {
-            return <div>{VNDBHelper.getFullLanguageName(lang)}</div>;
+            return <div key={lang}>{VNDBHelper.getFullLanguageName(lang)}</div>;
           })}
         </div>
       )}

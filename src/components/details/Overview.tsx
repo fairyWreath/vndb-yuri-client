@@ -6,7 +6,6 @@ import {
   VnStaff,
 } from "../../vndb/VnTypes";
 import VnRelationCard from "../cards/VnRelationCard";
-import VnCharacterCard from "../cards/VnCharacterCard";
 import Characters from "./Characters";
 import Releases from "./Releases";
 import Staff from "./Staff";
@@ -24,12 +23,8 @@ const Overview = (props: OverviewProps) => {
       return vn.official;
     })
     .map((vn) => {
-      return <VnRelationCard vn={vn} />;
+      return <VnRelationCard vn={vn} key={vn.vid} />;
     });
-
-  const characterCards = props.characters.slice(0, 8).map((char) => {
-    return <VnCharacterCard character={char} />;
-  });
 
   return (
     <div className="w-full mr-auto">
@@ -54,7 +49,7 @@ const Overview = (props: OverviewProps) => {
         </div>
       )}
 
-      {characterCards.length > 0 && (
+      {props.characters.length > 0 && (
         <div className="w-full pb-7">
           <div className="text-darkAccent pb-3 text-xl text-right">
             Characters

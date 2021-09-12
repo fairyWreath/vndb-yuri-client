@@ -39,6 +39,7 @@ const Tags = (props: Props) => {
             ? "mb-4 flex flex-row items-center text-red-900 font-semibold w-full"
             : "mb-4 flex flex-row items-center text-dark w-full"
         }
+        key={tag.name}
       >
         {tag.score.toFixed(2)}
         <div className="min-w-96 max-w-96 mx-3  h-6 flex items-center">

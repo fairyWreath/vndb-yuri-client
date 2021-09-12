@@ -8,7 +8,7 @@ interface Props {
 
 const Characters = (props: Props) => {
   const characterCards = props.characters.map((char) => {
-    return <VnCharacterCard character={char} />;
+    return <VnCharacterCard character={char} key={char.id + char.role} />;
   });
 
   return (

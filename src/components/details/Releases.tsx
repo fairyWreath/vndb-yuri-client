@@ -13,7 +13,7 @@ const Releases = (props: Props) => {
       style={{ direction: "rtl" }}
     >
       {props.releases.map((release) => {
-        return <VnReleaseCard release={release} />;
+        return <VnReleaseCard release={release} key={release.id} />;
       })}
     </div>
   );

@@ -8,7 +8,9 @@ interface Props {
 
 const Staff = (props: Props) => {
   const staffCards = props.staff.map((staff) => {
-    return <VnStaffCard staff={staff} />;
+    return (
+      <VnStaffCard staff={staff} key={staff.id + staff.role + staff.aid} />
+    );
   });
 
   return (

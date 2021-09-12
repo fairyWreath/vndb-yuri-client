@@ -75,11 +75,11 @@ const VisualNovelDetailsPage = () => {
 
   const vn: VnDetails = result.payload;
 
-  const description = vn.desc.split("\n").map((line, key) => {
+  const description = vn.desc.split("\n").map((line, idx) => {
     return (
-      <>
+      <div key={idx}>
         {line} <br />
-      </>
+      </div>
     );
   });
 
@@ -89,14 +89,14 @@ const VisualNovelDetailsPage = () => {
     })
     .map((screen) => screen.src);
 
-  const languages = vn.languages.map((lang) => {
+  const languages = vn.languages.map((lang, idx) => {
     const name = VNDBHelper.getFullLanguageName(lang);
-    return <div>{name}</div>;
+    return <div key={idx}>{name}</div>;
   });
 
-  const platforms = vn.platforms.map((plat) => {
+  const platforms = vn.platforms.map((plat, idx) => {
     const name = VNDBHelper.getFullPlatformName(plat);
-    return <div>{name}</div>;
+    return <div key={idx}>{name}</div>;
   });
 
   return (
@@ -190,14 +190,14 @@ const VisualNovelDetailsPage = () => {
 
         <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
-            <DetailsSidebarItem>
-              {vn.original && (
+            {vn.original && (
+              <DetailsSidebarItem>
                 <>
                   <div className="text-darkAccent">Original Name</div>
                   {vn.original}
                 </>
-              )}
-            </DetailsSidebarItem>
+              </DetailsSidebarItem>
+            )}
             {vn.alias && (
               <DetailsSidebarItem>
                 <div className="text-darkAccent">Aliases</div>
@@ -241,7 +241,7 @@ const VisualNovelDetailsPage = () => {
                   return publisher.official;
                 })
                 .map((publisher) => {
-                  return <div>{publisher.name}</div>;
+                  return <div key={publisher.id}>{publisher.name}</div>;
                 })}
             </DetailsSidebarItem>
           </DetailsSidebar>
