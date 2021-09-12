@@ -1,6 +1,64 @@
 const BASE_IMAGE_URL = `https://s2.vndb.org`;
 const IMAGE_FORMAT = `.jpg`;
 
+export const getPlatformImage = (platform: string) => {
+  return `https://s2.vndb.org/f/plat/${platform}.svg`;
+};
+
+export const getVoicedSvg = () => {
+  return `https://s2.vndb.org/f/voiced.svg`;
+};
+
+export const getStoryAnimatedSvg = () => {
+  return `https://s2.vndb.org/f/story_animated.svg`;
+};
+
+export const getNonFreeSvg = () => {
+  return `https://s2.vndb.org/f/nonfree.svg`;
+};
+
+export const getFreewareSvg = () => {
+  return `https://s2.vndb.org/f/free.svg`;
+};
+
+export const getVoicedString = (amount: number) => {
+  if (amount === 0 || amount === 1) {
+    return "Not Voiced";
+  } else if (amount === 2 || amount === 3) {
+    return "Partially Voiced";
+  } else if (amount === 4) {
+    return "Fully Voiced";
+  } else {
+    return "Unknown Voiced Status";
+  }
+};
+
+export const getAnimatedString = (amount: number) => {
+  if (amount === 0 || amount === 1) {
+    return "No Animations";
+  } else if (amount === 2) {
+    return "Simple Animations";
+  } else if (amount === 3) {
+    return "Partially Animated";
+  } else if (amount === 4) {
+    return "Fully Animated";
+  } else {
+    return "Unknown Voiced Status";
+  }
+};
+
+export const getMediumSvg = (medium: string) => {
+  if (medium === "dvd" || medium === "cd") {
+    return `https://s2.vndb.org/f/disk.svg`;
+  } else if (medium === "in") {
+    return `https://s2.vndb.org/f/download.svg`;
+  } else if (medium === "mrt") {
+    return `https://s2.vndb.org/f/cartridge.svg`;
+  } else {
+    return ``;
+  }
+};
+
 export const getImageUrlFromId = (imgId: string) => {
   // need to handle null images from db
   if (imgId === undefined || imgId === null) return "";

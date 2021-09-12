@@ -1,3 +1,5 @@
+import internal from "stream";
+
 /*
   VN search types
 */
@@ -102,11 +104,13 @@ export interface VnRelease {
   official: boolean;
   title: string;
   original: string;
+  ani_story: number;
   website: string;
   type: string;
   released: number;
   languages: string[];
   platforms: string[];
+  mediums: string[];
   producers: VnProducer[];
 }
 
@@ -120,6 +124,7 @@ export interface VnPublisher {
   id: string;
   name: string;
   languages: string;
+  official: boolean;
 }
 
 export interface VnDetails {

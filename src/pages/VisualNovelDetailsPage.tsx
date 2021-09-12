@@ -15,6 +15,7 @@ import Overview from "../components/details/Overview";
 import Tags from "../components/details/Tags";
 import Staff from "../components/details/Staff";
 import Characters from "../components/details/Characters";
+import Releases from "../components/details/Releases";
 import BannerImage from "../components/details/BannerImage";
 import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 import LoadingIcon from "../components/status/LoadingIcon";
@@ -23,7 +24,6 @@ import ErrorIcon from "../components/status/ErrorIcon";
 import * as VNDB from "../vndb/Vndb";
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { Service } from "../fetch/Service";
-
 import { VnDetails } from "../vndb/VnTypes";
 
 interface VisualNovelParams {
@@ -151,7 +151,7 @@ const VisualNovelDetailsPage = () => {
       </div>
 
       <div className="flex flex-row justify-center px-12 py-8 w-full bg-light items-start">
-        <div className="w-208  mr-10">
+        <div className="w-240 mr-10 ">
           <Switch>
             <Route exact path={`${url}`}>
               <Overview
@@ -170,8 +170,12 @@ const VisualNovelDetailsPage = () => {
             <Route exact path={`${url}/characters`}>
               <Characters characters={vn.characters} />
             </Route>
+            <Route exact path={`${url}/releases`}>
+              <Releases releases={vn.releases} />
+            </Route>
           </Switch>
         </div>
+
         <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
             <DetailsSidebarItem>
@@ -220,9 +224,13 @@ const VisualNovelDetailsPage = () => {
             </DetailsSidebarItem>
             <DetailsSidebarItem>
               <div className="text-darkAccent">Publishers</div>
-              {vn.publishers.map((publisher) => {
-                return <div>{publisher.name}</div>;
-              })}
+              {vn.publishers
+                .filter((publisher) => {
+                  return publisher.official;
+                })
+                .map((publisher) => {
+                  return <div>{publisher.name}</div>;
+                })}
             </DetailsSidebarItem>
           </DetailsSidebar>
 

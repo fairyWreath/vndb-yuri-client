@@ -9,7 +9,7 @@ const VnStaffCard = (props: Props) => {
   return (
     <div
       className="bg-accentPrimary shadow-md p-2
-  rounded-md w-100 h-30 flex flex-col items-center justify-between
+  rounded-md w-72 h-30 flex flex-col items-center justify-between
   text-base font-overlock text-dark"
       style={{ direction: "ltr" }}
     >

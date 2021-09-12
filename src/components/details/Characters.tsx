@@ -14,9 +14,9 @@ const Characters = (props: Props) => {
   return (
     <div>
       {characterCards.length > 0 ? (
-        <div className="w-full pb-7">
+        <div className="w-full">
           <div
-            className="grid grid-cols-4 gap-x-5 gap-y-6 "
+            className="grid grid-cols-4 gap-x-9 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {characterCards}
