@@ -19,6 +19,10 @@ export interface VnSearchItem {
   max_released: number;
   rating: number;
   length: string;
+  producers: string[];
+  languages: string[];
+  original: string[];
+  platforms: string[];
 }
 
 export interface VnSearchQuery {

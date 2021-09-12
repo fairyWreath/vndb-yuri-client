@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+
 import styled from "styled-components";
 import { FaCaretDown } from "react-icons/fa";
 import { GiTwirlyFlower } from "react-icons/gi";
@@ -29,7 +31,7 @@ const DropdownContainerWithScrollbar = styled.div`
   max-height: 24rem;
 
   overflow-y: hidden;
-  z-index: 30;
+  z-index: 40;
 
   &:hover {
     overflow-y: overlay;
@@ -196,9 +198,15 @@ const DropdownFilter = (props: Props) => {
           </div>
         </div>
         {isDropdownClicked && (
-          <DropdownContainerWithScrollbar className="shadow-md">
-            {items}
-          </DropdownContainerWithScrollbar>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <DropdownContainerWithScrollbar className="shadow-md">
+              {items}
+            </DropdownContainerWithScrollbar>
+          </motion.div>
         )}
       </div>
     </div>

@@ -333,6 +333,7 @@ export const FILTER_PLATFORMS_MAP = new Map<string, string>([
   ["Gameboy Advance", "gba"],
   ["Gameboy Color", "gbc"],
   ["VNDS", "vnd"],
+  ["Other", "oth"],
 ]);
 
 export const FILTER_PLATFORM_ITEMS = () => {

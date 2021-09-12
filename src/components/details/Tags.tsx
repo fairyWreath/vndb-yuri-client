@@ -1,6 +1,6 @@
-import { VnTag } from "../../vndb/VnTypes";
-
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { VnTag } from "../../vndb/VnTypes";
 import styled from "styled-components";
 import { IoIosEyeOff } from "react-icons/io";
 import { IoIosEye } from "react-icons/io";
@@ -42,9 +42,14 @@ const Tags = (props: Props) => {
         key={tag.name}
       >
         {tag.score.toFixed(2)}
-        <div className="min-w-96 max-w-96 mx-3  h-6 flex items-center">
+        <motion.div
+          className="min-w-96 max-w-96 mx-3 h-6 flex items-center"
+          initial={{ scale: 0.5 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
           <Scorebar scorePercentage={`${perc}%`} />
-        </div>
+        </motion.div>
         <div className="mx-4">{tag.name}</div>
       </div>
     );
