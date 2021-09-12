@@ -48,8 +48,8 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
   const [expand, setExpand] = useState(false);
 
   const PopupDir = () => {
-    if (props.PopRight) return "left";
-    return "right";
+    if (props.PopRight) return "left-56";
+    return "right-56";
   };
 
   return (
@@ -78,12 +78,13 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
         </div>
       </motion.div>
 
-      {true && (
+      {expand && (
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
+          transition={{ duration: 0.1 }}
           className={`hidden lg:block  absolute z-30 rounded-md
-           top-5 text-sm ${PopupDir().concat("-56")} left-56 `}
+           top-5 text-sm ${PopupDir()}`}
         >
           <PopupBubble
             PopRight={props.PopRight}
