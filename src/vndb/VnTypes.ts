@@ -32,7 +32,7 @@ export interface VnSearchQuery {
   released?: number;
   search?: string;
   nsfw?: boolean;
-  results?: number;
+  results: number;
   last_sort_value?: any;
   last_sort_vid?: string;
   languages?: string[];

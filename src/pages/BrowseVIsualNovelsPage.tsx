@@ -30,6 +30,7 @@ const BrowseVisualNovelsPage = () => {
   const [languages, setLanguages] = useState<string[]>([]);
   const [platforms, setPlatforms] = useState<string[]>([]);
   const [released, setReleased] = useState<number | undefined>(undefined);
+  const [numResults, setNumResults] = useState(20);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +41,7 @@ const BrowseVisualNovelsPage = () => {
     sort_by: getSortByQuery(sortBy),
     sort_order: getSortOrderQuery(sortOrderDesc),
     search: search,
-    results: 20,
+    results: numResults,
     last_sort_value: lastSortvalue,
     last_sort_vid: lastSortVid,
     nsfw: NSFW,
@@ -70,10 +71,9 @@ const BrowseVisualNovelsPage = () => {
               value = lastItem.max_released;
             } else if (listParams.sort_by === "min_released") {
               value = lastItem.min_released;
+            } else {
+              value = lastItem.popularity;
             }
-            // } else {
-            //   value = lastItem.popularity;
-            // }
 
             setLastSortVid(lastItem.id);
             setLastSortValue(value);
@@ -100,14 +100,16 @@ const BrowseVisualNovelsPage = () => {
               setSearch(str);
 
               // cant put it here to prevent race conditions with the pagination useeffect
-              // setLastSortValue(undefined);
-              // setLastSortVid(undefined);
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
             }}
           />
           <DropdownFilter
             label="Theme"
             items={VNDBHelper.FILTER_MAIN_THEME_TAGS_ITEMS()}
             setItems={(names) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
               setTags(getTagIdsFromNames(names));
             }}
             multiSelect={true}
@@ -116,6 +118,8 @@ const BrowseVisualNovelsPage = () => {
             label="Languages"
             items={VNDBHelper.FILTER_LANGUAGE_ITEMS()}
             setItems={(names) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
               setLanguages(getLangsFromNames(names));
             }}
             multiSelect={true}
@@ -131,6 +135,8 @@ const BrowseVisualNovelsPage = () => {
             label="Platforms"
             items={VNDBHelper.FILTER_PLATFORM_ITEMS()}
             setItems={(names) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
               setPlatforms(getPlatformsFromNames(names));
             }}
             multiSelect={true}

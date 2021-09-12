@@ -11,41 +11,57 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
   const [vns, setVns] = useState<VnSearchItem[]>([]);
 
   useEffect(() => {
-    setResult({ status: "loadingMore", payload: [] });
+    let clear = false;
+    if (query.last_sort_value === undefined) clear = true;
+
+    let temp: VnSearchItem[] = [];
+
+    if (!clear) {
+      temp = vns;
+    }
+
+    setResult({ status: "loadingMore", payload: temp });
 
     let controller = new AbortController();
-    const signal = controller.signal;
+    let signal: AbortSignal | undefined = controller.signal;
 
-    // for now, some ugly code to prevent cycle, use another object, if reset like below will cause
-    // the pagination useeffect to trigger
-    const searchQuery = query;
-    searchQuery.last_sort_value = undefined;
-    searchQuery.last_sort_vid = undefined;
+    if (!clear) signal = undefined;
 
-    // reset all pagination stuff, will cause timing problems with the other useeffect
-    // query.last_sort_value = undefined;
-    // query.last_sort_vid = undefined;
+    let timeout = 500;
+    if (!clear) timeout = 0;
+
+    console.log(query);
 
     const typingTimeout = setTimeout(() => {
-      vnSearch(searchQuery, signal)
+      vnSearch(query, signal)
         .then((items: VnSearchItem[]) => {
-          setResult({
-            status: "loaded",
-            payload: items,
-            hasMore: items.length >= 20, // 20 is the max result per page, use it as magic number for now
-          });
-          setVns(items);
+          if (!clear) {
+            const newVns = [...vns, ...items];
+            setResult({
+              status: "loaded",
+              payload: newVns,
+              hasMore: items.length > 0 && items.length >= query.results,
+            });
+            setVns(newVns);
+          } else {
+            setResult({
+              status: "loaded",
+              payload: items,
+              hasMore: items.length >= query.results,
+            });
+            setVns(items);
+          }
         })
         .catch((err) => {
           if (err.name !== "AbortError") {
             setResult({ status: "error", error: err });
           }
         });
-    }, 500);
+    }, timeout);
 
     return () => {
       clearTimeout(typingTimeout);
-      controller.abort();
+      if (clear) controller.abort();
     };
   }, [
     query.search,
@@ -56,26 +72,11 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
     query.released,
     query.languages,
     query.platforms,
+    query.results,
+    query.last_sort_value,
+    query.last_sort_vid,
+    // query,
   ]);
-
-  useEffect(() => {
-    // set current vns
-    setResult({ status: "loadingMore", payload: vns });
-
-    vnSearch(query)
-      .then((items: VnSearchItem[]) => {
-        const newVns = [...vns, ...items];
-        setResult({
-          status: "loaded",
-          payload: newVns,
-          hasMore: items.length > 0 && items.length >= 20, // 20 is the max result per page, use it as magic number for now
-        });
-        setVns(newVns);
-      })
-      .catch((err) => {
-        setResult({ status: "error", error: err });
-      });
-  }, [query.last_sort_value]);
 
   return result;
 };
