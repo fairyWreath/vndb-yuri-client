@@ -103,8 +103,10 @@ const VisualNovelDetailsPage = () => {
       <Helmet>
         <title>{result.payload.title}</title>
       </Helmet>
-      {screenImages.length > 0 && bannerImage !== "" && (
+      {screenImages.length > 0 && bannerImage !== "" ? (
         <BannerImage src={bannerImage} />
+      ) : (
+        <div className="w-full h-28 bg-light " />
       )}
       <div
         className="flex flex-row justify-center items-start bg-accentPrimary w-full 
@@ -263,7 +265,9 @@ const VisualNovelDetailsPage = () => {
         </div>
       </div>
 
-      <Screenshots screenshots={vn.screenshots} />
+      {vn.screenshots.length > 0 && (
+        <Screenshots screenshots={vn.screenshots} />
+      )}
     </div>
   );
 };
