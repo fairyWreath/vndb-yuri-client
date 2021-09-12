@@ -83,7 +83,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           className={`hidden lg:block  absolute z-30 rounded-md
-           top-5 text-sm ${PopupDir()}-56 `}
+           top-5 text-sm ${PopupDir().concat("-56")} `}
         >
           <PopupBubble
             PopRight={props.PopRight}
