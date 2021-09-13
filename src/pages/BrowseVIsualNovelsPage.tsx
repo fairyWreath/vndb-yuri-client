@@ -88,7 +88,7 @@ const BrowseVisualNovelsPage = () => {
   return (
     <div
       className="bg-light w-full min-h-screen bottom-0 px-12
-    py-4 font-overlock"
+    pb-4 font-overlock pt-16"
     >
       <Helmet>
         <title>Search Visual Novels · VNList</title>
@@ -98,8 +98,6 @@ const BrowseVisualNovelsPage = () => {
           <SearchFilter
             setSearch={(str: string) => {
               setSearch(str);
-
-              // cant put it here to prevent race conditions with the pagination useeffect
               setLastSortValue(undefined);
               setLastSortVid(undefined);
             }}
@@ -127,7 +125,6 @@ const BrowseVisualNovelsPage = () => {
           <DropdownFilter
             label="Released"
             items={VNDBHelper.FILTER_RELEASED_YEARS}
-            // setItems={(items) => setReleased(items[items.length - 1])}
             setItems={setReleased}
             multiSelect={false}
           />
@@ -145,9 +142,21 @@ const BrowseVisualNovelsPage = () => {
         <div className="flex flex-row justify-end items-center mb-4">
           {/* <SecondaryFilters /> */}
           <SecondaryFilters
-            setSortBy={setSortBy}
-            setSortOrder={setSortOrderDesc}
-            setNSFW={setNSFW}
+            setSortBy={(sort) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
+              setSortBy(sort);
+            }}
+            setSortOrder={(order) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
+              setSortOrderDesc(order);
+            }}
+            setNSFW={(nsfw) => {
+              setLastSortValue(undefined);
+              setLastSortVid(undefined);
+              setNSFW(nsfw);
+            }}
           />
         </div>
         <VisualNovelCardList data={result} />

@@ -92,7 +92,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
           >
             <div className="px-5 py-3 h-full w-full">
               <div className="flex justify-between">
-                <div className="title text-darkAccent mb-2 italic text-base">
+                <div className="title text-darkAccent mb-2 italic text-base w-52">
                   <span className="not-italic text-dark">Developer: {""}</span>
                   {props.vn.producers[props.vn.producers.length - 1]}
                 </div>
@@ -107,8 +107,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
               <div className="flex mb-3">
                 {props.vn.languages.slice(0, 3).map((lang, index) => (
                   <div
-                    className="bg-primary text-light text-sm px-2 rounded-lg mr-1 flex text-center items-center
-                    py-2"
+                    className="bg-primary text-light text-sm px-2 rounded-lg mr-1 flex text-center items-center"
                     key={index}
                   >
                     {VNDBHelper.getFullLanguageName(lang.trim())}
@@ -118,8 +117,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
               <div className="flex">
                 {props.vn.platforms.slice(0, 3).map((plat, index) => (
                   <div
-                    className="bg-dark text-light text-sm px-2 rounded-lg mr-1 text-center flex items-center
-                    py-2"
+                    className="bg-dark text-light text-sm px-2 rounded-lg mr-1 text-center flex items-center"
                     key={index}
                   >
                     {VNDBHelper.getFullPlatformName(plat.trim())}
