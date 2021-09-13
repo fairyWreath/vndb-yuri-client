@@ -101,12 +101,12 @@ const VisualNovelDetailsPage = () => {
   return (
     <div className="flex flex-col justify-start items-center bg-light font-overlock">
       <Helmet>
-        <title>{result.payload.title}</title>
+        <title>{result.payload.title} · VNList</title>
       </Helmet>
       {screenImages.length > 0 && bannerImage !== "" ? (
         <BannerImage src={bannerImage} />
       ) : (
-        <div className="w-full h-28 bg-light " />
+        <div className="w-full h-40 bg-light " />
       )}
       <div
         className="flex flex-row justify-center items-start bg-accentPrimary w-full 

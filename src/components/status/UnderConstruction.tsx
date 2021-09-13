@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 const UnderConstruction = () => {
   const textIcon = "｡ﾟ･（>﹏<）･ﾟ｡";
   return (
-    <div className="text-primary flex flex-col items-center py-10 bg-light min-h-screen text-center">
+    <div className="text-primary flex flex-col items-center pt-20 pb-10 bg-light min-h-screen text-center">
       <Helmet>
         <title>Under Construction · VNList</title>
       </Helmet>

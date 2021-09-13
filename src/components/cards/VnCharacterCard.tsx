@@ -30,12 +30,18 @@ const VnCharacterCard = (props: Props) => {
       shadow-md rounded-md relative"
       style={{ direction: "ltr" }}
     >
-      <img
-        className="w-full h-64"
-        style={{ borderRadius: "6px 6px 0px 0px" }}
-        src={VNDBHelper.getImageUrlFromId(props.character.image)}
-        alt="vn_ov_char_img"
-      />
+      {props.character.image ? (
+        <img
+          className="w-full h-64"
+          style={{ borderRadius: "6px 6px 0px 0px" }}
+          src={VNDBHelper.getImageUrlFromId(props.character.image)}
+          alt="vn_ov_char_img"
+        />
+      ) : (
+        <div className="w-full h-64 text-dark text-center flex flex-col justify-center">
+          No image
+        </div>
+      )}
       {/* <div className="absolute right-2 py-2">{genderIcon()}</div> */}
       <div
         className="flex flex-col py-2 px-4 justify-between font-overlock items-center

@@ -24,9 +24,7 @@ const Navbar = () => {
   );
 
   const variants = {
-    /** this is the "visible" key and it's respective style object **/
     visible: { opacity: 1, y: 0 },
-    /** this is the "hidden" key and it's respective style object **/
     hidden: { opacity: 0, y: -25 },
   };
 

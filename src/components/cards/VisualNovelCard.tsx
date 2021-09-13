@@ -117,7 +117,7 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
               <div className="flex">
                 {props.vn.platforms.slice(0, 3).map((plat, index) => (
                   <div
-                    className="bg-dark text-light text-sm px-2 rounded-lg mr-1 text-center flex items-center"
+                    className="bg-darkAccent text-light text-sm px-2 rounded-lg mr-1 text-center flex items-center"
                     key={index}
                   >
                     {VNDBHelper.getFullPlatformName(plat.trim())}
