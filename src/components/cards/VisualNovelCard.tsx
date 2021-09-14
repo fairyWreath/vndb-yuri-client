@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { VnSearchItem } from "../../vndb/VnTypes";
 import * as VNDBHelper from "../../vndb/VndbHelpers";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface VisualNovelCardProps {
   vn: VnSearchItem;
@@ -44,8 +45,15 @@ const PopupBubble = styled.div<BubbleProps>`
   }
 `;
 
+const ImagePlaceholder = () => {
+  return (
+    <div className="w-full h-full rounded-md shadow-md bg-accentPrimary"></div>
+  );
+};
+
 const VisualNovelCard = (props: VisualNovelCardProps) => {
   const [expand, setExpand] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const PopupDir = () => {
     if (props.PopRight) return "left-56";
@@ -66,11 +74,18 @@ const VisualNovelCard = (props: VisualNovelCardProps) => {
       >
         <div className="w-full h-72 relative">
           <Link to={"/vn/" + props.vn.id}>
-            <img
+            <LazyLoadImage
               src={props.vn.image.src}
               alt="vn_card_image"
-              className="w-full h-full rounded-md shadow-md"
+              className={`w-full h-full rounded-md shadow-md ${
+                imageLoaded ? "visible" : "hidden"
+              }`}
+              onLoad={() => setImageLoaded(true)}
+              placeholder={ImagePlaceholder()}
+              useIntersectionObserver={true}
             />
+
+            {!imageLoaded && <ImagePlaceholder />}
           </Link>
         </div>
         <div className="title min-h-12 py-2 overflow-hidden text-base font-medium ">
