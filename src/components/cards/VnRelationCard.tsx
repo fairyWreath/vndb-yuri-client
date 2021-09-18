@@ -12,10 +12,10 @@ const VnRelationCard = (props: Props) => {
     <Link
       to={`/vn/${props.vn.vid}`}
       className="flex flex-row justify-end items-center w-full bg-accentPrimary 
-    rounded-md shadow-md h-24"
+    rounded-md shadow-md lg:h-24 h-28"
       style={{ direction: "ltr" }}
     >
-      <div className="text-right mr-3 flex flex-col justify-between py-4 w-full h-full">
+      <div className="text-right mr-3 flex flex-col justify-between py-2 xs:py-1 w-full h-full">
         <div className="text-lg text-darkAccent w-full">{props.vn.title}</div>
         <div className="text-base text-dark w-full">
           {VNDBHelper.getRelationName(props.vn.relation)}
@@ -24,7 +24,7 @@ const VnRelationCard = (props: Props) => {
       {/* need max/min w for this one */}
       <img
         src={VNDBHelper.getImageUrlFromId(props.vn.image)}
-        className="w-24 h-full max-w-24 object-cover"
+        className="h-full max-w-24 min-w-24 object-cover"
         alt="vn_rel_card_img"
       />
     </Link>

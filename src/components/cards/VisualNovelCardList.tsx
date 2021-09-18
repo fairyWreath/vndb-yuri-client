@@ -24,7 +24,7 @@ const VisualNovelCardList = (props: VisualNovelCardListProps) => {
     <>
       <div
         className="grid relative justify-items-center lg1s:grid-cols-fill-125 grid-cols-5   
-  gap-x-8 sm:gap-y-4 md:gap-y-6 lg1s:gap-y-7 gap-y-9"
+  xs:gap-x-2 sm:gap-x-4 gap-x-8 sm:gap-y-4 md:gap-y-6 lg1s:gap-y-7 gap-y-9"
       >
         {cardList}
         {props.data.status === "loadingMore" && (

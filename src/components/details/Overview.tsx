@@ -41,7 +41,7 @@ const Overview = (props: OverviewProps) => {
             Relations
           </div>
           <div
-            className="w-full grid grid-cols-3 lg1s:grid-cols-2 md1s:grid-cols-1 gap-x-5 gap-y-6 "
+            className="w-full grid grid-cols-3 lg:grid-cols-2 md1s:grid-cols-1 gap-x-5 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {relationCards}

@@ -46,12 +46,15 @@ module.exports = {
         titleImageMedium: "20vw",
         sortDropdown: "8rem",
         96: "24rem",
+
+        24: "6rem",
       },
       maxWidth: {
         screenImageLarge: "960px",
         screenImageMedium: "768px",
         titleImageMedium: "24rem",
         titleImageLarge: "32rem",
+        24: "6rem",
 
         "68rem": "68rem",
         "64rem": "64rem",

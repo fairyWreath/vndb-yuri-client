@@ -203,7 +203,7 @@ const VisualNovelDetailsPage = () => {
             </Switch>
           </div>
           <div
-            className="flex flex-col sm:w-full sm:grid sm:grid-cols-2 sm:justify-items-center xs:gap-x-1 sm1s:gap-x-6 sm:mt-8
+            className="flex flex-col sm:w-full sm:grid sm:grid-cols-2 sm:justify-items-center xs:gap-x-2 sm1s:gap-x-5 sm:mt-8
           sm:gap-x-8 justify-center items-start"
           >
             <DetailsSidebar>
@@ -262,7 +262,7 @@ const VisualNovelDetailsPage = () => {
                   })}
               </DetailsSidebarItem>
             </DetailsSidebar>
-            <div className="sm:w-full xs:ml-4">
+            <div className="sm:w-full">
               <div className="sm:hidden mb-3 mt-8 text-darkAccent text-xl">
                 Media
               </div>
