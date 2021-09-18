@@ -11,6 +11,7 @@ interface Props {
   items: string[];
   multiSelect: boolean;
   setItems?: (args: any) => any;
+  className?: string;
 }
 
 const DropdownContainerWithScrollbar = styled.div`
@@ -25,7 +26,7 @@ const DropdownContainerWithScrollbar = styled.div`
   align-items: center;
   transition: all 0.3s ease-in-out;
 
-  width: 12rem;
+  width: 11rem;
   padding: 8px 16px;
   font-size: 1rem;
   max-height: 24rem;
@@ -178,12 +179,12 @@ const DropdownFilter = (props: Props) => {
   });
 
   return (
-    <div className="px-0 py-3">
+    <div className={`px-0 py-3 ${props.className}`}>
       <div className="text-lg text-dark mb-1">{props.label}</div>
       <div ref={wrapperRef}>
         <div
           className="bg-accentSecondary rounded-md
-        flex flex-row items-center w-48 text-dark
+        flex flex-row items-center w-44 text-dark
         mb-2 px-3 py-2 shadow-md text-base"
           onClick={() => {
             setDropdownClicked(true);

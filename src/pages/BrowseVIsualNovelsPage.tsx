@@ -87,15 +87,16 @@ const BrowseVisualNovelsPage = () => {
 
   return (
     <div
-      className="bg-light w-full min-h-screen bottom-0 px-12
-    pb-4 font-overlock pt-16"
+      className="bg-light w-full min-h-screen bottom-0 
+    pb-8 font-overlock sm1s:pt-4 pt-16 flex flex-col items-center"
     >
       <Helmet>
         <title>Search Visual Novels · VNList</title>
       </Helmet>
-      <div className="max-w-7xl m-auto">
-        <div className="flex flex-row justify-between items-center">
+      <div className="w-full lg1s:px-8 px-14 lg:max-w-7xl max-w-8xl m-auto block">
+        <div className="flex flex-row justify-between items-center w-full">
           <SearchFilter
+            className="w-44 md1s:w-full"
             setSearch={(str: string) => {
               setSearch(str);
               setLastSortValue(undefined);
@@ -103,6 +104,7 @@ const BrowseVisualNovelsPage = () => {
             }}
           />
           <DropdownFilter
+            className="md1s:hidden"
             label="Theme"
             items={VNDBHelper.FILTER_MAIN_THEME_TAGS_ITEMS()}
             setItems={(names) => {
@@ -113,6 +115,7 @@ const BrowseVisualNovelsPage = () => {
             multiSelect={true}
           />
           <DropdownFilter
+            className="md1s:hidden"
             label="Languages"
             items={VNDBHelper.FILTER_LANGUAGE_ITEMS()}
             setItems={(names) => {
@@ -123,12 +126,14 @@ const BrowseVisualNovelsPage = () => {
             multiSelect={true}
           />
           <DropdownFilter
+            className="md1s:hidden"
             label="Released"
             items={VNDBHelper.FILTER_RELEASED_YEARS}
             setItems={setReleased}
             multiSelect={false}
           />
           <DropdownFilter
+            className="md:hidden"
             label="Platforms"
             items={VNDBHelper.FILTER_PLATFORM_ITEMS()}
             setItems={(names) => {
@@ -140,7 +145,6 @@ const BrowseVisualNovelsPage = () => {
           />
         </div>
         <div className="flex flex-row justify-end items-center mb-4">
-          {/* <SecondaryFilters /> */}
           <SecondaryFilters
             setSortBy={(sort) => {
               setLastSortValue(undefined);

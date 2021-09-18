@@ -14,7 +14,7 @@ import UnderConstruction from "./components/status/UnderConstruction";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app box-border">
       <BrowserRouter>
         <Navbar />
         <Switch>

@@ -5,7 +5,27 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      "2xl": { min: "1536px" },
+      xl: { max: "1535px" },
+      lg: { max: "1279px" },
+      lg1s: { max: "1112px" },
+      md: { max: "984px" },
+      md1s: { max: "924px" },
+      sm: { max: "772px" },
+      sm1s: { max: "640px" },
+      xs: { max: "480px" },
+      xxs: { max: "284px" },
+    },
     extend: {
+      gridTemplateColumns: {
+        16: "repeat(16, minmax(0, 1fr))",
+        normalScreen: "repeat(5, 208px)", // 208 px/13 rem for w-52 card
+        "fill-125": "repeat(auto-fill,minmax(125px,1fr))",
+      },
+      gridTemplateRows: {
+        "min-content-auto": "min-content auto",
+      },
       colors: {
         transparent: "transparent",
         current: "currentColor",
@@ -32,7 +52,12 @@ module.exports = {
         screenImageMedium: "768px",
         titleImageMedium: "24rem",
         titleImageLarge: "32rem",
+
+        "68rem": "68rem",
+        "64rem": "64rem",
+        "70rem": "70rem",
         96: "24rem",
+        "8xl": "88rem",
       },
       maxHeight: {
         screenImageLarge: "540px",
@@ -52,25 +77,25 @@ module.exports = {
         vh50: "50vh",
         vh75: "75vh",
       },
-      width: {
-        titleImageMedium: "20rem",
-        titleImageLarge: "32rem",
-        32: "8rem",
-      },
       height: {
+        68: "17rem",
+        76: "19rem",
+        80: "20rem",
         88: "22rem",
       },
       borderWidth: {
         veryThin: "0.5px",
       },
-      gridTemplateColumns: {
-        16: "repeat(16, minmax(0, 1fr))",
-        normalScreen: "repeat(5, 208px)", // 208 px/13 rem for w-52 card
-      },
       margin: {
         titleImageMedium: "-8rem",
       },
       width: {
+        titleImageMedium: "20rem",
+        titleImageLarge: "32rem",
+        34: "8.5rem",
+        32: "8rem",
+        30: "7.5rem",
+
         100: "25rem",
         104: "26rem",
         112: "28rem",

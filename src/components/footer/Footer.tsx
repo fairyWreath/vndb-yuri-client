@@ -7,7 +7,7 @@ const Footer = () => {
       className="bg-primary flex flex-col
   content-center items-center bottom-0 p-10"
     >
-      <div className="flex flex-col md:flex-row">
+      <div className="flex md:flex-col flex-row">
         <FooterSection>
           <FooterSectionText>
             <a href="https://github.com/fairywreath/vnlist" target="_blank">

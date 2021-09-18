@@ -34,7 +34,7 @@ const Navbar = () => {
         variants={variants}
         animate={hideOnScroll ? "visible" : "hidden"}
         transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.2 }}
-        className="h-14 bg-primary flex items-center justify-center transition-all
+        className="h-14 bg-primary sm1s:hidden flex items-center justify-center transition-all
         fixed top-0 z-50 shadow-md w-full "
       >
         <div className="select-none h-full w-full max-w-4xl 2xl:max-w-6xl px-10 flex justify-between z-10 font-overlock box-border">
@@ -44,7 +44,7 @@ const Navbar = () => {
           >
             VNList
           </Link>
-          <ul className="hidden md:flex items-center text-center h-full list-none">
+          <ul className="flex items-center text-center h-full list-none">
             <NavLinkItem target="/vns" label="Visual Novels" />
             <NavLinkItem target="/chars" label="Characters" />
           </ul>
@@ -52,13 +52,13 @@ const Navbar = () => {
       </motion.nav>
 
       <div
-        className="md:hidden fixed bottom-7 right-7 w-10 h-10 bg-accentPrimary rounded-lg
-    flex justify-center items-center cursor-pointer text-light z-50"
+        className="hidden fixed bottom-7 left-7 w-14 h-14 bg-primary rounded-md shadow-md
+    sm1s:flex justify-center items-center cursor-pointer text-light z-50"
         onClick={() => {
           setOpenMobileMenu(!openMobileMenu);
         }}
       >
-        {openMobileMenu ? <FaTimes size="25px" /> : <FaBars size="25px" />}
+        {openMobileMenu ? <FaTimes size="35px" /> : <FaBars size="35px" />}
       </div>
     </>
   );
