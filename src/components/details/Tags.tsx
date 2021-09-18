@@ -73,8 +73,14 @@ const Tags = (props: Props) => {
           setShowSpoilers(!showSpoilers);
         }}
       >
-        <div className="mx-2">Spoilers</div>
-        {showSpoilers ? <IoIosEye size="20px" /> : <IoIosEyeOff size="20px" />}
+        <div className="mx-2 mb-2 sm:text-sm flex flex-row items-center">
+          <div className="mx-2">Spoilers</div>
+          {showSpoilers ? (
+            <IoIosEye size="20px" />
+          ) : (
+            <IoIosEyeOff size="20px" />
+          )}
+        </div>
       </div>
       <div className="">{bars}</div>
     </div>

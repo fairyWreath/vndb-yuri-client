@@ -86,7 +86,7 @@ const SecondaryFilters = (props: SecondaryFiltersProps) => {
       </div>
       {openDropDown && (
         <div
-          className="absolute bg-accentSecondary shadow-2xl px-3 py-4 z-20 transition-all min-w-sortDropdown
+          className="absolute bg-accentSecondary shadow-2xl px-3 py-4 z-30 transition-all min-w-sortDropdown
         rounded-lg right-0"
         >
           {/* right-0 here to position the absolute dropdown to the relative div parent */}

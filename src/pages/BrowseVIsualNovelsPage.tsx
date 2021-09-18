@@ -93,7 +93,7 @@ const BrowseVisualNovelsPage = () => {
       <Helmet>
         <title>Search Visual Novels · VNList</title>
       </Helmet>
-      <div className="w-full xs:px-2 md:px-4 lg1s:px-8 px-14 lg:max-w-7xl max-w-8xl m-auto block">
+      <div className="w-full xs:px-2 md:px-4 lg1s:px-8 px-14 lg:max-w-7xl max-w-8xl mx-auto block">
         <div className="flex flex-row justify-between items-center w-full">
           <SearchFilter
             className="w-44 md1s:w-full"
