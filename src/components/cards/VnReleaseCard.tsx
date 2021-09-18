@@ -58,7 +58,7 @@ const VnReleaseCard = (props: Props) => {
   return (
     <div
       className="flex flex-row items-center
-  shadow-md rounded-md w-112 px-2 py-2 text-dark font-overlock text-sm bg-accentPrimary
+  shadow-md rounded-md w-full px-2 py-2 text-dark font-overlock text-sm bg-accentPrimary
   text-center"
       style={{ direction: "ltr" }}
     >

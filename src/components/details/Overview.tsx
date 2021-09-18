@@ -28,20 +28,20 @@ const Overview = (props: OverviewProps) => {
 
   return (
     <div className="w-full mr-auto">
-      <div className="releases text-right pb-7">
-        <div className="text-darkAccent pb-3 text-xl align-text-top">
+      {/* <div className="releases text-right pb-7">
+        <div className="text-darkAccent pb-3 text-xl align-text-top w-full">
           Releases
         </div>
         <Releases releases={props.releases.slice(0, 6)} />
-      </div>
+      </div> */}
 
       {relationCards.length > 0 && (
-        <div className="pb-7">
+        <div className="pb-7 w-full">
           <div className="text-darkAccent pb-3 text-xl text-right">
             Relations
           </div>
           <div
-            className="grid grid-cols-1 lg:grid-cols-3 gap-x-2 gap-y-6 "
+            className="w-full grid grid-cols-3 lg1s:grid-cols-2 md1s:grid-cols-1 gap-x-5 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {relationCards}

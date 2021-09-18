@@ -18,7 +18,7 @@ const Staff = (props: Props) => {
       {props.staff.length > 0 ? (
         <div className="w-full">
           <div
-            className="grid grid-cols-3 gap-y-6 gap-x-3"
+            className="grid sm1s:grid-cols-1 md:grid-cols-2 grid-cols-3 gap-y-6 gap-x-3"
             style={{ direction: "rtl" }}
           >
             {staffCards}

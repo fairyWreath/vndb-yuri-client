@@ -109,155 +109,163 @@ const VisualNovelDetailsPage = () => {
         <div className="w-full h-40 bg-light " />
       )}
 
-      <div
-        className="flex flex-row justify-center items-start bg-accentPrimary w-full 
-      px-8 pt-10 shadow-md md:flex-col-reverse sm1s:items-center md:px-6 sm1s:pd-3 xs:pd-1"
-      >
-        <div className="pr-8 pl-4 sm1s:px-1 w-full">
-          <div
-            className="italic text-3xl sm1s:text-2xl mb-5 text-right text-darkAccent sm1s:text-center 
-            md:break-words sm1s:mt-3"
-          >
-            {vn.title}
+      <div className="bg-accentPrimary w-full">
+        <div
+          className="flex flex-row justify-center items-start w-full max-w-8xl
+        px-8 pt-10  md:flex-col-reverse sm1s:items-center md:px-6 sm1s:pd-3 xs:pd-1 m-auto"
+        >
+          <div className="pr-8 pl-4 sm1s:px-1 w-full">
+            <div
+              className="italic text-3xl sm1s:text-2xl mb-5 text-right text-darkAccent sm1s:text-center
+              md:break-words sm1s:mt-3"
+            >
+              {vn.title}
+            </div>
+            <DetailsTextScrollbar
+              className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
+          overflow-y-hidden min-h-44 max-h-56 pl-5 md:px-3 md:w-full
+          sm1s:px-2 sm1s:text-center sm1s:text-base break-words"
+            >
+              <div style={{ direction: "ltr" }}>{description}</div>
+            </DetailsTextScrollbar>
+            <ul
+              className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock
+            pl-12 lg1s:pl-9 md:pl-0 pb-3 xs:overflow-scroll"
+            >
+              <Link
+                to={`${url}`}
+                className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+              >
+                Overview
+              </Link>
+              <Link
+                to={`${url}/tags`}
+                className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+              >
+                Tags
+              </Link>
+              <Link
+                to={`${url}/characters`}
+                // need to turn off auto page scroll for this link
+                className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+              >
+                Characters
+              </Link>
+              <Link
+                to={`${url}/releases`}
+                className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+              >
+                Releases
+              </Link>
+              <Link
+                to={`${url}/staff`}
+                className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
+              >
+                Staff
+              </Link>
+            </ul>
           </div>
-          <DetailsTextScrollbar
-            className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
-        overflow-y-hidden min-h-44 max-h-56 pl-5 md:px-3 md:w-full 
-        sm1s:px-2 sm1s:text-center sm1s:text-base break-words"
-          >
-            <div style={{ direction: "ltr" }}>{description}</div>
-          </DetailsTextScrollbar>
-          <ul
-            className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock 
-          pl-12 lg1s:pl-9 md:pl-0 pb-3 xs:overflow-scroll"
-          >
-            <Link
-              to={`${url}`}
-              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
-            >
-              Overview
-            </Link>
-            <Link
-              to={`${url}/tags`}
-              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
-            >
-              Tags
-            </Link>
-            <Link
-              to={`${url}/characters`}
-              // need to turn off auto page scroll for this link
-              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
-            >
-              Characters
-            </Link>
-            <Link
-              to={`${url}/releases`}
-              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
-            >
-              Releases
-            </Link>
-            <Link
-              to={`${url}/staff`}
-              className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
-            >
-              Staff
-            </Link>
-          </ul>
+          <img
+            className="rounded-lg h-96 w-64 md:w-48 md:h-72 sm1s:w-36 sm1s:h-56 shadow-md z-20
+            mt-titleImageMedium md:-mt-48"
+            src={vn.image.src}
+          />
         </div>
-        <img
-          className="rounded-lg h-96 w-64 md:w-48 md:h-72 sm1s:w-36 sm1s:h-56 shadow-md z-20
-          mt-titleImageMedium md:-mt-48"
-          src={vn.image.src}
-        />
       </div>
 
-      <div className="flex flex-row justify-center px-12 py-8 w-full bg-light items-start">
-        <div className="w-240 mr-10 ">
-          <Switch>
-            <Route exact path={url}>
-              <Overview
-                releases={vn.releases}
-                relations={vn.relations}
-                characters={vn.characters}
-                staff={vn.staff}
-              />
-            </Route>
-            <Route exact path={`${url}/tags`}>
-              <Tags tags={vn.tags} />
-            </Route>
-            <Route exact path={`${url}/staff`}>
-              <Staff staff={vn.staff} />
-            </Route>
-            <Route exact path={`${url}/characters`}>
-              <Characters characters={vn.characters} />
-            </Route>
-            <Route exact path={`${url}/releases`}>
-              <Releases releases={vn.releases} />
-            </Route>
-          </Switch>
-        </div>
-
-        {/* <div className="flex flex-col justify-center items-start">
-          <DetailsSidebar>
-            {vn.original && (
+      <div
+        className="md:px-6 sm:px-3  xs:px-2 px-8 sm:py-6 py-8 w-full 
+       bg-light"
+      >
+        <div className="max-w-8xl w-full items-start flex flex-row sm:flex-col justify-center m-auto">
+          <div className="w-full mr-10">
+            <Switch>
+              <Route exact path={url}>
+                <Overview
+                  releases={vn.releases}
+                  relations={vn.relations}
+                  characters={vn.characters}
+                  staff={vn.staff}
+                />
+              </Route>
+              <Route exact path={`${url}/tags`}>
+                <Tags tags={vn.tags} />
+              </Route>
+              <Route exact path={`${url}/staff`}>
+                <Staff staff={vn.staff} />
+              </Route>
+              <Route exact path={`${url}/characters`}>
+                <Characters characters={vn.characters} />
+              </Route>
+              <Route exact path={`${url}/releases`}>
+                <Releases releases={vn.releases} />
+              </Route>
+            </Switch>
+          </div>
+          <div
+            className="flex flex-col sm:w-full sm:grid sm:grid-cols-2 sm:justify-items-center xs:gap-x-1 sm1s:gap-x-6 sm:mt-8
+          sm:gap-x-8 justify-center items-start"
+          >
+            <DetailsSidebar>
+              {vn.original && (
+                <DetailsSidebarItem>
+                  <>
+                    <div className="text-darkAccent">Original Name</div>
+                    {vn.original}
+                  </>
+                </DetailsSidebarItem>
+              )}
+              {vn.alias && (
+                <DetailsSidebarItem>
+                  <div className="text-darkAccent">Aliases</div>
+                  {vn.alias.split("\n").map((alias, key) => {
+                    return (
+                      <div className="py-0.5" key={key}>
+                        {alias}
+                      </div>
+                    );
+                  })}
+                </DetailsSidebarItem>
+              )}
               <DetailsSidebarItem>
-                <>
-                  <div className="text-darkAccent">Original Name</div>
-                  {vn.original}
-                </>
+                <div className="text-darkAccent">Original Language</div>
+                {VNDBHelper.getFullLanguageName(vn.olang)}
               </DetailsSidebarItem>
-            )}
-            {vn.alias && (
               <DetailsSidebarItem>
-                <div className="text-darkAccent">Aliases</div>
-                {vn.alias.split("\n").map((alias, key) => {
-                  return (
-                    <div className="py-0.5" key={key}>
-                      {alias}
-                    </div>
-                  );
-                })}
+                <div className="text-darkAccent">Released</div>
+                {VNDBHelper.parseDate(vn.min_released)}
               </DetailsSidebarItem>
-            )}
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Original Language</div>
-              {VNDBHelper.getFullLanguageName(vn.olang)}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Released</div>
-              {VNDBHelper.parseDate(vn.min_released)}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Play Time</div>
-              {VNDBHelper.getPlaytimeFromLength(vn.length)}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Rating</div>
-              {vn.c_rating / 100}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Popularity</div>
-              {vn.c_popularity / 100}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Developer</div>
-              {vn.developers[0]}
-            </DetailsSidebarItem>
-            <DetailsSidebarItem>
-              <div className="text-darkAccent">Publishers</div>
-              {vn.publishers
-                .filter((publisher) => {
-                  return publisher.official;
-                })
-                .map((publisher) => {
-                  return <div key={publisher.id}>{publisher.name}</div>;
-                })}
-            </DetailsSidebarItem>
-          </DetailsSidebar>
-
-          <Switch>
-            <Route exact path={url}>
-              <div className="mb-3 mt-8 text-darkAccent text-xl"> Media </div>
+              <DetailsSidebarItem>
+                <div className="text-darkAccent">Play Time</div>
+                {VNDBHelper.getPlaytimeFromLength(vn.length)}
+              </DetailsSidebarItem>
+              <DetailsSidebarItem>
+                <div className="text-darkAccent">Rating</div>
+                {vn.c_rating / 100}
+              </DetailsSidebarItem>
+              <DetailsSidebarItem>
+                <div className="text-darkAccent">Popularity</div>
+                {vn.c_popularity / 100}
+              </DetailsSidebarItem>
+              <DetailsSidebarItem>
+                <div className="text-darkAccent">Developer</div>
+                {vn.developers[0]}
+              </DetailsSidebarItem>
+              <DetailsSidebarItem>
+                <div className="text-darkAccent">Publishers</div>
+                {vn.publishers
+                  .filter((publisher) => {
+                    return publisher.official;
+                  })
+                  .map((publisher) => {
+                    return <div key={publisher.id}>{publisher.name}</div>;
+                  })}
+              </DetailsSidebarItem>
+            </DetailsSidebar>
+            <div className="sm:w-full xs:ml-4">
+              <div className="sm:hidden mb-3 mt-8 text-darkAccent text-xl">
+                Media
+              </div>
               <DetailsSidebar>
                 <DetailsSidebarItem>
                   <div className="text-darkAccent">Languages</div>
@@ -268,9 +276,9 @@ const VisualNovelDetailsPage = () => {
                   {platforms}
                 </DetailsSidebarItem>
               </DetailsSidebar>
-            </Route>
-          </Switch>
-        </div> */}
+            </div>
+          </div>
+        </div>
       </div>
 
       {vn.screenshots.length > 0 && (

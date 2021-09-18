@@ -36,21 +36,21 @@ const Tags = (props: Props) => {
       <div
         className={
           tag.spoiler === 2
-            ? "mb-4 flex flex-row items-center text-red-900 font-semibold w-full"
-            : "mb-4 flex flex-row items-center text-dark w-full"
+            ? "mb-4 grid grid-cols-2 items-center text-red-900 font-semibold w-full sm:text-sm"
+            : "mb-4 grid grid-cols-2 items-center text-dark w-full sm:text-sm"
         }
         key={tag.name}
       >
-        {tag.score.toFixed(2)}
         <motion.div
-          className="min-w-96 max-w-96 mx-3 h-6 flex items-center"
+          className="w-full mx-3 h-6 flex items-center"
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.2 }}
         >
+          <div className="mr-3">{tag.score.toFixed(2)}</div>
           <Scorebar scorePercentage={`${perc}%`} />
         </motion.div>
-        <div className="mx-4">{tag.name}</div>
+        <div className="pl-6 mx-4">{tag.name}</div>
       </div>
     );
   });

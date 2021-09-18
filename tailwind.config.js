@@ -72,6 +72,7 @@ module.exports = {
         titleDetailsDescription: "20rem",
         44: "11rem",
         56: "14rem",
+        64: "16rem",
         96: "24rem",
         vh25: "25vh",
         vh50: "50vh",
