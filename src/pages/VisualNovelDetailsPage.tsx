@@ -21,6 +21,8 @@ import DetailsTextScrollbar from "../components/details/DetailsTextScrollbar";
 import LoadingIcon from "../components/status/LoadingIcon";
 import ErrorIcon from "../components/status/ErrorIcon";
 
+import Gallery from "../components/details/Gallery";
+
 import * as VNDB from "../vndb/Vndb";
 import * as VNDBHelper from "../vndb/VndbHelpers";
 import { Service } from "../fetch/Service";
@@ -177,7 +179,7 @@ const VisualNovelDetailsPage = () => {
         className="md:px-6 sm:px-3  xs:px-2 px-8 sm:py-6 py-8 w-full 
        bg-light"
       >
-        <div className="max-w-8xl w-full items-start flex flex-row sm:flex-col justify-center m-auto">
+        <div className="max-w-8xl  w-full items-start flex flex-row sm:flex-col justify-center m-auto">
           <div className="w-full mr-10">
             <Switch>
               <Route exact path={url}>
@@ -204,7 +206,7 @@ const VisualNovelDetailsPage = () => {
           </div>
           <div
             className="flex flex-col sm:w-full sm:grid sm:grid-cols-2 sm:justify-items-center xs:gap-x-2 sm1s:gap-x-5 sm:mt-8
-          sm:gap-x-8 justify-center items-start"
+            sm:gap-x-8 justify-center items-start"
           >
             <DetailsSidebar>
               {vn.original && (

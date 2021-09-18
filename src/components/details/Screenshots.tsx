@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "../carousel/Carousel";
+import Gallery from "./Gallery";
 import { VnImage } from "../../vndb/VnTypes";
 import { IoIosEyeOff } from "react-icons/io";
 import { IoIosEye } from "react-icons/io";
@@ -33,10 +34,9 @@ const Screenshots = (props: Props) => {
   }, [NSFW]);
 
   return (
-    <div className="self-start relative bg-accentPrimary py-6 w-full">
+    <div className="relative bg-accentTertiary w-full">
       <div className="hidden flex-row w-full justify-between pb-4 px-4">
         <div className="text-accentPrimary"></div>
-        {/* <div className="text-2xl text-darkAccent">Screenshots</div> */}
         <div
           className=" hover:text-darkAccent text-dark text-lg
         cursor-pointer flex flex-row items-center justify-center"
@@ -48,7 +48,7 @@ const Screenshots = (props: Props) => {
           {NSFW ? <IoIosEye size="16px" /> : <IoIosEyeOff size="16px" />}
         </div>
       </div>
-      <Carousel slides={images} />
+      <Gallery images={images} />
     </div>
   );
 };
