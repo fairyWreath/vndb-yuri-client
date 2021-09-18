@@ -57,45 +57,48 @@ const VnReleaseCard = (props: Props) => {
 
   return (
     <div
-      className="flex flex-row items-center
-  shadow-md rounded-md w-full px-2 py-2 text-dark font-overlock text-sm bg-accentPrimary
-  text-center"
-      style={{ direction: "ltr" }}
+      className=" shadow-md rounded-md w-full px-2 py-2 text-dark font-overlock text-sm bg-accentPrimary
+    text-center"
     >
-      <div className="flex flex-col items-center w-28  text-center">
-        <div className="text-darkAccent">{props.release.title}</div>
+      <div className="flex flex-col items-center text-center w-full pb-2">
+        <div className="text-darkAccent pb-2">{props.release.title}</div>
         <div>{props.release.producers[0].name}</div>
         {/* <div className="text-xs">
           {props.release.official ? "Official" : "Not Official"}
         </div> */}
       </div>
-
-      <div className="text-base w-6 ">
-        {props.release.minage !== 0 && props.release.minage
-          ? `${props.release.minage}+`
-          : "All"}
-      </div>
-
-      <div>{VNDBHelper.parseDate(props.release.released)}</div>
-      {props.release.languages.length > 0 && (
-        <div className="flex flex-col items-center justify-center pr-2">
-          {props.release.languages.map((lang) => {
-            return <div key={lang}>{VNDBHelper.getFullLanguageName(lang)}</div>;
-          })}
+      <div
+        className="flex flex-row items-center justify-between "
+        style={{ direction: "ltr" }}
+      >
+        <div className="text-base w-6 ">
+          {props.release.minage !== 0 && props.release.minage
+            ? `${props.release.minage}+`
+            : "All"}
         </div>
-      )}
-
-      <div className="px-1">{freeware()}</div>
-      <div className="px-1">{animated()}</div>
-      <div className="px-1">{voiced()}</div>
-
-      {props.release.platforms.length > 0 && (
-        <img
-          className="w-7"
-          alt="plat"
-          src={VNDBHelper.getPlatformImage(props.release.platforms[0])}
-        />
-      )}
+        <div className="px-2">
+          {VNDBHelper.parseDate(props.release.released)}
+        </div>
+        {props.release.languages.length > 0 && (
+          <div className="flex flex-col items-center justify-center pr-2">
+            {props.release.languages.map((lang) => {
+              return (
+                <div key={lang}>{VNDBHelper.getFullLanguageName(lang)}</div>
+              );
+            })}
+          </div>
+        )}
+        <div className="px-1">{freeware()}</div>
+        <div className="px-1">{animated()}</div>
+        <div className="px-1">{voiced()}</div>
+        {props.release.platforms.length > 0 && (
+          <img
+            className="w-7"
+            alt="plat"
+            src={VNDBHelper.getPlatformImage(props.release.platforms[0])}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Characters = (props: Props) => {
       {characterCards.length > 0 ? (
         <div className="w-full">
           <div
-            className="grid sm:grid-cols-3 lg1s:grid-cols-3 grid-cols-4 xs:gap-x-2 gap-x-4 gap-y-6 "
+            className="grid sm:grid-cols-3 lg1s:grid-cols-3 lg:grid-cols-4 grid-cols-5 xs:gap-x-2 gap-x-4 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {characterCards}

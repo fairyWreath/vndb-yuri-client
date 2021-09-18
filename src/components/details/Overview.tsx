@@ -28,20 +28,13 @@ const Overview = (props: OverviewProps) => {
 
   return (
     <div className="w-full mr-auto">
-      {/* <div className="releases text-right pb-7">
-        <div className="text-darkAccent pb-3 text-xl align-text-top w-full">
-          Releases
-        </div>
-        <Releases releases={props.releases.slice(0, 6)} />
-      </div> */}
-
       {relationCards.length > 0 && (
-        <div className="pb-7 w-full">
+        <div className="pb-7 w-full md:pb-4">
           <div className="text-darkAccent pb-3 text-xl text-right">
             Relations
           </div>
           <div
-            className="w-full grid grid-cols-3 lg:grid-cols-2 md1s:grid-cols-1 gap-x-5 gap-y-6 "
+            className="w-full grid grid-cols-3 lg:grid-cols-2 md1s:grid-cols-1 gap-x-5 xs:gap-y-5 gap-y-6 "
             style={{ direction: "rtl" }}
           >
             {relationCards}
@@ -49,8 +42,17 @@ const Overview = (props: OverviewProps) => {
         </div>
       )}
 
+      {props.releases.length > 0 && (
+        <div className="releases text-right pb-7 md:pb-4">
+          <div className="text-darkAccent pb-3 text-xl align-text-top w-full">
+            Releases
+          </div>
+          <Releases releases={props.releases.slice(0, 6)} />
+        </div>
+      )}
+
       {props.characters.length > 0 && (
-        <div className="w-full pb-7">
+        <div className="w-full pb-7 md:pb-4">
           <div className="text-darkAccent pb-3 text-xl text-right">
             Characters
           </div>

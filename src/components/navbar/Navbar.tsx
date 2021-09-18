@@ -52,13 +52,13 @@ const Navbar = () => {
       </motion.nav>
 
       <div
-        className="hidden fixed bottom-7 left-7 w-14 h-14 bg-primary rounded-md shadow-md
+        className="hidden fixed bottom-5 left-5 w-14 h-14 bg-primary rounded-md shadow-md
     sm1s:flex justify-center items-center cursor-pointer text-light z-50"
         onClick={() => {
           setOpenMobileMenu(!openMobileMenu);
         }}
       >
-        {openMobileMenu ? <FaTimes size="35px" /> : <FaBars size="35px" />}
+        {openMobileMenu ? <FaTimes size="34px" /> : <FaBars size="34px" />}
       </div>
     </>
   );

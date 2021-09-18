@@ -114,16 +114,16 @@ const VisualNovelDetailsPage = () => {
           className="flex flex-row justify-center items-start w-full max-w-8xl
         px-8 pt-10  md:flex-col-reverse sm1s:items-center md:px-6 sm1s:pd-3 xs:pd-1 m-auto"
         >
-          <div className="pr-8 pl-4 sm1s:px-1 w-full">
+          <div className="pr-8 pl-4  md:px-0 w-full">
             <div
               className="italic text-3xl sm1s:text-2xl mb-5 text-right text-darkAccent sm1s:text-center
-              md:break-words sm1s:mt-3"
+              md:break-words"
             >
               {vn.title}
             </div>
             <DetailsTextScrollbar
               className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
-          overflow-y-hidden min-h-44 max-h-56 pl-5 md:px-3 md:w-full
+          overflow-y-hidden min-h-44 max-h-56 pl-5 md:px-0 md:w-full
           sm1s:px-2 sm1s:text-center sm1s:text-base break-words"
             >
               <div style={{ direction: "ltr" }}>{description}</div>
@@ -166,7 +166,7 @@ const VisualNovelDetailsPage = () => {
             </ul>
           </div>
           <img
-            className="rounded-lg h-96 w-64 md:w-48 md:h-72 sm1s:w-36 sm1s:h-56 shadow-md z-20
+            className="rounded-lg h-96 w-64 m1s:mb-3 sm1s:w-36 sm1s:h-56 sm1s:self-auto md:mb-5 md:self-end md:w-48 md:h-72 shadow-md z-20
             mt-titleImageMedium md:-mt-48"
             src={vn.image.src}
           />

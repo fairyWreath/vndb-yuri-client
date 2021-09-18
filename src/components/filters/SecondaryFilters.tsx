@@ -50,7 +50,7 @@ const SecondaryFilters = (props: SecondaryFiltersProps) => {
   });
 
   return (
-    <div className="relative sm1s:hidden">
+    <div className="relative">
       <div className="flex flex-row justify-end items-center mb-1 text-dark text-sm">
         <div
           className="hover:text-darkAccent cursor-pointer ml-2 select-none flex flex-row

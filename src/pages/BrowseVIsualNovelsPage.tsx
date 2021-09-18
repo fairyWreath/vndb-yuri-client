@@ -88,7 +88,7 @@ const BrowseVisualNovelsPage = () => {
   return (
     <div
       className="bg-light w-full min-h-screen bottom-0 
-    pb-8 font-overlock sm1s:pt-4 pt-16 flex flex-col items-center"
+    pb-8 font-overlock xs:pt-0 sm1s:pt-2 pt-16 flex flex-col items-center"
     >
       <Helmet>
         <title>Search Visual Novels · VNList</title>
@@ -144,7 +144,7 @@ const BrowseVisualNovelsPage = () => {
             multiSelect={true}
           />
         </div>
-        <div className="flex flex-row justify-end items-center mb-4">
+        <div className="flex flex-row justify-end items-center mb-4  sm1s:hidden">
           <SecondaryFilters
             setSortBy={(sort) => {
               setLastSortValue(undefined);
