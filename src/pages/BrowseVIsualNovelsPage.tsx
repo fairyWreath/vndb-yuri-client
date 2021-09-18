@@ -165,7 +165,9 @@ const BrowseVisualNovelsPage = () => {
         </div>
         <VisualNovelCardList data={result} />
       </div>
-      <div className="w-full h-1" ref={lastItemRef}></div>
+      <div className="w-full pt-28">
+        <div ref={lastItemRef} />
+      </div>
     </div>
   );
 };
