@@ -76,7 +76,7 @@ const VisualNovelDetailsPage = () => {
 
   const description = vn.desc.split("\n").map((line, idx) => {
     return (
-      <div key={idx}>
+      <div className="break-words w-full" key={idx}>
         {line} <br />
       </div>
     );
@@ -99,7 +99,7 @@ const VisualNovelDetailsPage = () => {
   });
 
   return (
-    <div className="flex flex-col justify-start items-center bg-light font-overlock">
+    <div className="flex flex-col justify-start items-center bg-light font-overlock relative w-full">
       <Helmet>
         <title>{result.payload.title} · VNList</title>
       </Helmet>
@@ -108,21 +108,29 @@ const VisualNovelDetailsPage = () => {
       ) : (
         <div className="w-full h-40 bg-light " />
       )}
+
       <div
         className="flex flex-row justify-center items-start bg-accentPrimary w-full 
-      px-8 pt-10 shadow-md "
+      px-8 pt-10 shadow-md md:flex-col-reverse sm1s:items-center md:px-6 sm1s:pd-3 xs:pd-1"
       >
-        <div className="pr-8 pl-4">
-          <div className="italic text-3xl mb-5 text-right text-darkAccent">
+        <div className="pr-8 pl-4 sm1s:px-1 w-full">
+          <div
+            className="italic text-3xl sm1s:text-2xl mb-5 text-right text-darkAccent sm1s:text-center 
+            md:break-words sm1s:mt-3"
+          >
             {vn.title}
           </div>
           <DetailsTextScrollbar
             className="text-right text-lg text-dark hover:text-darkAccent block max-w-7xl
-        overflow-y-hidden min-h-44 max-h-56 pl-5 dir"
+        overflow-y-hidden min-h-44 max-h-56 pl-5 md:px-3 md:w-full 
+        sm1s:px-2 sm1s:text-center sm1s:text-base break-words"
           >
             <div style={{ direction: "ltr" }}>{description}</div>
           </DetailsTextScrollbar>
-          <ul className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock pl-48 pb-3">
+          <ul
+            className="flex flex-row justify-between items-center text-lg mt-12 text-dark font-overlock 
+          pl-12 lg1s:pl-9 md:pl-0 pb-3 xs:overflow-scroll"
+          >
             <Link
               to={`${url}`}
               className="px-2 cursor-pointer border-b-3 border-transparent hover:text-darkAccent"
@@ -157,8 +165,8 @@ const VisualNovelDetailsPage = () => {
           </ul>
         </div>
         <img
-          className="rounded-lg h-96 w-64 shadow-md 
-          mt-titleImageMedium"
+          className="rounded-lg h-96 w-64 md:w-48 md:h-72 sm1s:w-36 sm1s:h-56 shadow-md z-20
+          mt-titleImageMedium md:-mt-48"
           src={vn.image.src}
         />
       </div>
@@ -189,7 +197,7 @@ const VisualNovelDetailsPage = () => {
           </Switch>
         </div>
 
-        <div className="flex flex-col justify-center items-start">
+        {/* <div className="flex flex-col justify-center items-start">
           <DetailsSidebar>
             {vn.original && (
               <DetailsSidebarItem>
@@ -262,7 +270,7 @@ const VisualNovelDetailsPage = () => {
               </DetailsSidebar>
             </Route>
           </Switch>
-        </div>
+        </div> */}
       </div>
 
       {vn.screenshots.length > 0 && (

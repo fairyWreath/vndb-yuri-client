@@ -9,7 +9,7 @@ interface SearchFilterProps {
 const SearchFilter = (props: SearchFilterProps) => {
   return (
     <div className={`px-0 py-3 ${props.className}`}>
-      <div className="text-lg text-dark mb-1">Search</div>
+      <div className="text-lg md:text-xl text-dark mb-1">Search</div>
       <div
         className="bg-accentSecondary rounded-md
         flex flex-row items-center text-dark
