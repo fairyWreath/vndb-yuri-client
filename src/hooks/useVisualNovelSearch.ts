@@ -30,8 +30,6 @@ const useVisualNovelSearch = (query: VnSearchQuery) => {
     let timeout = 500;
     if (!clear) timeout = 0;
 
-    console.log(query);
-
     const typingTimeout = setTimeout(() => {
       vnSearch(query, signal)
         .then((items: VnSearchItem[]) => {
