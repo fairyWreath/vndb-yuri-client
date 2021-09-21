@@ -21,10 +21,10 @@ const PulseDiv = styled.div`
 
   @keyframes pulse {
     0% {
-      background-color: #fae7e6;
+      background-color: #faeceb;
     }
     100% {
-      background-color: #f5d9d8;
+      background-color: #facac8;
     }
   }
 `;
